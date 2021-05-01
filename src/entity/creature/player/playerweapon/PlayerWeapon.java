@@ -1,0 +1,31 @@
+package entity.creature.player.playerweapon;
+
+import main.Handler;
+
+public abstract class PlayerWeapon {
+    public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
+    Handler handler;
+    protected int damage;
+    protected int direct;
+
+    public PlayerWeapon(Handler handler, int damage){
+        this.handler = handler;
+        this.damage = damage;
+    }
+
+    public abstract void tick();
+
+    public abstract void damaging();
+
+    public void increaseDamage(int n){
+        damage += n;
+    }
+
+    public void decreaseDamage(int n){
+        damage -= n;
+    }
+
+    public void setDamage(int n){
+        damage = n;
+    }
+}
