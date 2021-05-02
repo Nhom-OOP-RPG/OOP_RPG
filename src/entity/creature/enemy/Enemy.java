@@ -41,12 +41,17 @@ public abstract class Enemy extends Creature {
 
         float xDiffer = target.getX() - x;
         float yDiffer = target.getY() - y;
+        float tanTargetToThis = yDiffer / xDiffer;
+        
         distanceToTarget = (float) java.lang.Math.sqrt(xDiffer*xDiffer + yDiffer*yDiffer);
+
+        angleToTarget = Math.toDegrees(Math.atan(tanTargetToThis));
+        if (xDiffer < 0) angleToTarget += 180;
+        if (angleToTarget < 0) angleToTarget += 360;
 
         if (distanceToTarget <= near) return;
         if (distanceToTarget >= far) return;
 
-        float tanTargetToThis = yDiffer / xDiffer;
         if (tanTargetToThis >= -1 && tanTargetToThis <= 1){
             if (xDiffer < 0){
                 xMove -= speed;
@@ -61,9 +66,6 @@ public abstract class Enemy extends Creature {
             }
         }
 
-        angleToTarget = Math.toDegrees(Math.atan(tanTargetToThis));
-        if (xDiffer < 0) angleToTarget += 180;
-        if (angleToTarget < 0) angleToTarget += 360;
     }
 
 
