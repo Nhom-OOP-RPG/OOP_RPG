@@ -10,12 +10,13 @@ public abstract class Enemy extends Creature {
     private Player target;
 
     protected float distanceToTarget;
+    protected double angleToTarget;
 
     protected int attackDelayCount;
     protected int attackDelay;
 
     public Enemy(Handler handler, float x, float y, Player target) {
-        super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+        super(handler, x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
 
         health = 30;
         speed = 1.5f;
@@ -47,21 +48,30 @@ public abstract class Enemy extends Creature {
 
         float tanTargetToThis = yDiffer / xDiffer;
         if (tanTargetToThis >= -1 && tanTargetToThis <= 1){
-            if (target.getX() < x){
+            if (xDiffer < 0){
                 xMove -= speed;
             } else {
                 xMove += speed;
             }
         } else if (tanTargetToThis < -1 || tanTargetToThis > 1){
-            if (target.getY() < y){
+            if (yDiffer < 0){
                 yMove -= speed;
             } else {
                 yMove += speed;
             }
         }
+
+        angleToTarget = Math.toDegrees(Math.atan(tanTargetToThis));
+        if (xDiffer < 0) angleToTarget += 180;
+        if (angleToTarget < 0) angleToTarget += 360;
     }
+
 
     public float getDistanceToTarget() {
         return distanceToTarget;
+    }
+
+    public double getAngleToTarget() {
+        return angleToTarget;
     }
 }
