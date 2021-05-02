@@ -19,6 +19,7 @@ import input.KeyManager;
 import main.fps.FPSTimer;
 //State
 import state.State;
+
 import state.GameState;
 
 
@@ -59,7 +60,8 @@ public class Game implements Runnable {
         handler = new Handler(this);
 
         //State
-        gameState = new GameState(handler);
+        gameState = new MainMenu(handler);
+
         State.setState(gameState);
     }
 
