@@ -21,6 +21,7 @@ import main.fps.FPSTimer;
 import state.State;
 
 import state.GameState;
+import state.MainMenuState;
 
 
 public class Game implements Runnable {
@@ -45,6 +46,7 @@ public class Game implements Runnable {
 
     //State
     private State gameState;
+    private State mainMenuState;
 
     //Khoi tao game
     private void init(){
@@ -60,9 +62,9 @@ public class Game implements Runnable {
         handler = new Handler(this);
 
         //State
-        gameState = new MainMenu(handler);
-
-        State.setState(gameState);
+        gameState = new GameState(handler);
+        mainMenuState = new MainMenuState(handler);
+        State.setState(mainMenuState);
     }
 
     //Cap nhat du lieu
@@ -147,4 +149,13 @@ public class Game implements Runnable {
     public KeyManager getKeyManager(){
         return keyManager;
     }
+
+    public State getGameState() {
+        return gameState;
+    }
+
+    public State getMainMenuState() {
+        return mainMenuState;
+    }
+
 }

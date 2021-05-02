@@ -1,14 +1,14 @@
-package main;
+package state;
 
 import java.awt.Graphics;
- 
+
+import main.Game;
+import main.Handler;
 
 import java.awt.Color;
 import java.awt.Font;
 
-import state.State;
-
-public class MainMenu extends State{
+public class MainMenuState extends State{
     
     private String[] optionsMenu;
 
@@ -18,7 +18,7 @@ public class MainMenu extends State{
 	private int selected;
 
     //private Game game = new Game();
-    public MainMenu(Handler handler) {
+    public MainMenuState(Handler handler) {
 
         super(handler);
         this.optionsMenu = new String[] {START_GAME, QUIT_GAME};
@@ -27,13 +27,22 @@ public class MainMenu extends State{
 
     @Override
     public void tick() {
-
         if (handler.getKeyManager().up) {
             selected = 0;
+            return;
         }
 
         if (handler.getKeyManager().down) {
             selected = 1;
+            return;
+        }
+
+        if (handler.getKeyManager().enter) {
+            if (selected == 0){
+                State.setState(handler.getGame().getGameState());
+            } else {
+                handler.getGame().stop();
+            }
         }
     }
 
@@ -50,6 +59,5 @@ public class MainMenu extends State{
 			graphics.drawString(this.optionsMenu[i], Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT /2 + 30*i);
 		}
     }
-
 
 }
