@@ -57,11 +57,13 @@ public class World extends State{
             player.setCenterY(0);
         }
         if (position > 2) {
+
+            currentRoom = worldMap[0][0];
             State.setState(handler.getGame().getWinGameState());
         }
     }
 
-    
+
     //Get Set
 
     //trả về phòng chơi hiện tại
@@ -77,6 +79,7 @@ public class World extends State{
     }
 
     public void setRoom(Handler handler, int thisWorld, int roomName, String path, int numOfEnemies){
+        
         worldMap[thisWorld][roomName] = new Room();
         worldMap[thisWorld][roomName].loadRoom(path);
         worldMap[thisWorld][roomName].createEnemy(handler, numOfEnemies);
