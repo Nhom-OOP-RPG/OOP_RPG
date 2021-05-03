@@ -43,7 +43,7 @@ public class World extends State{
     public void changeRoom(Player player){
         if (currentRoom.worldName == 0 && currentRoom.roomName == 1 
                 && (int) player.getCenterX()/Game.TILE_WIDTH == 16 && (int) player.getCenterY()/Game.TILE_HEIGHT == 10
-                && getRoom(0, 1).getNumOfEnemies() == 0){
+                && getRoom(0, 1).getNumOfEnemies() <= 0){
             currentRoom = worldMap[1][0];
             player.setX(40f);
             player.setY(40f);
@@ -51,7 +51,7 @@ public class World extends State{
         
         if (currentRoom.worldName == 1 && currentRoom.roomName == 1 
                 && (int) player.getCenterX()/Game.TILE_WIDTH == 16 && (int) player.getCenterY()/Game.TILE_HEIGHT == 10
-                && getRoom(0, 1).getNumOfEnemies() == 0){
+                && getRoom(0, 1).getNumOfEnemies() <= 0){
             State.setState(handler.getGame().getWinGameState());
         }
 
