@@ -4,11 +4,14 @@ Lớp World: chứa dữ liệu liên quan tới các thế giới của các m�
 
 package world;
 
+import java.awt.Graphics;
+
 import entity.creature.player.Player;
 import main.Game;
 import main.Handler;
+import state.State;
 
-public class World {
+public class World extends State{
     //Hướng
     public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
 
@@ -20,8 +23,11 @@ public class World {
     //phòng chơi người chơi đang đứng
     private Room currentRoom;
 
+    private byte position = 1;
+
     //Load các phòng chơi
     public World(Handler handler){
+        super(handler);
         worldMap = new Room[2][];
         worldMap[0] = new Room[2];
         worldMap[1] = new Room[0];
@@ -38,9 +44,11 @@ public class World {
         if (player.getCenterX() < 0){
             currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(WEST)];
             player.setCenterX(Game.WINDOW_WIDTH);
+            position --;
         } else if (player.getCenterX() > Game.WINDOW_WIDTH){
             currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(EAST)];
             player.setCenterX(0);
+            position ++;
         } else if (player.getCenterY() < 0){
             currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(NORTH)];
             player.setCenterY(Game.WINDOW_HEIGHT);
@@ -48,8 +56,12 @@ public class World {
             currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(SOUTH)];
             player.setCenterY(0);
         }
+        if (position > 2) {
+            State.setState(handler.getGame().getWinGameState());
+        }
     }
 
+    
     //Get Set
 
     //trả về phòng chơi hiện tại
@@ -68,5 +80,17 @@ public class World {
         worldMap[thisWorld][roomName] = new Room();
         worldMap[thisWorld][roomName].loadRoom(path);
         worldMap[thisWorld][roomName].createEnemy(handler, numOfEnemies);
+    }
+
+    @Override
+    public void tick() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void render(Graphics g) {
+        // TODO Auto-generated method stub
+        
     }
 }
