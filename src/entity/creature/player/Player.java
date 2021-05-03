@@ -9,6 +9,7 @@ import entity.creature.player.playerweapon.PlayerMelee;
 import entity.creature.player.playerweapon.PlayerWeapon;
 import graphic.Asset;
 import main.Handler;
+import state.State;
 
 
 public class Player extends Creature {
@@ -47,7 +48,7 @@ public class Player extends Creature {
     public void tick() {
         if (health <= 0) {
             isDead = true;
-            System.out.println("player dead");
+            State.setState(handler.getGame().getLoseGameState());
         }
         getInput();
         move();
