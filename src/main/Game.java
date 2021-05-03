@@ -19,7 +19,7 @@ import input.KeyManager;
 import main.fps.FPSTimer;
 //State
 import state.State;
-
+import state.ChooseLevelState;
 import state.GameState;
 import state.MainMenuState;
 
@@ -46,6 +46,9 @@ public class Game implements Runnable {
 
     //State
     private State gameState;
+
+    private State chooseLevelState;
+
     private State mainMenuState;
 
     //Khoi tao game
@@ -64,6 +67,7 @@ public class Game implements Runnable {
         //State
         gameState = new GameState(handler);
         mainMenuState = new MainMenuState(handler);
+        chooseLevelState = new ChooseLevelState(handler);
         State.setState(mainMenuState);
     }
 
@@ -152,6 +156,10 @@ public class Game implements Runnable {
 
     public State getGameState() {
         return gameState;
+    }
+
+    public State getChooseLevelState(){
+        return chooseLevelState;
     }
 
     public State getMainMenuState() {
