@@ -10,7 +10,7 @@ public class LoseGameState extends State {
     private String[] options;
 
     private static final String LOSE_GAME = "You Lose!";
-    private static final String CONTINUE = "Press Enter to continue!";
+    private static final String CONTINUE = "Press 1 to continue!";
 
     public LoseGameState(Handler handler) {
         super(handler);
@@ -19,7 +19,8 @@ public class LoseGameState extends State {
 
     @Override
     public void tick() {
-        if (handler.getKeyManager().enter) {
+        if (handler.getKeyManager().one) {
+            
             State.setState(handler.getGame().getMainMenuState());
             handler.restartGame();
         }
