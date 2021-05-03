@@ -35,7 +35,7 @@ public class Enemy1 extends Enemy {
     @Override
     public void tick(){
         if (health <= 0) {
-            isDead = true;
+            setDead();
             System.out.println("enemy dead");
         }
 
@@ -62,9 +62,9 @@ public class Enemy1 extends Enemy {
     //Chuyển đổi Animation
     @Override
     protected void currentFrameUpdate() {
-        animationDelay++;
-        if (animationDelay >= 10){
-            animationDelay = 0;
+        animationDelayCount++;
+        if (animationDelayCount >= animationDelay){
+            animationDelayCount = 0;
             currentFrameID = 1 - currentFrameID;
             if (isDamaged){
                 currentFrame = Asset.enemy1Damaged[currentFrameID];

@@ -9,18 +9,19 @@ public class LoseGameState extends State {
     
     private String[] options;
 
-    private static final String WIN_GAME = "You Lose!";
+    private static final String LOSE_GAME = "You Lose!";
     private static final String CONTINUE = "Press Enter to continue!";
 
     public LoseGameState(Handler handler) {
         super(handler);
-        this.options = new String[] {WIN_GAME, CONTINUE};
+        this.options = new String[] {LOSE_GAME, CONTINUE};
     }
 
     @Override
     public void tick() {
         if (handler.getKeyManager().enter) {
             State.setState(handler.getGame().getMainMenuState());
+            handler.restartGame();
         }
     }
 

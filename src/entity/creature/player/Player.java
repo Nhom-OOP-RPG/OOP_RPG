@@ -43,7 +43,6 @@ public class Player extends Creature {
         attackDelayCount = 25;
         attackDelay = 25;
 
-        animationDelay = 0;
         currentFrame = Asset.player[0][0];
         currentDirect = 0;
         currentFrameID = 0;
@@ -112,10 +111,10 @@ public class Player extends Creature {
     //Chuyển đổi animation của người chơi
     @Override
     protected void currentFrameUpdate() {
-        animationDelay++;
+        animationDelayCount++;
         if (xMove != 0 || yMove != 0){
-            if (animationDelay >= 10){
-                animationDelay = 0;
+            if (animationDelayCount >= animationDelay){
+                animationDelayCount = 0;
                 currentFrameID = 1 - currentFrameID;
             }
         }
@@ -132,9 +131,8 @@ public class Player extends Creature {
 
         if (isDamaged){
             currentFrame = Asset.playerDamaged[currentDirect][currentFrameID];
-            if (attackDelayCount > attackDelay){
+            if (animationDelayCount > animationDelay){
                 isDamaged = false;
-                animationDelay = 0;
             }
         } else {
             currentFrame = Asset.player[currentDirect][currentFrameID];

@@ -8,7 +8,9 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import entity.creature.enemy.Enemy1;
+import graphic.Asset;
 import graphic.tile.Tile;
+import main.Game;
 import main.Handler;
 import utility.Utility;
 
@@ -28,7 +30,9 @@ public class Room {
 
     //demo2, kệ đoạn này
     private Enemy1[] enemyList;
+    private int numOfEnemies;
     public void createEnemy(Handler handler, int numOfEnemies){
+        this.numOfEnemies = numOfEnemies;
         enemyList = new Enemy1[numOfEnemies];
         for (int i = 0; i < numOfEnemies; i++){
             Random rand = new Random();
@@ -61,6 +65,14 @@ public class Room {
             }
         }
 
+        if (roomName == 1 && worldName == 0 && numOfEnemies == 0){
+            g.drawImage(Asset.desertFloor, 16*40, 10*40, Game.TILE_WIDTH, Game.TILE_HEIGHT, null);
+        }
+
+        if (roomName == 1 && worldName == 1 && numOfEnemies == 0){
+            g.drawImage(Asset.floor, 16*40, 10*40, Game.TILE_WIDTH, Game.TILE_HEIGHT, null);
+        }
+
         for (Enemy1 e : enemyList){
             if (!e.getIsDead()){
                 e.render(g);
@@ -91,6 +103,14 @@ public class Room {
                 roomMap[x][y] = Utility.parseInt(tokens[x + y * WIDTH + 3 + 2 * exitNum]);
             }
         }
+    }
+
+    public void decreaseNumOfEnemies(){
+        numOfEnemies--;
+    }
+
+    public int getNumOfEnemies(){
+        return numOfEnemies;
     }
 
     //lấy tên phòng ra theo hướng dir

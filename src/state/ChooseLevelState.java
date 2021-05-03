@@ -20,7 +20,6 @@ public class ChooseLevelState extends State {
         super(handler);
         this.sel = 0;
         this.optionsLevel = new String[] {EASY, HARD};
-
     }
 
     @Override

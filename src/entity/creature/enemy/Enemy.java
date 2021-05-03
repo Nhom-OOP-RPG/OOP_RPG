@@ -27,7 +27,6 @@ public abstract class Enemy extends Creature {
         bounds.width = 20;
         bounds.height = 20;
 
-        animationDelay = 0;
         currentFrameID = 0;
     }
 

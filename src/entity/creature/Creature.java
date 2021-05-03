@@ -27,6 +27,7 @@ public abstract class Creature extends Entity {
     //Các thành phần liên quan tới Animation
     //thời gian để chuyển animation, vì không delay thì animation sẽ nhanh quá
     protected int animationDelay;
+    protected int animationDelayCount;
     //Ảnh animation hiện tại
     protected BufferedImage currentFrame;
     //Mã index của animation hiện tại
@@ -42,6 +43,9 @@ public abstract class Creature extends Entity {
 
         isDead = false;
         isDamaged = false;
+
+        animationDelayCount = 0;
+        animationDelay = 10;
     }
 
 
@@ -119,6 +123,7 @@ public abstract class Creature extends Entity {
 
     public void setDead(){
         isDead = true;
+        handler.getWorld().getRoom().decreaseNumOfEnemies();
     }
 
     public int getHealth(){

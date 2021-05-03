@@ -21,6 +21,12 @@ public class Handler{
         world = new World(this);
     }
 
+    //Choi lai
+    public void restartGame(){
+        player = new Player(this);
+        world = new World(this);
+    }
+
     //Get Set
     //Game
     public Game getGame() {

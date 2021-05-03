@@ -30,10 +30,12 @@ public class World extends State{
         super(handler);
         worldMap = new Room[2][];
         worldMap[0] = new Room[2];
-        worldMap[1] = new Room[0];
+        worldMap[1] = new Room[2];
 
         setRoom(handler, 0, 0, "res/world/world0/room_0_0.txt", 4);
         setRoom(handler, 0, 1, "res/world/world0/room_0_1.txt", 2);
+        setRoom(handler, 1, 0, "res/world/world1/room_1_0.txt", 5);
+        setRoom(handler, 1, 1, "res/world/world1/room_1_1.txt", 3);
 
         currentRoom = worldMap[0][0];
     }
@@ -41,6 +43,20 @@ public class World extends State{
     //phương thức chuyển các phòng
     //khi người chơi ra phòng sẽ tìm phòng bên cạnh theo hướng ra đó 
     public void changeRoom(Player player){
+        if (currentRoom.worldName == 0 && currentRoom.roomName == 1 
+                && (int) player.getCenterX()/Game.TILE_WIDTH == 16 && (int) player.getCenterY()/Game.TILE_HEIGHT == 10
+                && getRoom(0, 1).getNumOfEnemies() == 0){
+            currentRoom = worldMap[1][0];
+            player.setX(40f);
+            player.setY(40f);
+        }
+        
+        if (currentRoom.worldName == 1 && currentRoom.roomName == 1 
+                && (int) player.getCenterX()/Game.TILE_WIDTH == 16 && (int) player.getCenterY()/Game.TILE_HEIGHT == 10
+                && getRoom(0, 1).getNumOfEnemies() == 0){
+            State.setState(handler.getGame().getWinGameState());
+        }
+
         if (player.getCenterX() < 0){
             currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(WEST)];
             player.setCenterX(Game.WINDOW_WIDTH);
@@ -56,11 +72,7 @@ public class World extends State{
             currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(SOUTH)];
             player.setCenterY(0);
         }
-        if (position > 2) {
-
-            currentRoom = worldMap[0][0];
-            State.setState(handler.getGame().getWinGameState());
-        }
+        
     }
 
 
@@ -79,7 +91,6 @@ public class World extends State{
     }
 
     public void setRoom(Handler handler, int thisWorld, int roomName, String path, int numOfEnemies){
-        
         worldMap[thisWorld][roomName] = new Room();
         worldMap[thisWorld][roomName].loadRoom(path);
         worldMap[thisWorld][roomName].createEnemy(handler, numOfEnemies);

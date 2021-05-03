@@ -9,7 +9,7 @@ import utility.*;
 public class Asset {
     //private static final int width = 40, height = 40;
     
-    public static BufferedImage floor, grass, stone, wall;
+    public static BufferedImage floor, grass, stone, wall, desertFloor, desertWall;
     public static BufferedImage[][] player, playerDamaged;
     public static BufferedImage[] enemy1, enemy1Damaged;
 
@@ -19,6 +19,8 @@ public class Asset {
         grass = Utility.loadImage("res/texture/tile/grass.png");
         stone = Utility.loadImage("res/texture/tile/stone.png");
         wall = Utility.loadImage("res/texture/tile/wall.png");
+        desertFloor = Utility.loadImage("res/texture/tile/desertfloor.png");
+        desertWall = Utility.loadImage("res/texture/tile/desertwall.png");
 
         //Player
         player = new BufferedImage[4][2];

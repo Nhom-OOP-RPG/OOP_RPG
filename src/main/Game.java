@@ -33,6 +33,7 @@ public class Game implements Runnable {
     //Title va kich thuoc cua so
     public final String GAME_TITLE = "DEMO";
     public static final int WINDOW_WIDTH = 40*20, WINDOW_HEIGHT = 40*15;
+    public static final int TILE_WIDTH = 40, TILE_HEIGHT = 40;
 
     private boolean isRunning = false;
     private Thread thread;
