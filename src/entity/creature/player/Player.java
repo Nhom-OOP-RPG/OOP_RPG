@@ -8,8 +8,13 @@ import entity.creature.Creature;
 import entity.creature.player.playerweapon.PlayerMelee;
 import entity.creature.player.playerweapon.PlayerWeapon;
 import graphic.Asset;
+import graphic.tile.Tile;
 import main.Handler;
 import state.State;
+import utility.Utility;
+
+import java.awt.Color;
+import java.awt.Font;
 
 
 public class Player extends Creature {
@@ -46,6 +51,7 @@ public class Player extends Creature {
 
     @Override
     public void tick() {
+
         if (health <= 0) {
             isDead = true;
             State.setState(handler.getGame().getLoseGameState());
@@ -53,6 +59,7 @@ public class Player extends Creature {
         getInput();
         move();
         attackDelayCount++;
+
         if (isAttacking && attackDelayCount >= attackDelay){
             melee.damaging();
             isAttacking = false;
@@ -63,8 +70,13 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics graphics) {
+
         currentFrameUpdate();
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
+        graphics.setColor(Color.WHITE);
+		graphics.setFont(new Font("arial", Font.PLAIN, 15));
+		graphics.drawImage(Utility.loadImage("res/texture/player/heart.png"), 0, 0, Tile.TILE_WIDTH*2/3, Tile.TILE_HEIGHT*2/3, null);
+		graphics.drawString(getHealth()+" / 100", Tile.TILE_HEIGHT*2/3+5, 20);
     }
     
     //Kiểm tra input để cập nhật xMove, yMove
@@ -134,6 +146,4 @@ public class Player extends Creature {
     public void setCenterY(float y){
         this.y = y - this.height / 2;
     }
-
-    
 }
