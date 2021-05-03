@@ -27,21 +27,24 @@ public class MainMenuState extends State{
 
     @Override
     public void tick() {
-        if (handler.getKeyManager().up) {
-            selected = 0;
-            return;
-        }
-
-        if (handler.getKeyManager().down) {
-            selected = 1;
-            return;
-        }
-
-        if (handler.getKeyManager().enter) {
-            if (selected == 0){
-                State.setState(handler.getGame().getChooseLevelState());
-            } else {
-                System.exit(0);
+        keyPressedDelayCount++;
+        if (keyPressedDelayCount >= keyPressedDelay){
+            if (handler.getKeyManager().up) {
+                selected = 0;
+                return;
+            }
+    
+            if (handler.getKeyManager().down) {
+                selected = 1;
+                return;
+            }
+    
+            if (handler.getKeyManager().enter) {
+                if (selected == 0){
+                    State.setState(handler.getGame().getChooseLevelState());
+                } else {
+                    System.exit(0);
+                }
             }
         }
     }

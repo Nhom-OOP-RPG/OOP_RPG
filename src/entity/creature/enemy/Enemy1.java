@@ -3,6 +3,8 @@
 package entity.creature.enemy;
 
 import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Font;
 
 import entity.creature.enemy.enemyweapon.EnemyMelee;
 import entity.creature.enemy.enemyweapon.EnemyWeapon;
@@ -51,6 +53,10 @@ public class Enemy1 extends Enemy {
     public void render(Graphics graphics) {
         currentFrameUpdate();
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
+
+        graphics.setColor(Color.ORANGE);
+		graphics.setFont(new Font("arial", Font.PLAIN, 10));
+		graphics.drawString(getHealth()+" / 50", (int) this.x, (int) this.y);
     }
     
     //Chuyển đổi Animation
@@ -60,7 +66,12 @@ public class Enemy1 extends Enemy {
         if (animationDelay >= 10){
             animationDelay = 0;
             currentFrameID = 1 - currentFrameID;
-            currentFrame = Asset.enemy1[currentFrameID];
+            if (isDamaged){
+                currentFrame = Asset.enemy1Damaged[currentFrameID];
+                isDamaged = false;
+            } else {
+                currentFrame = Asset.enemy1[currentFrameID];
+            }
         }
     }
 }

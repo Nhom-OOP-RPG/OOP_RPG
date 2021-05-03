@@ -19,31 +19,35 @@ public class ChooseLevelState extends State {
     public ChooseLevelState(Handler handler) {
         super(handler);
         this.sel = 0;
-        this.optionsLevel = new String[] {EASY, HARD
-        };
+        this.optionsLevel = new String[] {EASY, HARD};
+
     }
 
     @Override
     public void tick() {
+        keyPressedDelayCount++;
+        if (keyPressedDelayCount >= keyPressedDelay){
+            if (handler.getKeyManager().up) {
+                sel = 0;
+                keyPressedDelayCount = 0;
+                return;
+            }
 
-        if (handler.getKeyManager().up) {
-            sel = 0;
-            return;
-        }
+            if (handler.getKeyManager().down) {
+                sel = 1;
+                keyPressedDelayCount = 0;
+                return;
+            }
 
-        if (handler.getKeyManager().down) {
-            sel = 1;
-            return;
-        }
-
-        if (handler.getKeyManager().attack) {
-            if (sel == 0){
-                State.setState(handler.getGame().getGameState());
-            } else {
-                System.exit(0);
+            if (handler.getKeyManager().enter) {
+                if (sel == 0){
+                    State.setState(handler.getGame().getGameState());
+                } else {
+                    System.exit(0);
+                }
+                keyPressedDelayCount = 0;
             }
         }
-        
     }
 
     @Override

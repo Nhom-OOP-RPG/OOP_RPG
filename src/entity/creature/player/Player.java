@@ -3,6 +3,8 @@
 package entity.creature.player;
 
 import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Font;
 
 import entity.creature.Creature;
 import entity.creature.player.playerweapon.PlayerMelee;
@@ -12,9 +14,6 @@ import graphic.tile.Tile;
 import main.Handler;
 import state.State;
 import utility.Utility;
-
-import java.awt.Color;
-import java.awt.Font;
 
 
 public class Player extends Creature {
@@ -41,11 +40,12 @@ public class Player extends Creature {
 
         melee = new PlayerMelee(handler, 20);
         isAttacking = false;
-        attackDelayCount = 0;
-        attackDelay = 20;
+        attackDelayCount = 25;
+        attackDelay = 25;
 
         animationDelay = 0;
         currentFrame = Asset.player[0][0];
+        currentDirect = 0;
         currentFrameID = 0;
     }
 
@@ -58,9 +58,9 @@ public class Player extends Creature {
         }
         getInput();
         move();
-        attackDelayCount++;
 
-        if (isAttacking && attackDelayCount >= attackDelay){
+        
+        if (isAttacking){
             melee.damaging();
             isAttacking = false;
             System.out.println("attack");
@@ -100,30 +100,44 @@ public class Player extends Creature {
             xMove = speed;
             attackDirect = 0;
         }
-        if (handler.getKeyManager().attack){
-            isAttacking = true;
+
+        attackDelayCount++;
+        if(attackDelayCount >= attackDelay){
+            if (handler.getKeyManager().attack){
+                isAttacking = true;
+            }
         }
     }
 
     //Chuyển đổi animation của người chơi
     @Override
     protected void currentFrameUpdate() {
-        if (xMove == 0 && yMove == 0){
-            return;
-        }
         animationDelay++;
-        if (animationDelay >= 10){
-            animationDelay = 0;
-            currentFrameID = 1 - currentFrameID;
+        if (xMove != 0 || yMove != 0){
+            if (animationDelay >= 10){
+                animationDelay = 0;
+                currentFrameID = 1 - currentFrameID;
+            }
         }
+
         if (yMove > 0){
-            currentFrame = Asset.player[0][currentFrameID];
+            currentDirect = 0;
         } else if (yMove < 0){
-            currentFrame = Asset.player[1][currentFrameID];
+            currentDirect = 1;
         } else if (xMove < 0){
-            currentFrame = Asset.player[2][currentFrameID];
+            currentDirect = 2;
         } else if (xMove > 0){
-            currentFrame = Asset.player[3][currentFrameID];
+            currentDirect = 3;
+        }
+
+        if (isDamaged){
+            currentFrame = Asset.playerDamaged[currentDirect][currentFrameID];
+            if (attackDelayCount > attackDelay){
+                isDamaged = false;
+                animationDelay = 0;
+            }
+        } else {
+            currentFrame = Asset.player[currentDirect][currentFrameID];
         }
     }
     

@@ -16,8 +16,13 @@ public abstract class State {
 
     protected Handler handler;
 
+    protected int keyPressedDelay, keyPressedDelayCount;
+
     public State(Handler handler){
         this.handler = handler;
+
+        keyPressedDelay = 15;
+        keyPressedDelayCount = 0;
     }
 
     public abstract void tick();
