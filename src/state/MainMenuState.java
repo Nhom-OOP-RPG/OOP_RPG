@@ -41,7 +41,7 @@ public class MainMenuState extends State{
             if (selected == 0){
                 State.setState(handler.getGame().getGameState());
             } else {
-                handler.getGame().stop();
+                System.exit(0);
             }
         }
     }
