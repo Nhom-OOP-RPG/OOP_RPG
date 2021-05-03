@@ -23,8 +23,6 @@ public class World extends State{
     //phòng chơi người chơi đang đứng
     private Room currentRoom;
 
-    private byte position = 1;
-
     //Load các phòng chơi
     public World(Handler handler){
         super(handler);
@@ -60,11 +58,9 @@ public class World extends State{
         if (player.getCenterX() < 0){
             currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(WEST)];
             player.setCenterX(Game.WINDOW_WIDTH);
-            position --;
         } else if (player.getCenterX() > Game.WINDOW_WIDTH){
             currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(EAST)];
             player.setCenterX(0);
-            position ++;
         } else if (player.getCenterY() < 0){
             currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(NORTH)];
             player.setCenterY(Game.WINDOW_HEIGHT);
