@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class MainMenuState extends State{
-    
+
     private String[] optionsMenu;
 
     private static final String START_GAME = "Start Game";
@@ -39,7 +39,7 @@ public class MainMenuState extends State{
 
         if (handler.getKeyManager().enter) {
             if (selected == 0){
-                State.setState(handler.getGame().getGameState());
+                State.setState(handler.getGame().getChooseLevelState());
             } else {
                 System.exit(0);
             }
