@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Font;
 public class LoseGameState extends State {
+    
     private String[] options;
 
     private static final String WIN_GAME = "You Lose!";
