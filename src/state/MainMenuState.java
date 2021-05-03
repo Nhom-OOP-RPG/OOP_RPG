@@ -41,6 +41,7 @@ public class MainMenuState extends State{
     
             if (handler.getKeyManager().enter) {
                 if (selected == 0){
+                    keyPressedDelayCount = 0;
                     State.setState(handler.getGame().getChooseLevelState());
                 } else {
                     System.exit(0);
