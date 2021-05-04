@@ -4,14 +4,18 @@ Lớp World: chứa dữ liệu liên quan tới các thế giới của các m�
 
 package world;
 
+import entity.creature.enemy.Enemy;
+import entity.creature.enemy.Enemy1;
 import entity.creature.player.Player;
 import main.Game;
 import main.Handler;
 
 public class World {
-    //Hướng
     public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
+    //public static final int 
 
+
+    Handler handler;
     //Danh sách các phòng
     //index đầu tiên: tên thế giới chứa phòng
     //index thứ hai: tên phòng chơi
@@ -22,12 +26,9 @@ public class World {
 
     //Load các phòng chơi
     public World(Handler handler){
-        worldMap = new Room[2][];
-        worldMap[0] = new Room[2];
-        worldMap[1] = new Room[0];
+        this.handler = handler;
 
-        setRoom(handler, 0, 0, "res/world/world0/room_0_0.txt", 4);
-        setRoom(handler, 0, 1, "res/world/world0/room_0_1.txt", 2);
+        init();
 
         currentRoom = worldMap[0][0];
     }
@@ -64,9 +65,20 @@ public class World {
         return worldMap[worldName][roomName];
     }
 
-    public void setRoom(Handler handler, int thisWorld, int roomName, String path, int numOfEnemies){
+    public void setRoom(Handler handler, int thisWorld, int roomName, String path){
         worldMap[thisWorld][roomName] = new Room();
         worldMap[thisWorld][roomName].loadRoom(path);
-        worldMap[thisWorld][roomName].createEnemy(handler, numOfEnemies);
+    }
+
+    public void init(){
+        worldMap = new Room[2][];
+        worldMap[0] = new Room[2];
+        worldMap[1] = new Room[0];
+
+        setRoom(this.handler, 0, 0, "res/world/world0/room_0_0.txt");
+        setRoom(this.handler, 0, 1, "res/world/world0/room_0_1.txt");
+
+        worldMap[0][0].addNewEnemy(handler, 1, 6);
+        worldMap[0][1].addNewEnemy(handler, 2);
     }
 }

@@ -43,26 +43,25 @@ public class Asset {
         //Enemy
         //tạm thời mới có 1 loại quái
         gummy = new BufferedImage[2];
-        gummy[0] = Utility.loadImage("res/texture/enemy/gummy/gummy.png");
-        gummy[1] = Utility.loadImage("res/texture/enemy/gummy/gummy_2.png");
-
+        gummy[0] = Utility.loadImage("res/texture/enemy/world0/gummy/gummy.png");
+        gummy[1] = Utility.loadImage("res/texture/enemy/world0/gummy/gummy_2.png");
 
     }
 
     private static void initTile(){
         //Tile
-        floor = Utility.loadImage("res/texture/tile/floor.png");
-        grass = Utility.loadImage("res/texture/tile/grass.png");
-        stone = Utility.loadImage("res/texture/tile/stone.png");
-        wall = Utility.loadImage("res/texture/tile/wall.png");
+        floor = Utility.loadImage("res/texture/tile/world0/floor.png");
+        grass = Utility.loadImage("res/texture/tile/world0/grass.png");
+        stone = Utility.loadImage("res/texture/tile/world0/stone.png");
+        wall = Utility.loadImage("res/texture/tile/world0/wall.png");
     }
 
     private static void initOther(){
         //Bullet1
         //demo
         bulletRed = new BufferedImage[2];
-        bulletRed[0] = Utility.loadImage("res/texture/other/bullet1.png");
-        bulletRed[1] = Utility.loadImage("res/texture/other/bullet1_explode.png");
+        bulletRed[0] = Utility.loadImage("res/texture/other/bulletRock.png");
+        bulletRed[1] = Utility.loadImage("res/texture/other/bulletRock_explode.png");
 
         //Dead
         dead = Utility.loadImage("res/texture/other/dead.png");

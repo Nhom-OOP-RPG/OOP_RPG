@@ -31,17 +31,9 @@ public class Room {
 
     //demo2, kệ đoạn này
     private ArrayList<Enemy> enemyList;
-    public void createEnemy(Handler handler, int numOfEnemies){
+
+    public Room(){
         enemyList = new ArrayList<Enemy>();
-        for (int i = 0; i < numOfEnemies; i++){
-            Random rand = new Random();
-            int x, y;
-            do {
-                x = (rand.nextInt(18) + 2);
-                y = (rand.nextInt(13) + 2);
-            } while (getTile(x, y).isSolid());
-            enemyList.add(new Enemy2(handler, x * 40 , y * 40, handler.getPlayer()));
-        }
     }
     
     //cơ bản mình chưa làm phòng có các hành động như có gai nhấp nhô hay biến mặt đất thành lửa (như trong Soul Knight)
@@ -117,4 +109,54 @@ public class Room {
             return tile;
         }
     }
+
+    public void addNewEnemy(Handler handler, int enemyID){
+        Random rand = new Random();
+        int x, y;
+        do {
+            x = (rand.nextInt(18) + 2);
+            y = (rand.nextInt(13) + 2);
+        } while (getTile(x, y).isSolid());
+
+        switch (enemyID){
+            case 1:
+                this.enemyList.add(new Enemy1(handler, x * 40 , y * 40, handler.getPlayer()));
+                return;
+            case 2:
+                this.enemyList.add(new Enemy2(handler, x * 40 , y * 40, handler.getPlayer()));
+                return;
+        }
+    }
+
+    public void addNewEnemy(Handler handler, int enemyID, int numOfEnemies){
+        for (int i = 0; i < numOfEnemies; i++){
+            Random rand = new Random();
+            int x, y;
+            do {
+                x = (rand.nextInt(18) + 2);
+                y = (rand.nextInt(13) + 2);
+            } while (getTile(x, y).isSolid());
+
+            switch (enemyID){
+                case 1:
+                    this.enemyList.add(new Enemy1(handler, x * 40 , y * 40, handler.getPlayer()));
+                    break;
+                case 2:
+                    this.enemyList.add(new Enemy2(handler, x * 40 , y * 40, handler.getPlayer()));
+                    break;
+            }
+        }
+    }
+
+    public void addNewEnemy(Handler handler, int enemyID, int x, int y){
+        switch (enemyID){
+            case 1:
+                this.enemyList.add(new Enemy1(handler, x * 40 , y * 40, handler.getPlayer()));
+                return;
+            case 2:
+                this.enemyList.add(new Enemy2(handler, x * 40 , y * 40, handler.getPlayer()));
+                return;
+        }
+    }
+
 }
