@@ -65,11 +65,11 @@ public class Room {
             }
         }
 
-        if (roomName == 1 && worldName == 0 && numOfEnemies <= 0){
+        if (worldName == 0 && roomName == 1 && numOfEnemies <= 0){
             g.drawImage(Asset.desertFloor, 16*40, 10*40, Game.TILE_WIDTH, Game.TILE_HEIGHT, null);
         }
 
-        if (roomName == 1 && worldName == 1 && numOfEnemies <= 0){
+        if (worldName == 1 && roomName == 1 && numOfEnemies <= 0){
             g.drawImage(Asset.floor, 16*40, 10*40, Game.TILE_WIDTH, Game.TILE_HEIGHT, null);
         }
 

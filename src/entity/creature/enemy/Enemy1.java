@@ -66,12 +66,17 @@ public class Enemy1 extends Enemy {
         if (animationDelayCount >= animationDelay){
             animationDelayCount = 0;
             currentFrameID = 1 - currentFrameID;
-            if (isDamaged){
-                currentFrame = Asset.enemy1Damaged[currentFrameID];
-                isDamaged = false;
-            } else {
-                currentFrame = Asset.enemy1[currentFrameID];
+        }
+
+        if (isDamagedDelay){
+            damagedAnimationDelayCount++;
+            currentFrame = Asset.enemy1Damaged[currentFrameID];
+            if (damagedAnimationDelayCount > animationDelay){
+                isDamagedDelay = false;
+                damagedAnimationDelayCount = 0;
             }
+        } else {
+            currentFrame = Asset.enemy1[currentFrameID];
         }
     }
 }

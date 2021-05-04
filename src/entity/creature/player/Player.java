@@ -129,10 +129,12 @@ public class Player extends Creature {
             currentDirect = 3;
         }
 
-        if (isDamaged){
+        if (isDamagedDelay){
+            damagedAnimationDelayCount++;
             currentFrame = Asset.playerDamaged[currentDirect][currentFrameID];
-            if (animationDelayCount > animationDelay){
-                isDamaged = false;
+            if (damagedAnimationDelayCount > animationDelay){
+                isDamagedDelay = false;
+                damagedAnimationDelayCount = 0;
             }
         } else {
             currentFrame = Asset.player[currentDirect][currentFrameID];
