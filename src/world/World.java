@@ -4,8 +4,6 @@ Lớp World: chứa dữ liệu liên quan tới các thế giới của các m�
 
 package world;
 
-import entity.creature.enemy.Enemy;
-import entity.creature.enemy.Enemy1;
 import entity.creature.player.Player;
 import main.Game;
 import main.Handler;

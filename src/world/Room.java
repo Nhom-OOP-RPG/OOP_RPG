@@ -120,10 +120,10 @@ public class Room {
 
         switch (enemyID){
             case 1:
-                this.enemyList.add(new Enemy1(handler, x * 40 , y * 40, handler.getPlayer()));
+                this.enemyList.add(new Enemy1(handler, x * 40 , y * 40));
                 return;
             case 2:
-                this.enemyList.add(new Enemy2(handler, x * 40 , y * 40, handler.getPlayer()));
+                this.enemyList.add(new Enemy2(handler, x * 40 , y * 40));
                 return;
         }
     }
@@ -139,10 +139,10 @@ public class Room {
 
             switch (enemyID){
                 case 1:
-                    this.enemyList.add(new Enemy1(handler, x * 40 , y * 40, handler.getPlayer()));
+                    this.enemyList.add(new Enemy1(handler, x * 40 , y * 40));
                     break;
                 case 2:
-                    this.enemyList.add(new Enemy2(handler, x * 40 , y * 40, handler.getPlayer()));
+                    this.enemyList.add(new Enemy2(handler, x * 40 , y * 40));
                     break;
             }
         }
@@ -151,10 +151,10 @@ public class Room {
     public void addNewEnemy(Handler handler, int enemyID, int x, int y){
         switch (enemyID){
             case 1:
-                this.enemyList.add(new Enemy1(handler, x * 40 , y * 40, handler.getPlayer()));
+                this.enemyList.add(new Enemy1(handler, x * 40 , y * 40));
                 return;
             case 2:
-                this.enemyList.add(new Enemy2(handler, x * 40 , y * 40, handler.getPlayer()));
+                this.enemyList.add(new Enemy2(handler, x * 40 , y * 40));
                 return;
         }
     }

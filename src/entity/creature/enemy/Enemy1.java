@@ -20,8 +20,8 @@ public class Enemy1 extends Enemy {
 
     private EnemyWeapon eMelee;
 
-    public Enemy1(Handler handler, float x, float y, Player target) {
-        super(handler, x, y, target);
+    public Enemy1(Handler handler, float x, float y) {
+        super(handler, x, y);
         health = 50;
 
         bounds.x = 10;

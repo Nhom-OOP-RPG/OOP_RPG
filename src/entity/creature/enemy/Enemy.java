@@ -15,13 +15,13 @@ public abstract class Enemy extends Creature {
     protected int attackDelayCount;
     protected int attackDelay;
 
-    public Enemy(Handler handler, float x, float y, Player target) {
+    public Enemy(Handler handler, float x, float y){
         super(handler, x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
 
         health = 30;
         speed = 1.5f;
 
-        this.target = target;
+        this.target = handler.getPlayer();
 
         bounds.x = 10;
         bounds.y = 10;
