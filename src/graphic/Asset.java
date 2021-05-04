@@ -14,13 +14,6 @@ public class Asset {
     public static BufferedImage[] enemy1, enemy1Damaged;
 
     public static void init(){
-        initTile();
-        initPlayer();
-        initEnemy();
-        
-    }
-
-    private static void initTile(){
         //Tile
         floor = Utility.loadImage("res/texture/tile/floor.png");
         grass = Utility.loadImage("res/texture/tile/grass.png");
@@ -28,10 +21,8 @@ public class Asset {
         wall = Utility.loadImage("res/texture/tile/wall.png");
         desertFloor = Utility.loadImage("res/texture/tile/desertfloor.png");
         desertWall = Utility.loadImage("res/texture/tile/desertwall.png");
-    }
-    
-    private static void initPlayer(){
-        //Trang thai binh thuong
+
+        //Player
         player = new BufferedImage[4][2];
         
         player[0][0] = Utility.loadImage("res/texture/player/player.png");
@@ -60,9 +51,7 @@ public class Asset {
 
         playerDamaged[3][0] = Utility.loadImage("res/texture/player/player_right_damaged.png");
         playerDamaged[3][1] = Utility.loadImage("res/texture/player/player_right_2_damaged.png");
-    }
-
-    private static void initEnemy(){
+        
         //Enemy
         //tạm thời mới có 1 loại quái
         enemy1 = new BufferedImage[2];
@@ -72,4 +61,5 @@ public class Asset {
         enemy1Damaged[0] = Utility.loadImage("res/texture/enemy/enemy_damaged.png");
         enemy1Damaged[1] = Utility.loadImage("res/texture/enemy/enemy_2_damaged.png");
     }
+    
 }

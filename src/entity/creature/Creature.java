@@ -17,9 +17,9 @@ public abstract class Creature extends Entity {
 
     //Máu
     protected int health;
+    protected boolean isDead, isDamaged;
+    //tốc độ di chuyển (một bước đi được bao nhiêu pixel)
     protected float speed;
-
-    protected boolean isDead, isDamagedDelay, isAttackingDelay;
 
     //Di chuyển ngang dọc bao nhiêu ô (tính theo pixel)
     protected float xMove, yMove;
@@ -28,11 +28,9 @@ public abstract class Creature extends Entity {
     //thời gian để chuyển animation, vì không delay thì animation sẽ nhanh quá
     protected int animationDelay;
     protected int animationDelayCount;
-    protected int damagedAnimationDelayCount;
-    protected int attackingAnimationDelayCount;
-    
     //Ảnh animation hiện tại
     protected BufferedImage currentFrame;
+    //Mã index của animation hiện tại
     protected int currentDirect;
     protected int currentFrameID;
 
@@ -44,10 +42,9 @@ public abstract class Creature extends Entity {
         yMove = 0;
 
         isDead = false;
-        isDamagedDelay = false;
+        isDamaged = false;
 
         animationDelayCount = 0;
-        damagedAnimationDelayCount = 0;
         animationDelay = 10;
     }
 
@@ -121,7 +118,7 @@ public abstract class Creature extends Entity {
     }
     public void decreaseHealth(int n){
         health -= n;
-        isDamagedDelay = true;
+        isDamaged = true;
     }
 
     public void setDead(){
