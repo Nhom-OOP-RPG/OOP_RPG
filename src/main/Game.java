@@ -17,9 +17,15 @@ import display.Display;
 import graphic.Asset;
 import input.KeyManager;
 import main.fps.FPSTimer;
+
 //State
 import state.State;
 import state.GameState;
+import state.menu.MainMenuState;
+import state.menu.InstructionState;
+import state.menu.ChooseLevelState;
+import state.gameover.WinGameState;
+import state.gameover.LoseGameState;
 
 
 public class Game implements Runnable {
@@ -27,7 +33,7 @@ public class Game implements Runnable {
     private Display display;
 
     //Title va kich thuoc cua so
-    public final String GAME_TITLE = "DEMO";
+    public final String GAME_TITLE = "OOP-RPG";
     public static final int WINDOW_WIDTH = 40*20, WINDOW_HEIGHT = 40*15;
 
     private boolean isRunning = false;
@@ -44,6 +50,11 @@ public class Game implements Runnable {
 
     //State
     private State gameState;
+    private State mainMenuState;
+    private State instructionState;
+    private State chooseLevelState;
+    private State winGameState;
+    private State loseGameState;
 
     //Khoi tao game
     private void init(){
@@ -60,7 +71,13 @@ public class Game implements Runnable {
 
         //State
         gameState = new GameState(handler);
-        State.setState(gameState);
+        mainMenuState = new MainMenuState(handler);
+        chooseLevelState = new ChooseLevelState(handler);
+        loseGameState = new LoseGameState(handler);
+        winGameState = new WinGameState(handler);
+        instructionState = new InstructionState(handler);
+
+        State.setState(mainMenuState);
     }
 
     //Cap nhat du lieu
@@ -144,5 +161,29 @@ public class Game implements Runnable {
 
     public KeyManager getKeyManager(){
         return keyManager;
+    }
+
+    public State getGameState() {
+        return gameState;
+    }
+
+    public State getChooseLevelState(){
+        return chooseLevelState;
+    }
+
+    public State getMainMenuState() {
+        return mainMenuState;
+    }
+
+    public State getWinGameState() {
+        return winGameState;
+    }
+
+    public State getLoseGameState() {
+        return loseGameState;
+    }
+
+    public State getInStructionsState(){
+        return instructionState;
     }
 }
