@@ -18,8 +18,6 @@ public class MainMenuState extends State{
 
 	private int selected;
 
-    private boolean preIsUp = true;
-
     //private Game game = new Game();
     public MainMenuState(Handler handler) {
 
