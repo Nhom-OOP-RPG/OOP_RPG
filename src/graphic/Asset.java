@@ -9,7 +9,7 @@ import utility.*;
 public class Asset {
     //private static final int width = 40, height = 40;
     
-    public static BufferedImage floor, grass, stone, wall;
+    public static BufferedImage blank, floor, grass, earth, wall;
     public static BufferedImage[][] player;
     public static BufferedImage[] gummy;
     public static BufferedImage[] bulletRed;
@@ -50,10 +50,11 @@ public class Asset {
 
     private static void initTile(){
         //Tile
-        floor = Utility.loadImage("res/texture/tile/world0/floor.png");
+        floor = Utility.loadImage("res/texture/tile/world1/floor.png");
         grass = Utility.loadImage("res/texture/tile/world0/grass.png");
-        stone = Utility.loadImage("res/texture/tile/world0/stone.png");
+        earth = Utility.loadImage("res/texture/tile/world0/earth.png");
         wall = Utility.loadImage("res/texture/tile/world0/wall.png");
+        blank = Utility.loadImage("res/texture/tile/blank.png");
     }
 
     private static void initOther(){

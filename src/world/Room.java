@@ -104,7 +104,7 @@ public class Room {
         Tile tile = Tile.tiles[roomMap[x][y]];
 
         if (tile == null){
-            return Tile.floorTile;
+            return Tile.blankTile;
         } else {
             return tile;
         }

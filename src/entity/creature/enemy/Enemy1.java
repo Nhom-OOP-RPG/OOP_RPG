@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 
 import entity.creature.enemy.enemyweapon.EnemyMelee;
 import entity.creature.enemy.enemyweapon.EnemyWeapon;
-import entity.creature.player.Player;
 import graphic.Asset;
 import main.Handler;
 

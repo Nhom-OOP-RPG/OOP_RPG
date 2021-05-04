@@ -4,9 +4,9 @@ package graphic.tile;
 
 import graphic.Asset;
 
-public class StoneTile extends Tile{
-    public StoneTile(int id){
-        super(Asset.stone, id);
+public class EarthTile extends Tile{
+    public EarthTile(int id){
+        super(Asset.earth, id);
     }
 
     @Override

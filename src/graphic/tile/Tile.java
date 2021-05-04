@@ -9,10 +9,10 @@ public class Tile {
     //Static object của class
     //tạm thời mới có 4 loại Tile
     public static Tile[] tiles = new Tile[4];
-    public static Tile grassTile = new GrassTile(0);
-    public static Tile floorTile = new FloorTile(1);
-    public static Tile wallTile = new WallTile(2);
-    public static Tile stoneTile = new StoneTile(3);
+    public static Tile blankTile = new BlankTile(0);
+    public static Tile grassTile = new GrassTile(1);
+    public static Tile earthTile = new EarthTile(2);
+    public static Tile wallTile = new WallTile(3);
 
     //Thân class
 
