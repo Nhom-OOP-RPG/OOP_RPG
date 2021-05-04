@@ -8,9 +8,4 @@ public class EarthTile extends Tile{
     public EarthTile(int id){
         super(Asset.earth, id);
     }
-
-    @Override
-    public boolean isSolid(){
-        return true;
-    }
 }
