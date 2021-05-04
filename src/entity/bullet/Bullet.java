@@ -11,8 +11,6 @@ import graphic.tile.Tile;
 import main.Handler;
 
 public class Bullet extends Entity {
-    private static final int DEFAULT_BULLET_WIDTH = 100;
-    private static final int DEFAULT_BULLET_HEIGHT = 100;
 
     private boolean isFromPlayer, exploded;
     private int damage;
