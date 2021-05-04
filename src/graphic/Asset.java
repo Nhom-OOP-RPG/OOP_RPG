@@ -16,12 +16,13 @@ public class Asset {
     public static BufferedImage dead;
 
     public static void init(){
-        //Tile
-        floor = Utility.loadImage("res/texture/tile/floor.png");
-        grass = Utility.loadImage("res/texture/tile/grass.png");
-        stone = Utility.loadImage("res/texture/tile/stone.png");
-        wall = Utility.loadImage("res/texture/tile/wall.png");
-
+        initTile();
+        initPlayer();
+        initEnemy();
+        initOther();
+    }
+    
+    private static void initPlayer(){
         //Player
         player = new BufferedImage[4][2];
         
@@ -36,21 +37,32 @@ public class Asset {
 
         player[3][0] = Utility.loadImage("res/texture/player/player_right.png");
         player[3][1] = Utility.loadImage("res/texture/player/player_right_2.png");
+    }
 
+    private static void initEnemy(){
         //Enemy
         //tạm thời mới có 1 loại quái
         enemy1 = new BufferedImage[2];
-        enemy1[0] = Utility.loadImage("res/texture/enemy/enemy.png");
-        enemy1[1] = Utility.loadImage("res/texture/enemy/enemy_2.png");
+        enemy1[0] = Utility.loadImage("res/texture/enemy/bat/enemy.png");
+        enemy1[1] = Utility.loadImage("res/texture/enemy/bat/enemy_2.png");
+    }
 
+    private static void initTile(){
+        //Tile
+        floor = Utility.loadImage("res/texture/tile/floor.png");
+        grass = Utility.loadImage("res/texture/tile/grass.png");
+        stone = Utility.loadImage("res/texture/tile/stone.png");
+        wall = Utility.loadImage("res/texture/tile/wall.png");
+    }
+
+    private static void initOther(){
         //Bullet1
         //demo
         bullet1 = new BufferedImage[2];
-        bullet1[0] = Utility.loadImage("res/texture/bullet/bullet1.png");
-        bullet1[1] = Utility.loadImage("res/texture/bullet/bullet1_explode.png");
+        bullet1[0] = Utility.loadImage("res/texture/other/bullet1.png");
+        bullet1[1] = Utility.loadImage("res/texture/other/bullet1_explode.png");
 
         //Dead
-        dead = Utility.loadImage("res/texture/enemy/dead.png");
+        dead = Utility.loadImage("res/texture/other/dead.png");
     }
-    
 }
