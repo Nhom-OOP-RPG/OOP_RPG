@@ -32,41 +32,31 @@ public class MainMenuState extends State{
     public void tick() {
         keyPressedDelayCount++;
         if (keyPressedDelayCount >= keyPressedDelay){
-            if (handler.getKeyManager().up && preIsUp == false) {
-                preIsUp = true;
-                selected = 1;
-                return;
-            }
-
-            if (handler.getKeyManager().up && preIsUp == true) {
-                preIsUp = true;
-                selected = 0;
+            if (handler.getKeyManager().up) {
+                if (selected > 0){
+                    selected--;
+                }
+                keyPressedDelayCount = 0;
                 return;
             }
     
-            if (handler.getKeyManager().down && preIsUp == true) {
-                preIsUp = false;
-                selected = 1;
-                return;
-            }
-
-            if (handler.getKeyManager().down && preIsUp == false) {
-                preIsUp = false;
-                selected = 2;
+            if (handler.getKeyManager().down) {
+                if (selected < 2){
+                    selected++;
+                }
+                keyPressedDelayCount = 0;
                 return;
             }
 
             if (handler.getKeyManager().enter) {
                 if (selected == 0){
-                    keyPressedDelayCount = 0;
                     State.setState(handler.getGame().getChooseLevelState());
-                }
-                if (selected == 1) {
+                } else if (selected == 1) {
                     State.setState(handler.getGame().getInStructionsState());
-                }
-                else{
+                } else{
                     System.exit(0);
                 }
+                keyPressedDelayCount = 0;
             }
         }
     }

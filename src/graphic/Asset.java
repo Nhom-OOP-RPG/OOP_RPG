@@ -10,8 +10,7 @@ public class Asset {
     //private static final int width = 40, height = 40;
     
     public static BufferedImage floor, grass, stone, wall, desertFloor, desertWall;
-    public static BufferedImage[][] player;
-    public static BufferedImage[][][] playerDamaged;
+    public static BufferedImage[][] player, playerDamaged;
     public static BufferedImage[] enemy1, enemy1Damaged;
 
     public static void init(){
@@ -48,19 +47,19 @@ public class Asset {
         player[3][1] = Utility.loadImage("res/texture/player/player_right_2.png");
 
         //Trang thai bi dau
-        playerDamaged = new BufferedImage[1][4][2];
+        playerDamaged = new BufferedImage[4][2];
         
-        playerDamaged[0][0][0] = Utility.loadImage("res/texture/player/player_damaged.png");
-        playerDamaged[0][0][1] = Utility.loadImage("res/texture/player/player_2_damaged.png");
+        playerDamaged[0][0] = Utility.loadImage("res/texture/player/player_damaged.png");
+        playerDamaged[0][1] = Utility.loadImage("res/texture/player/player_2_damaged.png");
 
-        playerDamaged[0][1][0] = Utility.loadImage("res/texture/player/player_back_damaged.png");
-        playerDamaged[0][1][1] = Utility.loadImage("res/texture/player/player_back_2_damaged.png");
+        playerDamaged[1][0] = Utility.loadImage("res/texture/player/player_back_damaged.png");
+        playerDamaged[1][1] = Utility.loadImage("res/texture/player/player_back_2_damaged.png");
         
-        playerDamaged[0][2][0] = Utility.loadImage("res/texture/player/player_left_damaged.png");
-        playerDamaged[0][2][1] = Utility.loadImage("res/texture/player/player_left_2_damaged.png");
+        playerDamaged[2][0] = Utility.loadImage("res/texture/player/player_left_damaged.png");
+        playerDamaged[2][1] = Utility.loadImage("res/texture/player/player_left_2_damaged.png");
 
-        playerDamaged[0][3][0] = Utility.loadImage("res/texture/player/player_right_damaged.png");
-        playerDamaged[0][3][1] = Utility.loadImage("res/texture/player/player_right_2_damaged.png");
+        playerDamaged[3][0] = Utility.loadImage("res/texture/player/player_right_damaged.png");
+        playerDamaged[3][1] = Utility.loadImage("res/texture/player/player_right_2_damaged.png");
     }
 
     private static void initEnemy(){
