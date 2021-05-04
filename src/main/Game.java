@@ -22,6 +22,7 @@ import state.State;
 import state.WinGameState;
 import state.ChooseLevelState;
 import state.GameState;
+import state.InstructionsState;
 import state.LoseGameState;
 import state.MainMenuState;
 
@@ -58,6 +59,8 @@ public class Game implements Runnable {
 
     private State winGameState;
 
+    private State instructionState;
+
     //Khoi tao game
     private void init(){
         //Tao cua so va input
@@ -77,6 +80,7 @@ public class Game implements Runnable {
         chooseLevelState = new ChooseLevelState(handler);
         loseGameState = new LoseGameState(handler);
         winGameState = new WinGameState(handler);
+        instructionState = new InstructionsState(handler);
 
         State.setState(mainMenuState);
     }
@@ -182,5 +186,9 @@ public class Game implements Runnable {
 
     public State getLoseGameState() {
         return loseGameState;
+    }
+
+    public State getInStructionsState(){
+        return instructionState;
     }
 }
