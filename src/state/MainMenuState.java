@@ -14,14 +14,17 @@ public class MainMenuState extends State{
 
     private static final String START_GAME = "Start Game";
 	private static final String QUIT_GAME = "Quit Game";
+    private static final String INSTRUCTION = "Instructions";
 
 	private int selected;
+
+    private boolean preIsUp = true;
 
     //private Game game = new Game();
     public MainMenuState(Handler handler) {
 
         super(handler);
-        this.optionsMenu = new String[] {START_GAME, QUIT_GAME};
+        this.optionsMenu = new String[] {START_GAME,INSTRUCTION, QUIT_GAME};
 		this.selected = 0;
     }
 
@@ -29,20 +32,38 @@ public class MainMenuState extends State{
     public void tick() {
         keyPressedDelayCount++;
         if (keyPressedDelayCount >= keyPressedDelay){
-            if (handler.getKeyManager().up) {
+            if (handler.getKeyManager().up && preIsUp == false) {
+                preIsUp = true;
+                selected = 1;
+                return;
+            }
+
+            if (handler.getKeyManager().up && preIsUp == true) {
+                preIsUp = true;
                 selected = 0;
                 return;
             }
     
-            if (handler.getKeyManager().down) {
+            if (handler.getKeyManager().down && preIsUp == true) {
+                preIsUp = false;
                 selected = 1;
                 return;
             }
-    
+
+            if (handler.getKeyManager().down && preIsUp == false) {
+                preIsUp = false;
+                selected = 2;
+                return;
+            }
+
             if (handler.getKeyManager().enter) {
                 if (selected == 0){
                     State.setState(handler.getGame().getChooseLevelState());
-                } else {
+                }
+                if (selected == 1) {
+                    State.setState(handler.getGame().getInStructionsState());
+                }
+                else{
                     System.exit(0);
                 }
             }
