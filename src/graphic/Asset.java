@@ -21,6 +21,7 @@ public class Asset {
 
     //Other
     public static BufferedImage[] bulletRed, bulletRock, bulletFlame;
+    public static BufferedImage[] cutGrey;
     public static BufferedImage dead, heart;
 
     public static void init(){
@@ -72,16 +73,23 @@ public class Asset {
     private static void initOther(){
         //Bullet
         bulletRed = new BufferedImage[2];
-        bulletRed[0] = Utility.loadImage("res/texture/other/bulletRed.png");
-        bulletRed[1] = Utility.loadImage("res/texture/other/bulletRed_explode.png");
+        bulletRed[0] = Utility.loadImage("res/texture/other/bullet/bulletRed.png");
+        bulletRed[1] = Utility.loadImage("res/texture/other/bullet/bulletRed_explode.png");
 
         bulletRock = new BufferedImage[2];
-        bulletRock[0] = Utility.loadImage("res/texture/other/bulletRock.png");
-        bulletRock[1] = Utility.loadImage("res/texture/other/bulletRock_explode.png");
+        bulletRock[0] = Utility.loadImage("res/texture/other/bullet/bulletRock.png");
+        bulletRock[1] = Utility.loadImage("res/texture/other/bullet/bulletRock_explode.png");
 
         bulletFlame = new BufferedImage[2];
-        bulletFlame[0] = Utility.loadImage("res/texture/other/bulletFlame.png");
-        bulletFlame[1] = Utility.loadImage("res/texture/other/bulletFlame_explode.png");
+        bulletFlame[0] = Utility.loadImage("res/texture/other/bullet/bulletFlame.png");
+        bulletFlame[1] = Utility.loadImage("res/texture/other/bullet/bulletFlame_explode.png");
+
+        //Cut
+        cutGrey = new BufferedImage[4];
+        cutGrey[0] = Utility.loadImage("res/texture/other/cut/cutGrey_right.png");
+        cutGrey[1] = Utility.loadImage("res/texture/other/cut/cutGrey_left.png");
+        cutGrey[2] = Utility.loadImage("res/texture/other/cut/cutGrey_down.png");
+        cutGrey[3] = Utility.loadImage("res/texture/other/cut/cutGrey_up.png");
 
         dead = Utility.loadImage("res/texture/other/dead.png");
         heart = Utility.loadImage("res/texture/other/heart.png");
