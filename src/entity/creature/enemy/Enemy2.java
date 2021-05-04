@@ -47,12 +47,13 @@ public class Enemy2 extends Enemy {
             eGun.damaging();
             attackDelayCount = 0;
         }
-        eGun.tick();
     }
 
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
+        
+        eGun.tick();
         eGun.render(graphics);
     }
     
