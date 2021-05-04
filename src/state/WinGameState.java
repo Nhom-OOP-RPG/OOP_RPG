@@ -17,7 +17,9 @@ public class WinGameState extends State {
 
     @Override
     public void tick() {
-        
+        if (handler.getKeyManager().enter) {
+            System.exit(0);
+        }
     }
 
     @Override
