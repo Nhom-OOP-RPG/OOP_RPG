@@ -26,6 +26,7 @@ import state.menu.InstructionState;
 import state.menu.ChooseLevelState;
 import state.gameover.WinGameState;
 import state.gameover.LoseGameState;
+import state.gameover.PlayAgainState;
 
 
 public class Game implements Runnable {
@@ -55,6 +56,7 @@ public class Game implements Runnable {
     private State chooseLevelState;
     private State winGameState;
     private State loseGameState;
+    private State playAgainState;
 
     //Khoi tao game
     private void init(){
@@ -72,12 +74,13 @@ public class Game implements Runnable {
         //State
         gameState = new GameState(handler);
         mainMenuState = new MainMenuState(handler);
-        chooseLevelState = new ChooseLevelState(handler);
-        loseGameState = new LoseGameState(handler);
-        winGameState = new WinGameState(handler);
         instructionState = new InstructionState(handler);
+        chooseLevelState = new ChooseLevelState(handler);
+        winGameState = new WinGameState(handler);
+        loseGameState = new LoseGameState(handler);
+        playAgainState = new PlayAgainState(handler);
 
-        State.setState(mainMenuState);
+        State.setState(playAgainState);
     }
 
     //Cap nhat du lieu
@@ -183,7 +186,11 @@ public class Game implements Runnable {
         return loseGameState;
     }
 
-    public State getInStructionsState(){
+    public State getInStructionState(){
         return instructionState;
+    }
+
+    public State getPlayAgainState(){
+        return playAgainState;
     }
 }

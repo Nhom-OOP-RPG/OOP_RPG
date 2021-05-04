@@ -50,7 +50,7 @@ public class Asset {
 
     private static void initTile(){
         //Tile
-        floor = Utility.loadImage("res/texture/tile/world1/floor.png");
+        floor = Utility.loadImage("res/texture/tile/world1/concretefloor.png");
         grass = Utility.loadImage("res/texture/tile/world0/grass.png");
         earth = Utility.loadImage("res/texture/tile/world0/earth.png");
         wall = Utility.loadImage("res/texture/tile/world0/wall.png");

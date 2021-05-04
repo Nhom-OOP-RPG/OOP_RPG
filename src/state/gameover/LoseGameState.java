@@ -23,8 +23,7 @@ public class LoseGameState extends State {
     @Override
     public void tick() {
         if (handler.getKeyManager().enter) {
-            State.setState(handler.getGame().getMainMenuState());
-            handler.restartGame();
+            State.setState(handler.getGame().getPlayAgainState());
         }
     }
 

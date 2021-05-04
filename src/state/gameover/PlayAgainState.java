@@ -1,4 +1,4 @@
-package state.menu;
+package state.gameover;
 
 import java.awt.Graphics;
 
@@ -9,21 +9,21 @@ import state.State;
 import java.awt.Color;
 import java.awt.Font;
 
-public class MainMenuState extends State {
-    private String[] optionsMenu;
+public class PlayAgainState extends State {
+    private String[] options;
     private final int numOfOptions;
 
-    private static final String START_GAME = "Start Game";
-	private static final String QUIT_GAME = "Quit Game";
-    private static final String INSTRUCTION = "Instructions";
+    private final String QUESTION = "Do you want to play again?";
+	private static final String YES = "YES";
+    private static final String NO = "NO";
 
     private int selected;
 
-    public MainMenuState(Handler handler) {
+    public PlayAgainState(Handler handler) {
         super(handler);
         
-        this.optionsMenu = new String[]{START_GAME,INSTRUCTION, QUIT_GAME};
-        this.numOfOptions = 3;
+        this.options = new String[]{YES, NO};
+        this.numOfOptions = 2;
 
         this.selected = 0;
     }
@@ -51,17 +51,15 @@ public class MainMenuState extends State {
             if (handler.getKeyManager().enter) {
                 switch (selected) {
                     case 0:
-                        State.setState(handler.getGame().getChooseLevelState());
+                        State.setState(handler.getGame().getMainMenuState());
+                        handler.restartGame();
                         break;
                     case 1:
-                        State.setState(handler.getGame().getInStructionState());
-                        break;
-                    default:
                         System.exit(0);
                 }
                 keyPressedDelayCount = 0;
             }
-        }  
+        }
     }
 
     @Override
@@ -70,11 +68,16 @@ public class MainMenuState extends State {
 		graphics.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		
 		graphics.setFont(new Font("Araial", Font.BOLD, 25));
-		for(int i=0;i<this.optionsMenu.length;i++) {
-			if(i==this.selected) graphics.setColor(Color.GREEN);
+
+        graphics.setColor(Color.ORANGE);
+        graphics.drawString(this.QUESTION, Game.WINDOW_WIDTH / 2 - 180, Game.WINDOW_HEIGHT / 2 - 30);
+
+		for (int i=0; i<this.options.length; i++) {
+			if (i == this.selected) graphics.setColor(Color.GREEN);
 			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.optionsMenu[i], Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT /2 + 30*i);
+			graphics.drawString(this.options[i], Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT / 2 + 30*(i));
 		}
+        
     }
     
 }
