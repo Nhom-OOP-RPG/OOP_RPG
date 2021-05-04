@@ -47,17 +47,15 @@ public class Room {
     }
 
     //In phòng chơi ra (in từng Tile ra)
-    public void render(Graphics g){
+    public void render(Graphics graphics){
         for (int y = 0; y < HEIGHT; y++){
             for (int x = 0; x < WIDTH; x++){
-                int locationX = x * Tile.TILE_WIDTH,
-                    locationY = y * Tile.TILE_HEIGHT;
-                getTile(x, y).render(g, locationX, locationY);
+                getTile(x, y).render(graphics, x, y);
             }
         }
 
         for (Enemy e : enemyList){
-                e.render(g);
+                e.render(graphics);
         }
     }
 

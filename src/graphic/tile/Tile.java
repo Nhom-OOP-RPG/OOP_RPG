@@ -37,7 +37,7 @@ public class Tile {
 
     //In Tile ra màn hình với góc trên trái ở vị trí (x, y) (tính bằng pixel)
     public void render(Graphics g, int x, int y){
-        g.drawImage(texture, x, y, TILE_WIDTH, TILE_HEIGHT, null);
+        g.drawImage(texture, x * TILE_WIDTH, y * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT, null);
     }
 
     //true nếu Tile không đi qua được (tường)
