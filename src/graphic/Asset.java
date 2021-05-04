@@ -4,16 +4,24 @@ package graphic;
 
 import java.awt.image.BufferedImage;
 
-import utility.*;
+import utility.Utility;
 
-public class Asset {
-    //private static final int width = 40, height = 40;
-    
-    public static BufferedImage blank, floor, grass, earth, wall;
+public class Asset { 
+    //Tile
+    public static BufferedImage blank;
+    public static BufferedImage gate;
+    public static BufferedImage grass, earth, wall;
+    public static BufferedImage concretefloor, desertfloor, desertwall;
+
+    //Player
     public static BufferedImage[][] player;
+
+    //Enemy
     public static BufferedImage[] gummy;
-    public static BufferedImage[] bulletRed;
-    public static BufferedImage dead;
+
+    //Other
+    public static BufferedImage[] bulletRed, bulletRock, bulletFlame;
+    public static BufferedImage dead, heart;
 
     public static void init(){
         initTile();
@@ -49,22 +57,33 @@ public class Asset {
     }
 
     private static void initTile(){
-        //Tile
-        floor = Utility.loadImage("res/texture/tile/world1/concretefloor.png");
+        blank = Utility.loadImage("res/texture/tile/blank.png");
+        gate = Utility.loadImage("res/texture/tile/gate.png");
+
         grass = Utility.loadImage("res/texture/tile/world0/grass.png");
         earth = Utility.loadImage("res/texture/tile/world0/earth.png");
         wall = Utility.loadImage("res/texture/tile/world0/wall.png");
-        blank = Utility.loadImage("res/texture/tile/blank.png");
+
+        concretefloor = Utility.loadImage("res/texture/tile/world1/concretefloor.png");
+        desertfloor = Utility.loadImage("res/texture/tile/world1/desertfloor.png");
+        desertwall = Utility.loadImage("res/texture/tile/world1/desertwall.png");
     }
 
     private static void initOther(){
-        //Bullet1
-        //demo
+        //Bullet
         bulletRed = new BufferedImage[2];
-        bulletRed[0] = Utility.loadImage("res/texture/other/bulletRock.png");
-        bulletRed[1] = Utility.loadImage("res/texture/other/bulletRock_explode.png");
+        bulletRed[0] = Utility.loadImage("res/texture/other/bulletRed.png");
+        bulletRed[1] = Utility.loadImage("res/texture/other/bulletRed_explode.png");
 
-        //Dead
+        bulletRock = new BufferedImage[2];
+        bulletRock[0] = Utility.loadImage("res/texture/other/bulletRock.png");
+        bulletRock[1] = Utility.loadImage("res/texture/other/bulletRock_explode.png");
+
+        bulletFlame = new BufferedImage[2];
+        bulletFlame[0] = Utility.loadImage("res/texture/other/bulletFlame.png");
+        bulletFlame[1] = Utility.loadImage("res/texture/other/bulletFlame_explode.png");
+
         dead = Utility.loadImage("res/texture/other/dead.png");
+        heart = Utility.loadImage("res/texture/other/heart.png");
     }
 }
