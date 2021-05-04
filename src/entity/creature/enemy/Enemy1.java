@@ -24,11 +24,16 @@ public class Enemy1 extends Enemy {
         super(handler, x, y, target);
         health = 50;
 
+        bounds.x = 10;
+        bounds.y = 20;
+        bounds.width = 20;
+        bounds.height = 20;
+
         eMelee = new EnemyMelee(handler, 5, 50, this);
         attackDelayCount = 0;
         attackDelay = 70;
 
-        currentFrame = Asset.enemy1[0];
+        currentFrame = Asset.gummy[0];
     }
 
     @Override
@@ -61,7 +66,7 @@ public class Enemy1 extends Enemy {
         if (animationDelay >= 10){
             animationDelay = 0;
             currentFrameID = 1 - currentFrameID;
-            currentFrame = Asset.enemy1[currentFrameID];
+            currentFrame = Asset.gummy[currentFrameID];
         }
     }
 

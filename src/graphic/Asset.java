@@ -11,8 +11,8 @@ public class Asset {
     
     public static BufferedImage floor, grass, stone, wall;
     public static BufferedImage[][] player;
-    public static BufferedImage[] enemy1;
-    public static BufferedImage[] bullet1;
+    public static BufferedImage[] gummy;
+    public static BufferedImage[] bulletRed;
     public static BufferedImage dead;
 
     public static void init(){
@@ -42,9 +42,11 @@ public class Asset {
     private static void initEnemy(){
         //Enemy
         //tạm thời mới có 1 loại quái
-        enemy1 = new BufferedImage[2];
-        enemy1[0] = Utility.loadImage("res/texture/enemy/bat/enemy.png");
-        enemy1[1] = Utility.loadImage("res/texture/enemy/bat/enemy_2.png");
+        gummy = new BufferedImage[2];
+        gummy[0] = Utility.loadImage("res/texture/enemy/gummy/gummy.png");
+        gummy[1] = Utility.loadImage("res/texture/enemy/gummy/gummy_2.png");
+
+
     }
 
     private static void initTile(){
@@ -58,9 +60,9 @@ public class Asset {
     private static void initOther(){
         //Bullet1
         //demo
-        bullet1 = new BufferedImage[2];
-        bullet1[0] = Utility.loadImage("res/texture/other/bullet1.png");
-        bullet1[1] = Utility.loadImage("res/texture/other/bullet1_explode.png");
+        bulletRed = new BufferedImage[2];
+        bulletRed[0] = Utility.loadImage("res/texture/other/bullet1.png");
+        bulletRed[1] = Utility.loadImage("res/texture/other/bullet1_explode.png");
 
         //Dead
         dead = Utility.loadImage("res/texture/other/dead.png");

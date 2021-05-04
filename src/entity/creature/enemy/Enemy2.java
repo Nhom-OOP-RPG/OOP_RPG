@@ -28,7 +28,8 @@ public class Enemy2 extends Enemy {
         attackDelayCount = 0;
         attackDelay = 100;
 
-        currentFrame = Asset.enemy1[0];
+        animationDelay = 50;
+        currentFrame = Asset.gummy[0];
     }
 
     @Override
@@ -52,7 +53,6 @@ public class Enemy2 extends Enemy {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
-        
         eGun.tick();
         eGun.render(graphics);
     }
@@ -64,7 +64,7 @@ public class Enemy2 extends Enemy {
         if (animationDelay >= 10){
             animationDelay = 0;
             currentFrameID = 1 - currentFrameID;
-            currentFrame = Asset.enemy1[currentFrameID];
+            currentFrame = Asset.gummy[currentFrameID];
         }
     }
 

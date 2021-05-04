@@ -42,7 +42,7 @@ public class Bullet extends Entity {
 
         exploded = false;
 
-        this.frame = Asset.bullet1[0];
+        this.frame = Asset.bulletRed[0];
     }
 
     @Override
@@ -96,7 +96,7 @@ public class Bullet extends Entity {
     @Override
     public void render(Graphics graphics) {
         if (exploded){
-            this.frame = Asset.bullet1[1];
+            this.frame = Asset.bulletRed[1];
         }
 
         graphics.drawImage(frame, (int) x, (int) y, width, height, null);

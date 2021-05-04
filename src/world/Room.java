@@ -5,6 +5,7 @@ Lớp Room: chứa dữ liệu liên quan tới phòng của màn chơi gồm c�
 package world;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Random;
 
 import entity.creature.enemy.Enemy;
@@ -29,9 +30,9 @@ public class Room {
     private int[][] roomMap;
 
     //demo2, kệ đoạn này
-    private Enemy[] enemyList;
+    private ArrayList<Enemy> enemyList;
     public void createEnemy(Handler handler, int numOfEnemies){
-        enemyList = new Enemy[numOfEnemies];
+        enemyList = new ArrayList<Enemy>();
         for (int i = 0; i < numOfEnemies; i++){
             Random rand = new Random();
             int x, y;
@@ -39,7 +40,7 @@ public class Room {
                 x = (rand.nextInt(18) + 2);
                 y = (rand.nextInt(13) + 2);
             } while (getTile(x, y).isSolid());
-            enemyList[i] = new Enemy2(handler, x * 40 , y * 40, handler.getPlayer());
+            enemyList.add(new Enemy2(handler, x * 40 , y * 40, handler.getPlayer()));
         }
     }
     
@@ -98,7 +99,7 @@ public class Room {
         return exits[dir];
     }
 
-    public Enemy[] getEnemyList(){
+    public ArrayList<Enemy> getEnemyList(){
         return enemyList;
     }
 
