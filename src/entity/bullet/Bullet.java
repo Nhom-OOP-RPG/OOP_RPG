@@ -20,9 +20,9 @@ public class Bullet extends Entity {
     private Line2D.Float bulletPath;
 
 
-    private BufferedImage frame;
+    private BufferedImage[] frame;
 
-    public Bullet(Handler handler, float startX, float startY, boolean isFromPlayer, int damage, float speed, double angle) {
+    public Bullet(Handler handler, float startX, float startY, boolean isFromPlayer, int damage, float speed, double angle, BufferedImage[] bulletFrame) {
         super(handler, startX, startY, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
         this.isFromPlayer = isFromPlayer;
@@ -38,9 +38,9 @@ public class Bullet extends Entity {
         preCoord[1] = this.getCenterY();
         bulletPath = new Line2D.Float();
 
-        exploded = false;
+        this.exploded = false;
 
-        this.frame = Asset.bulletRed[0];
+        this.frame = bulletFrame;
     }
 
     @Override
@@ -93,15 +93,11 @@ public class Bullet extends Entity {
 
     @Override
     public void render(Graphics graphics) {
-        if (exploded){
-            this.frame = Asset.bulletRed[1];
-        }
-
-        graphics.drawImage(frame, (int) x, (int) y, width, height, null);
+        if (exploded) graphics.drawImage(frame[1], (int) x, (int) y, width, height, null);
+        else graphics.drawImage(frame[0], (int) x, (int) y, width, height, null);
     }
 
     public boolean getExploded(){
         return exploded;
     }
-    
 }

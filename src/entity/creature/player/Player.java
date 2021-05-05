@@ -27,6 +27,9 @@ public class Player extends Creature {
     private int attackDelayCount;
     private int attackDelay;
 
+    private BufferedImage[][] normalFrame, damagedFrame;
+    private BufferedImage scratchedFrame;
+
     public Player(Handler handler){
         super(handler, DEFAULT_SPAWN_X, DEFAULT_SPAWN_Y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
 
@@ -47,6 +50,8 @@ public class Player extends Creature {
         animationDelay = 0;
         currentFrame = Asset.player[0][0];
         currentFrameID = 0;
+
+        scratchedFrame = null;
     }
 
     @Override
@@ -71,6 +76,8 @@ public class Player extends Creature {
     public void render(Graphics graphics) {
         currentFrameUpdate();
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
+        graphics.drawImage(scratchedFrame, (int) x, (int) y, width, height, null);
+
         currentWeapon.render(graphics);
     }
     
@@ -103,14 +110,18 @@ public class Player extends Creature {
     //Chuyển đổi animation của người chơi
     @Override
     protected void currentFrameUpdate() {
-        if (xMove == 0 && yMove == 0){
-            return;
-        }
         animationDelay++;
         if (animationDelay >= 10){
             animationDelay = 0;
             currentFrameID = 1 - currentFrameID;
+
+            scratchedFrame = null;
         }
+
+        if (xMove == 0 && yMove == 0){
+            return;
+        }
+
         if (yMove > 0){
             currentFrame = Asset.player[0][currentFrameID];
         } else if (yMove < 0){
@@ -133,9 +144,13 @@ public class Player extends Creature {
         this.y = y - this.height / 2;
     }
 
+    public void setScratchedFrame(BufferedImage frame){
+        this.scratchedFrame = frame;
+    }
+
     @Override
     protected BufferedImage setDeadFrame() {
         return null;
     }
-    
+
 }

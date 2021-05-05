@@ -22,6 +22,7 @@ public class Asset {
 
     //Other
     public static BufferedImage[] bulletRed, bulletRock, bulletFlame;
+    public static BufferedImage scratchGrey, scratchGummy;
     public static BufferedImage[] cutGrey;
     public static BufferedImage dead, heart;
 
@@ -89,6 +90,9 @@ public class Asset {
         bulletFlame[1] = Utility.loadImage("res/texture/other/bullet/bulletFlame_explode.png");
 
         //Cut
+        scratchGrey = Utility.loadImage("res/texture/other/cut/scratchGrey.png");
+        scratchGummy = Utility.loadImage("res/texture/other/cut/scratchGummy.png");
+
         cutGrey = new BufferedImage[4];
         cutGrey[0] = Utility.loadImage("res/texture/other/cut/cutGrey_right.png");
         cutGrey[1] = Utility.loadImage("res/texture/other/cut/cutGrey_left.png");

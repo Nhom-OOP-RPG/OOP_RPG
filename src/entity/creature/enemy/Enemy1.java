@@ -28,7 +28,7 @@ public class Enemy1 extends Enemy {
         bounds.width = 20;
         bounds.height = 20;
 
-        eMelee = new EnemyMelee(handler, 5, 50, this);
+        eMelee = new EnemyMelee(handler, 5, 50, this, Asset.scratchGummy);
         attackDelayCount = 0;
         attackDelay = 70;
 
@@ -49,6 +49,7 @@ public class Enemy1 extends Enemy {
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){
             eMelee.damaging();
+            eMelee.tick();
             attackDelayCount = 0;
         }
     }

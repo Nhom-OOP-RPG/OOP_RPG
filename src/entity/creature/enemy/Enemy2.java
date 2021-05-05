@@ -28,7 +28,7 @@ public class Enemy2 extends Enemy {
         attackDelay = 100;
 
         animationDelay = 50;
-        currentFrame = Asset.gummy[0];
+        currentFrame = Asset.bat[0];
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Enemy2 extends Enemy {
         if (animationDelay >= 10){
             animationDelay = 0;
             currentFrameID = 1 - currentFrameID;
-            currentFrame = Asset.gummy[currentFrameID];
+            currentFrame = Asset.bat[currentFrameID];
         }
     }
 

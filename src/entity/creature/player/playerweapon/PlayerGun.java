@@ -1,9 +1,11 @@
 package entity.creature.player.playerweapon;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import entity.bullet.Bullet;
+import graphic.Asset;
 import main.Handler;
 
 public class PlayerGun extends PlayerWeapon{
@@ -11,13 +13,14 @@ public class PlayerGun extends PlayerWeapon{
     
     private int numOfBullet;
     private ArrayList<Bullet> shootedBullet;
-
+    BufferedImage[] bulletFrame;
 
     public PlayerGun(Handler handler, int damage) {
         super(handler, damage);
 
         numOfBullet = DEFAULT_NUM_BULLET;
         shootedBullet = new ArrayList<Bullet>();
+        bulletFrame  = Asset.bulletRed;
     }
 
     public void shoot() {
@@ -42,7 +45,7 @@ public class PlayerGun extends PlayerWeapon{
                 return;
         }
 
-        shootedBullet.add(new Bullet(handler, startX, startY, true, this.damage, 7f, angle));
+        shootedBullet.add(new Bullet(handler, startX, startY, true, this.damage, 7f, angle, bulletFrame));
     }
 
     @Override
