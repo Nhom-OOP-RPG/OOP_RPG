@@ -6,7 +6,6 @@ import java.awt.geom.Line2D;
 
 import entity.Entity;
 import entity.creature.enemy.Enemy;
-import graphic.Asset;
 import graphic.tile.Tile;
 import main.Handler;
 

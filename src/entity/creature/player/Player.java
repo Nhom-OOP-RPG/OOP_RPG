@@ -135,13 +135,13 @@ public class Player extends Creature {
             return;
         }
 
-        if (yMove > 0){
+        if (xMove > 0){
             currentFrame = Asset.player[0][currentFrameID];
-        } else if (yMove < 0){
-            currentFrame = Asset.player[1][currentFrameID];
         } else if (xMove < 0){
+            currentFrame = Asset.player[1][currentFrameID];
+        } else if (yMove > 0){
             currentFrame = Asset.player[2][currentFrameID];
-        } else if (xMove > 0){
+        } else if (yMove < 0){
             currentFrame = Asset.player[3][currentFrameID];
         }
     }
