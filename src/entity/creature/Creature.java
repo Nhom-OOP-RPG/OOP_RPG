@@ -130,5 +130,7 @@ public abstract class Creature extends Entity {
     //chuyển đổi Animation
     protected abstract void currentFrameUpdate();
 
-    protected abstract BufferedImage setDeadFrame();
+    protected BufferedImage setDeadFrame(){
+        return null;
+    }
 }

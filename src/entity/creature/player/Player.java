@@ -21,11 +21,12 @@ public class Player extends Creature {
     //các này t tạo ra cho có mà chưa dùng làm gì
     int atWorld, atRoom = 0;
 
-    private PlayerWeapon currentWeapon, melee, gun;
+    private int currentWeapon;
+    private PlayerWeapon[] weapons;
     public int attackDirect;
     private boolean isAttacking;
-    private int attackDelayCount;
-    private int attackDelay;
+    private int keyPressedDelayCount;
+    private int keyPressedDelay;
 
     private BufferedImage[][] normalFrame, damagedFrame;
     private BufferedImage scratchedFrame;
@@ -38,13 +39,14 @@ public class Player extends Creature {
         bounds.width = 20;
         bounds.height = 30;
 
-        melee = new PlayerMelee(handler, 20);
-        gun = new PlayerGun(handler, 40);
+        weapons = new PlayerWeapon[2];
+        weapons[0] = new PlayerMelee(handler, 20);
+        weapons[1] = new PlayerGun(handler, 40);
 
-        currentWeapon = gun;
+        currentWeapon = 0;
         isAttacking = false;
-        attackDelayCount = 0;
-        attackDelay = 20;
+        keyPressedDelayCount = 20;
+        keyPressedDelay = 20;
 
 
         animationDelay = 0;
@@ -62,14 +64,12 @@ public class Player extends Creature {
         }
         getInput();
         move();
-        attackDelayCount++;
-        if (isAttacking && attackDelayCount >= attackDelay){
-            currentWeapon.damaging();
+        if (isAttacking){
+            weapons[currentWeapon].damaging();
             isAttacking = false;
             System.out.println("attack");
-            attackDelayCount = 0;
         }
-        currentWeapon.tick();
+        weapons[currentWeapon].tick();
     }
 
     @Override
@@ -78,7 +78,7 @@ public class Player extends Creature {
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
         graphics.drawImage(scratchedFrame, (int) x, (int) y, width, height, null);
 
-        currentWeapon.render(graphics);
+        weapons[currentWeapon].render(graphics);
     }
     
     //Kiểm tra input để cập nhật xMove, yMove
@@ -102,8 +102,21 @@ public class Player extends Creature {
             xMove = speed;
             attackDirect = 0;
         }
-        if (handler.getKeyManager().attack){
-            isAttacking = true;
+
+        keyPressedDelayCount++;
+        if (keyPressedDelayCount >= keyPressedDelay){
+            if (handler.getKeyManager().attack){
+                isAttacking = true;
+                keyPressedDelayCount = 0;
+            }
+            if (handler.getKeyManager().enter){
+                currentWeapon++;
+                if (currentWeapon >= 2){
+                    currentWeapon = 0;
+                }
+                System.out.println("change weapon");
+                keyPressedDelayCount = 0;
+            }
         }
     }
 
@@ -147,10 +160,4 @@ public class Player extends Creature {
     public void setScratchedFrame(BufferedImage frame){
         this.scratchedFrame = frame;
     }
-
-    @Override
-    protected BufferedImage setDeadFrame() {
-        return null;
-    }
-
 }

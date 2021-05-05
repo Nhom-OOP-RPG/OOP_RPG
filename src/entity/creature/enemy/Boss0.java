@@ -68,9 +68,5 @@ public class Boss0 extends Enemy {
             currentFrame = Asset.gummy[currentFrameID];
         }
     }
-
-    @Override
-    protected BufferedImage setDeadFrame() {
-        return Asset.dead;
-    }
+    
 }
