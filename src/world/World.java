@@ -27,6 +27,7 @@ public class World {
         this.handler = handler;
 
         init();
+        initEasy();
 
         currentRoom = worldMap[0][0];
     }
@@ -68,15 +69,31 @@ public class World {
         worldMap[thisWorld][roomName].loadRoom(path);
     }
 
-    public void init(){
+    public void setBossRoom(Handler handler, int thisWorld, int roomName, String path){
+        worldMap[thisWorld][roomName] = new BossRoom();
+        worldMap[thisWorld][roomName].loadRoom(path);
+    }
+
+    public void init() {
         worldMap = new Room[2][];
-        worldMap[0] = new Room[2];
-        worldMap[1] = new Room[0];
+        worldMap[0] = new Room[3];
+        worldMap[1] = new Room[2];
 
         setRoom(this.handler, 0, 0, "res/world/world0/room_0_0.txt");
         setRoom(this.handler, 0, 1, "res/world/world0/room_0_1.txt");
+        setBossRoom(this.handler, 0, 2, "res/world/world0/room_0_2.txt");
+        setRoom(this.handler, 1, 0, "res/world/world1/room_1_0.txt");
+        setRoom(this.handler, 1, 1, "res/world/world1/room_1_1.txt");
+    }
 
-        worldMap[0][0].addNewEnemy(handler, 1, 6);
+    public void initEasy(){
+        worldMap[0][0].addNewEnemy(handler, 1, 3);
+        worldMap[0][0].addNewEnemy(handler, 2, 3);
         worldMap[0][1].addNewEnemy(handler, 2);
+        worldMap[0][2].addNewEnemy(handler, 3, 16, 10);
+
+        worldMap[1][0].addNewEnemy(handler, 1, 2);
+        worldMap[1][0].addNewEnemy(handler, 2, 4);
+        worldMap[1][1].addNewEnemy(handler, 1);
     }
 }

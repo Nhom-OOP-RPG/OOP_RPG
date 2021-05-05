@@ -16,7 +16,7 @@ public abstract class State {
 
     protected Handler handler;
 
-    protected int keyPressedDelay, keyPressedDelayCount;
+    protected static int keyPressedDelay, keyPressedDelayCount;
 
     public State(Handler handler){
         this.handler = handler;

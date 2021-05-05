@@ -16,6 +16,10 @@ public class GameState extends State{
     @Override
     public void tick() {
         handler.getPlayer().tick();
+        if (handler.getPlayer().getIsDead()){
+            State.setState(handler.getGame().getLoseGameState());
+        }
+        
         handler.getWorld().changeRoom(handler.getPlayer());
         handler.getWorld().getRoom().tick();
     }

@@ -13,7 +13,7 @@ public class LoseGameState extends State {
     private String[] options;
 
     private static final String LOSE_GAME = "You Lose!";
-    private static final String CONTINUE = "Press 1 to continue!";
+    private static final String CONTINUE = "Press Enter to continue!";
 
     public LoseGameState(Handler handler) {
         super(handler);

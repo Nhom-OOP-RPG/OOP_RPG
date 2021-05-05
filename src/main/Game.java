@@ -80,7 +80,7 @@ public class Game implements Runnable {
         loseGameState = new LoseGameState(handler);
         playAgainState = new PlayAgainState(handler);
 
-        State.setState(gameState);
+        State.setState(mainMenuState);
     }
 
     //Cap nhat du lieu

@@ -18,6 +18,7 @@ public class Asset {
 
     //Enemy
     public static BufferedImage[] gummy;
+    public static BufferedImage[] bat;
 
     //Other
     public static BufferedImage[] bulletRed, bulletRock, bulletFlame;
@@ -50,10 +51,13 @@ public class Asset {
 
     private static void initEnemy(){
         //Enemy
-        //tạm thời mới có 1 loại quái
         gummy = new BufferedImage[2];
         gummy[0] = Utility.loadImage("res/texture/enemy/world0/gummy/gummy.png");
         gummy[1] = Utility.loadImage("res/texture/enemy/world0/gummy/gummy_2.png");
+
+        bat = new BufferedImage[2];
+        bat[0] = Utility.loadImage("res/texture/enemy/world1/bat/bat.png");
+        bat[1] = Utility.loadImage("res/texture/enemy/world1/bat/bat_2.png");
 
     }
 

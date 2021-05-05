@@ -27,11 +27,13 @@ public class InstructionState extends State{
 
     @Override
     public void tick() {
-
-        if (handler.getKeyManager().enter) {
-            State.setState(handler.getGame().getMainMenuState());
+        keyPressedDelayCount++;
+        if (keyPressedDelayCount >= keyPressedDelay){
+            if (handler.getKeyManager().enter || handler.getKeyManager().escape) {
+                State.setState(handler.getGame().getMainMenuState());
+                keyPressedDelayCount = 0;
+            }
         }
-        
     }
 
     @Override

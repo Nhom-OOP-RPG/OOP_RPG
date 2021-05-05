@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
+import entity.creature.enemy.Boss0;
 import entity.creature.enemy.Enemy;
 import entity.creature.enemy.Enemy1;
 import entity.creature.enemy.Enemy2;
@@ -116,14 +117,7 @@ public class Room {
             y = (rand.nextInt(13) + 2);
         } while (getTile(x, y).isSolid());
 
-        switch (enemyID){
-            case 1:
-                this.enemyList.add(new Enemy1(handler, x * 40 , y * 40));
-                return;
-            case 2:
-                this.enemyList.add(new Enemy2(handler, x * 40 , y * 40));
-                return;
-        }
+        addNewEnemy(handler, enemyID, x, y);
     }
 
     public void addNewEnemy(Handler handler, int enemyID, int numOfEnemies){
@@ -135,25 +129,21 @@ public class Room {
                 y = (rand.nextInt(13) + 2);
             } while (getTile(x, y).isSolid());
 
-            switch (enemyID){
-                case 1:
-                    this.enemyList.add(new Enemy1(handler, x * 40 , y * 40));
-                    break;
-                case 2:
-                    this.enemyList.add(new Enemy2(handler, x * 40 , y * 40));
-                    break;
-            }
+
+            addNewEnemy(handler, enemyID, x, y);
         }
     }
 
     public void addNewEnemy(Handler handler, int enemyID, int x, int y){
         switch (enemyID){
             case 1:
-                this.enemyList.add(new Enemy1(handler, x * 40 , y * 40));
+                this.enemyList.add(new Enemy1(handler, x * 40, y * 40));
                 return;
             case 2:
-                this.enemyList.add(new Enemy2(handler, x * 40 , y * 40));
+                this.enemyList.add(new Enemy2(handler, x * 40, y * 40));
                 return;
+            case 3:
+                this.enemyList.add(new Boss0(handler, x * 40, y * 40));
         }
     }
 

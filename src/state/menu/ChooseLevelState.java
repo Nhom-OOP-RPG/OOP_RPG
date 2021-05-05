@@ -39,6 +39,12 @@ public class ChooseLevelState extends State {
                 return;
             }
 
+            if (handler.getKeyManager().escape) {
+                State.setState(handler.getGame().getMainMenuState());
+                keyPressedDelayCount = 0;
+                return;
+            }
+
             if (handler.getKeyManager().enter) {
                 if (sel == 0){
                     State.setState(handler.getGame().getGameState());
