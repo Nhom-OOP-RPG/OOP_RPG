@@ -3,6 +3,8 @@
 package entity.creature.player;
 
 import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.image.BufferedImage;
 
 import entity.creature.Creature;
@@ -10,6 +12,7 @@ import entity.creature.player.playerweapon.PlayerGun;
 import entity.creature.player.playerweapon.PlayerMelee;
 import entity.creature.player.playerweapon.PlayerWeapon;
 import graphic.Asset;
+import graphic.tile.Tile;
 import main.Handler;
 
 
@@ -79,6 +82,11 @@ public class Player extends Creature {
         graphics.drawImage(scratchedFrame, (int) x, (int) y, width, height, null);
 
         weapons[currentWeapon].render(graphics);
+
+        graphics.setColor(Color.WHITE);
+		graphics.setFont(new Font("arial", Font.PLAIN, 15));
+		graphics.drawImage(Asset.heart, 0, 0, Tile.TILE_WIDTH * 2/3, Tile.TILE_HEIGHT * 2/3, null);
+		graphics.drawString(getHealth()+" / 100", Tile.TILE_HEIGHT*2/3+5, 20);
     }
     
     //Kiểm tra input để cập nhật xMove, yMove
