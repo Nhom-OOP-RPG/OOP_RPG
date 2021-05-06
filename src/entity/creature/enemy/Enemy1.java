@@ -57,6 +57,8 @@ public class Enemy1 extends Enemy {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
+
+        renderHealth(graphics);
     }
     
     //Chuyển đổi Animation

@@ -2,6 +2,10 @@
 
 package entity.creature.enemy;
 
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Font;
+
 import entity.creature.Creature;
 import entity.creature.player.Player;
 import main.Handler;
@@ -66,6 +70,12 @@ public abstract class Enemy extends Creature {
             }
         }
 
+    }
+
+    protected void renderHealth(Graphics graphics){
+        graphics.setColor(Color.WHITE);
+		graphics.setFont(new Font("arial", Font.PLAIN, 10));
+		graphics.drawString(getHealth()+" / " + this.health, (int) this.x, (int) this.y);
     }
 
 

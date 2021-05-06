@@ -52,8 +52,13 @@ public class Enemy2 extends Enemy {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
+        
         eGun.tick();
         eGun.render(graphics);
+
+        if (!isDead){
+            renderHealth(graphics);
+        }
     }
     
     //Chuyển đổi Animation
