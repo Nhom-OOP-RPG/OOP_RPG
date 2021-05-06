@@ -56,7 +56,7 @@ public class PlayAgainState extends State {
                         State.setState(handler.getGame().getMainMenuState());
                         break;
                     case 1:
-                        System.exit(0);
+                        State.setState(handler.getGame().getMainMenuState());
                 }
                 keyPressedDelayCount = 0;
             }

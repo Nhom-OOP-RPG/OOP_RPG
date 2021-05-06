@@ -22,6 +22,7 @@ public class GameState extends State{
 
         handler.getPlayer().tick();
         if (handler.getPlayer().getIsDead()){
+            handler.getPlayer().decreaseLives();
             State.setState(handler.getGame().getLoseGameState());
         }
         

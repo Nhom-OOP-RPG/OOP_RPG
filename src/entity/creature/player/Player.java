@@ -20,6 +20,7 @@ public class Player extends Creature {
     //vị trí spawn đầu màn chơi (tính theo pixel)
     public static final float DEFAULT_SPAWN_X = 9 * 40, DEFAULT_SPAWN_Y = 7 * 40; 
 
+    private int lives;
     //thế giới và phòng hiện tại
     //các này t tạo ra cho có mà chưa dùng làm gì
     int atWorld, atRoom = 0;
@@ -31,11 +32,12 @@ public class Player extends Creature {
     private int keyPressedDelayCount;
     private int keyPressedDelay;
 
-    private BufferedImage[][] normalFrame, damagedFrame;
     private BufferedImage scratchedFrame;
 
     public Player(Handler handler){
         super(handler, DEFAULT_SPAWN_X, DEFAULT_SPAWN_Y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
+
+        lives = 3;
 
         bounds.x = 10;
         bounds.y = 10;
@@ -83,10 +85,12 @@ public class Player extends Creature {
 
         weapons[currentWeapon].render(graphics);
 
+        for (int i = 0; i < lives; i++){
+            graphics.drawImage(Asset.heart, Tile.TILE_WIDTH * 2/3 * i, 0, Tile.TILE_WIDTH * 2/3, Tile.TILE_HEIGHT * 2/3, null);
+        }
         graphics.setColor(Color.WHITE);
 		graphics.setFont(new Font("arial", Font.PLAIN, 15));
-		graphics.drawImage(Asset.heart, 0, 0, Tile.TILE_WIDTH * 2/3, Tile.TILE_HEIGHT * 2/3, null);
-		graphics.drawString(getHealth()+" / 100", Tile.TILE_HEIGHT*2/3+5, 20);
+		graphics.drawString(getHealth()+" / 100", Tile.TILE_WIDTH * 2/3 + 60, 20);
     }
     
     //Kiểm tra input để cập nhật xMove, yMove
@@ -156,6 +160,18 @@ public class Player extends Creature {
     }
     
     //Get Set
+    public int getLives(){
+        return lives;
+    }
+
+    public void decreaseLives(){
+        lives--;
+    }
+
+    public void setMaxHealth(){
+        health = 100;
+        isDead = false;
+    }
 
     //dùng trong chuyển các phòng
     public void setChangeRoomX(float x){

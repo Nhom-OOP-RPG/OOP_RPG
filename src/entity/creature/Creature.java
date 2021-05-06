@@ -108,9 +108,6 @@ public abstract class Creature extends Entity {
     }
     public void decreaseHealth(int n){
         health -= n;
-        if (this.getHealth() <= 0){
-            this.setDead();
-        }
     }
 
     public void setDead(){

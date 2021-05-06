@@ -21,6 +21,7 @@ public class WinGameState extends State {
     public void tick() {
         if (handler.getKeyManager().enter) {
             State.setState(handler.getGame().getPlayAgainState());
+            keyPressedDelayCount = 0;
         }
     }
 
