@@ -56,9 +56,7 @@ public class Enemy2 extends Enemy {
         eGun.tick();
         eGun.render(graphics);
 
-        if (!isDead){
-            renderHealth(graphics);
-        }
+        renderHealth(graphics);
     }
     
     //Chuyển đổi Animation

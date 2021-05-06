@@ -73,6 +73,7 @@ public abstract class Enemy extends Creature {
     }
 
     protected void renderHealth(Graphics graphics){
+        if (isDead) return;
         graphics.setColor(Color.WHITE);
 		graphics.setFont(new Font("arial", Font.PLAIN, 10));
 		graphics.drawString(getHealth()+" / " + this.health, (int) this.x, (int) this.y);

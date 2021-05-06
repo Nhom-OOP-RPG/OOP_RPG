@@ -89,7 +89,8 @@ public class World {
     }
 
     public void initEasy(){
-        worldMap[0][1].addNewEnemy(handler, 2);
+        worldMap[0][1].addNewEnemy(handler, 2, 3);
+        worldMap[0][1].addNewEnemy(handler, 1, 2);
         worldMap[0][4].addNewEnemy(handler, 3, 9, 6);
 
         worldMap[1][0].addNewEnemy(handler, 1, 2);
