@@ -67,7 +67,6 @@ public class MainMenuState extends State {
                     default:
                         System.exit(0);
                 }
-
                 else switch (selected) {
                     case 0:
                         State.setState(handler.getGame().getChooseLevelState());

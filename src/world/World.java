@@ -29,7 +29,7 @@ public class World {
         init();
         initEasy();
 
-        currentRoom = worldMap[0][1];
+        currentRoom = worldMap[1][0];
     }
 
     //phương thức chuyển các phòng
@@ -75,7 +75,7 @@ public class World {
     public void init() {
         worldMap = new Room[2][];
         worldMap[0] = new Room[5];
-        worldMap[1] = new Room[2];
+        worldMap[1] = new Room[4];
 
         setRoom(this.handler, 0, 0, "res/world/world0/room_0_0.txt");
         setRoom(this.handler, 0, 1, "res/world/world0/room_0_1.txt");
@@ -83,7 +83,9 @@ public class World {
         setRoom(this.handler, 0, 3, "res/world/world0/room_0_3.txt");
         setBossRoom(this.handler, 0, 4, "res/world/world0/room_0_4.txt");
         setRoom(this.handler, 1, 0, "res/world/world1/room_1_0.txt");
-        setBossRoom(this.handler, 1, 1, "res/world/world1/room_1_1.txt");
+        setRoom(this.handler, 1, 1, "res/world/world1/room_1_1.txt");
+        setRoom(this.handler, 1, 2, "res/world/world1/room_1_2.txt");
+        setBossRoom(this.handler, 1, 3, "res/world/world1/room_1_3.txt");
     }
 
     public void initEasy(){
@@ -98,8 +100,8 @@ public class World {
         worldMap[0][1].addNewEnemy(2);
         worldMap[0][1].addNewEnemy(3);
 
-        worldMap[1][0].addNewEnemy(4);
-        worldMap[1][0].addNewEnemy(5);
-        worldMap[1][0].addNewEnemy(6);
+        worldMap[1][1].addNewEnemy(4);
+        worldMap[1][1].addNewEnemy(5);
+        worldMap[1][1].addNewEnemy(6);
     }
 }

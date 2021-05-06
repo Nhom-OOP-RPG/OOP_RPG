@@ -31,8 +31,8 @@ public class BossRoom extends Room {
                     && (int) handler.getPlayer().getCenterY()/40 == 6){
                 if (worldName == 0){
                     handler.getWorld().setCurrentRoom(1, 0);
-                    handler.getPlayer().setX(40f);
-                    handler.getPlayer().setY(40f);
+                    handler.getPlayer().setX(9 * 40f);
+                    handler.getPlayer().setY(7 * 40f);
                 } else if (worldName == 1){
                     State.setState(handler.getGame().getWinGameState());
                 }
