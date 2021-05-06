@@ -15,11 +15,11 @@ public class ChooseLevelState extends State {
     private static final String EASY = "Easy";
 	private static final String HARD = "Hard";
 
-	private int sel;
+	private int selected;
 
     public ChooseLevelState(Handler handler) {
         super(handler);
-        this.sel = 0;
+        this.selected = 0;
         this.optionsLevel = new String[] {EASY, HARD};
     }
 
@@ -28,13 +28,13 @@ public class ChooseLevelState extends State {
         keyPressedDelayCount++;
         if (keyPressedDelayCount >= keyPressedDelay){
             if (handler.getKeyManager().up) {
-                sel = 0;
+                selected = 0;
                 keyPressedDelayCount = 0;
                 return;
             }
 
             if (handler.getKeyManager().down) {
-                sel = 1;
+                selected = 1;
                 keyPressedDelayCount = 0;
                 return;
             }
@@ -46,7 +46,8 @@ public class ChooseLevelState extends State {
             }
 
             if (handler.getKeyManager().enter) {
-                if (sel == 0){
+                if (selected == 0){
+                    isPlaying = true;
                     State.setState(handler.getGame().getGameState());
                 } else {
                     System.exit(0);
@@ -64,7 +65,7 @@ public class ChooseLevelState extends State {
 		
 		graphics.setFont(new Font("Araial", Font.BOLD, 25));
 		for(int i=0;i<this.optionsLevel.length;i++) {
-			if(i==this.sel) graphics.setColor(Color.GREEN);
+			if(i==this.selected) graphics.setColor(Color.GREEN);
 			else graphics.setColor(Color.WHITE);
 			graphics.drawString(this.optionsLevel[i], Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT /2 + 30*i);
 		}

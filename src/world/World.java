@@ -36,20 +36,19 @@ public class World {
     //khi người chơi ra phòng sẽ tìm phòng bên cạnh theo hướng ra đó 
     public void changeRoom(Player player){
         if (player.getCenterX() < 0){
-            currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(WEST)];
+            setCurrentRoom(currentRoom.worldName, currentRoom.getExit(WEST));
             player.setChangeRoomX(Game.WINDOW_WIDTH);
         } else if (player.getCenterX() > Game.WINDOW_WIDTH){
-            currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(EAST)];
+            setCurrentRoom(currentRoom.worldName, currentRoom.getExit(EAST));
             player.setChangeRoomX(0);
         } else if (player.getCenterY() < 0){
-            currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(NORTH)];
+            setCurrentRoom(currentRoom.worldName, currentRoom.getExit(NORTH));
             player.setChangeRoomY(Game.WINDOW_HEIGHT);
         } else if (player.getCenterY() > Game.WINDOW_HEIGHT){
-            currentRoom = worldMap[currentRoom.worldName][currentRoom.getExit(SOUTH)];
+            setCurrentRoom(currentRoom.worldName, currentRoom.getExit(SOUTH));
             player.setChangeRoomY(0);
         }
     }
-
     //Get Set
 
     //trả về phòng chơi hiện tại
@@ -57,21 +56,20 @@ public class World {
         return currentRoom;
     }
 
-    //trả về phòng ở thế giới và tên phòng truyền vào
-    //t chưa động tới vì t nghĩ khi chuyển các màn chơi mới gọi
-    //sau khi giết Boss xong thì mới chuyển màn
     public Room getRoom(int worldName, int roomName){
         return worldMap[worldName][roomName];
     }
 
-    public void setRoom(Handler handler, int thisWorld, int roomName, String path){
-        worldMap[thisWorld][roomName] = new Room();
-        worldMap[thisWorld][roomName].loadRoom(path);
+    public void setCurrentRoom(int worldName, int roomName){
+        currentRoom = worldMap[worldName][roomName];
     }
 
-    public void setBossRoom(Handler handler, int thisWorld, int roomName, String path){
-        worldMap[thisWorld][roomName] = new BossRoom();
-        worldMap[thisWorld][roomName].loadRoom(path);
+    public void setRoom(Handler handler, int worldName, int roomName, String path){
+        worldMap[worldName][roomName] = new Room(handler, path);
+    }
+
+    public void setBossRoom(Handler handler, int worldName, int roomName, String path){
+        worldMap[worldName][roomName] = new BossRoom(handler, path);
     }
 
     public void init() {
@@ -85,16 +83,15 @@ public class World {
         setRoom(this.handler, 0, 3, "res/world/world0/room_0_3.txt");
         setBossRoom(this.handler, 0, 4, "res/world/world0/room_0_4.txt");
         setRoom(this.handler, 1, 0, "res/world/world1/room_1_0.txt");
-        setRoom(this.handler, 1, 1, "res/world/world1/room_1_1.txt");
+        setBossRoom(this.handler, 1, 1, "res/world/world1/room_1_1.txt");
     }
 
     public void initEasy(){
-        worldMap[0][1].addNewEnemy(handler, 2, 3);
-        worldMap[0][1].addNewEnemy(handler, 1, 2);
-        worldMap[0][4].addNewEnemy(handler, 3, 9, 6);
+        worldMap[0][1].addNewEnemy(2, 3);
+        worldMap[0][1].addNewEnemy(1, 2);
 
-        worldMap[1][0].addNewEnemy(handler, 1, 2);
-        worldMap[1][0].addNewEnemy(handler, 2, 4);
-        worldMap[1][1].addNewEnemy(handler, 1);
+        worldMap[1][0].addNewEnemy(1, 2);
+        worldMap[1][0].addNewEnemy(2, 4);
+        worldMap[1][1].addNewEnemy(1);
     }
 }

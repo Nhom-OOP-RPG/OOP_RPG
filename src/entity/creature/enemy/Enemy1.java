@@ -38,10 +38,13 @@ public class Enemy1 extends Enemy {
 
     @Override
     public void tick(){
+
+        if (isDead) return;
         if (health <= 0) {
             setDead();
             return;
         }
+        
         currentFrameUpdate();
 
         updateTarget(40f, 400f);
@@ -58,6 +61,8 @@ public class Enemy1 extends Enemy {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
+
+        if (isDead) return;
 
         renderHealth(graphics);
     }

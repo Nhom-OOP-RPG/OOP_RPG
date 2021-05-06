@@ -21,6 +21,7 @@ import main.fps.FPSTimer;
 //State
 import state.State;
 import state.GameState;
+import state.PauseState;
 import state.menu.MainMenuState;
 import state.menu.InstructionState;
 import state.menu.ChooseLevelState;
@@ -54,6 +55,7 @@ public class Game implements Runnable {
     private State mainMenuState;
     private State instructionState;
     private State chooseLevelState;
+    private State pauseState;
     private State winGameState;
     private State loseGameState;
     private State playAgainState;
@@ -76,6 +78,7 @@ public class Game implements Runnable {
         mainMenuState = new MainMenuState(handler);
         instructionState = new InstructionState(handler);
         chooseLevelState = new ChooseLevelState(handler);
+        pauseState = new PauseState(handler);
         winGameState = new WinGameState(handler);
         loseGameState = new LoseGameState(handler);
         playAgainState = new PlayAgainState(handler);
@@ -177,6 +180,11 @@ public class Game implements Runnable {
     public State getMainMenuState() {
         return mainMenuState;
     }
+
+    public State getPauseState() {
+        return pauseState;
+    }
+
 
     public State getWinGameState() {
         return winGameState;

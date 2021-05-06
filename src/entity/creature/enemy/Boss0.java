@@ -7,6 +7,7 @@ import entity.creature.enemy.enemyweapon.EnemyMelee;
 import entity.creature.enemy.enemyweapon.EnemyWeapon;
 import graphic.Asset;
 import main.Handler;
+import world.BossRoom;
 
 public class Boss0 extends Enemy {
 
@@ -14,8 +15,8 @@ public class Boss0 extends Enemy {
 
     public Boss0(Handler handler, float x, float y) {
         super(handler, x, y);
-        this.health = 400;
-        this.maxHealth = 400;
+        this.health = 80;
+        this.maxHealth = 80;
 
         this.width *= 2;
         this.height *= 2;
@@ -33,6 +34,9 @@ public class Boss0 extends Enemy {
 
     @Override
     public void tick(){
+        eGun.tick();
+
+        if (isDead) return;
         if (health <= 0) {
             setDead();
             return;
@@ -53,10 +57,11 @@ public class Boss0 extends Enemy {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
-        eGun.tick();
         eGun.render(graphics);
         eMelee.render(graphics);
+        graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
+        
+        if (isDead) return;
 
         renderBossHealth(graphics);
     }

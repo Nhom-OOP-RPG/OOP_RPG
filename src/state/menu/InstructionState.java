@@ -31,7 +31,7 @@ public class InstructionState extends State{
         keyPressedDelayCount++;
         if (keyPressedDelayCount >= keyPressedDelay){
             if (handler.getKeyManager().enter || handler.getKeyManager().escape) {
-                State.setState(handler.getGame().getMainMenuState());
+                State.setState(State.getPreviousState());
                 keyPressedDelayCount = 0;
             }
         }
@@ -50,10 +50,6 @@ public class InstructionState extends State{
 			graphics.setColor(Color.GREEN);
             graphics.drawString(this.options[i], Game.WINDOW_WIDTH / 2 - 160, Game.WINDOW_HEIGHT /2 - 120 + 30*i);
             
-		}
-        
-        
+		}       
     }
-
-
 }

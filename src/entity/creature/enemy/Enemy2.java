@@ -34,10 +34,14 @@ public class Enemy2 extends Enemy {
 
     @Override
     public void tick(){
+        eGun.tick();
+
+        if (isDead) return;
         if (health <= 0) {
             setDead();
             return;
         }
+
         currentFrameUpdate();
 
         updateTarget(40f, 1000f);
@@ -52,10 +56,10 @@ public class Enemy2 extends Enemy {
 
     @Override
     public void render(Graphics graphics) {
+        eGun.render(graphics);
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
         
-        eGun.tick();
-        eGun.render(graphics);
+        if (isDead) return;
 
         renderHealth(graphics);
     }

@@ -74,14 +74,12 @@ public abstract class Enemy extends Creature {
     }
 
     protected void renderHealth(Graphics graphics){
-        if (isDead) return;
         graphics.setColor(Color.WHITE);
 		graphics.setFont(new Font("arial", Font.PLAIN, 10));
 		graphics.drawString(getHealth()+" / " + this.maxHealth, (int) this.x, (int) this.y);
     }
 
     protected void renderBossHealth(Graphics graphics){
-        if (isDead) return;
         graphics.setColor(Color.BLACK);
         graphics.fillRect((int) this.x - 20, (int) this.y - 25, 120, 20);
         float ratio = (float) this.health / this.maxHealth;

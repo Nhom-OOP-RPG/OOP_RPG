@@ -1,29 +1,26 @@
-package state.gameover;
+package state;
 
 import java.awt.Graphics;
-
-import main.Game;
-import main.Handler;
-import state.State;
-
 import java.awt.Color;
 import java.awt.Font;
 
-public class PlayAgainState extends State {
-    private String[] options;
-    private final int numOfOptions;
+import main.Game;
+import main.Handler;
 
-    private final String QUESTION = "Do you want to play again?";
-	private static final String YES = "YES";
-    private static final String NO = "NO";
+public class PauseState extends State {
+
+    private String[] optionsMenu;
+
+    private static final String RESUME = "Resume";
+	private static final String MAIN_MENU = "Main Menu";
+    private static final String INSTRUCTION = "Instructions";
 
     private int selected;
 
-    public PlayAgainState(Handler handler) {
+    public PauseState(Handler handler) {
         super(handler);
         
-        this.options = new String[]{YES, NO};
-        this.numOfOptions = 2;
+        this.optionsMenu = new String[]{RESUME, INSTRUCTION, MAIN_MENU};
 
         this.selected = 0;
     }
@@ -41,7 +38,7 @@ public class PlayAgainState extends State {
             }
     
             if (handler.getKeyManager().down) {
-                if (selected < numOfOptions - 1){
+                if (selected < optionsMenu.length - 1){
                     selected++;
                 }
                 keyPressedDelayCount = 0;
@@ -51,16 +48,19 @@ public class PlayAgainState extends State {
             if (handler.getKeyManager().enter) {
                 switch (selected) {
                     case 0:
-                        handler.restartGame();
-                        isPlaying = false;
-                        State.setState(handler.getGame().getMainMenuState());
+                        State.setState(handler.getGame().getGameState());
                         break;
                     case 1:
-                        System.exit(0);
+                        State.setState(handler.getGame().getInStructionState());
+                        break;
+                    default:
+                        isPlaying = true;
+                        State.setState(handler.getGame().getMainMenuState());
                 }
                 keyPressedDelayCount = 0;
+                return;
             }
-        }
+        }  
     }
 
     @Override
@@ -69,16 +69,11 @@ public class PlayAgainState extends State {
 		graphics.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		
 		graphics.setFont(new Font("Araial", Font.BOLD, 25));
-
-        graphics.setColor(Color.ORANGE);
-        graphics.drawString(this.QUESTION, Game.WINDOW_WIDTH / 2 - 180, Game.WINDOW_HEIGHT / 2 - 30);
-
-		for (int i=0; i<this.options.length; i++) {
-			if (i == this.selected) graphics.setColor(Color.GREEN);
+		for(int i=0;i<this.optionsMenu.length;i++) {
+			if(i==this.selected) graphics.setColor(Color.GREEN);
 			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.options[i], Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT / 2 + 30*(i));
+			graphics.drawString(this.optionsMenu[i], Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT /2 + 30*i);
 		}
-        
     }
     
 }

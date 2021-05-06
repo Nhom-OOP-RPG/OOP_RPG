@@ -15,6 +15,11 @@ public class GameState extends State{
 
     @Override
     public void tick() {
+        keyPressedDelayCount++;
+        if (keyPressedDelayCount >= keyPressedDelay && handler.getKeyManager().escape){
+            State.setState(handler.getGame().getPauseState());
+        }
+
         handler.getPlayer().tick();
         if (handler.getPlayer().getIsDead()){
             State.setState(handler.getGame().getLoseGameState());

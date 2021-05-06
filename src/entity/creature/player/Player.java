@@ -117,6 +117,7 @@ public class Player extends Creature {
                 isAttacking = true;
                 keyPressedDelayCount = 0;
             }
+
             if (handler.getKeyManager().changeWeapon){
                 currentWeapon++;
                 if (currentWeapon >= 2){

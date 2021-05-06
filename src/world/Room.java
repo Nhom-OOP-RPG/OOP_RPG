@@ -5,6 +5,8 @@ Lớp Room: chứa dữ liệu liên quan tới phòng của màn chơi gồm c�
 package world;
 
 import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -19,21 +21,27 @@ import utility.Utility;
 public class Room {
     //phòng có kích thước 15x20
     public final int WIDTH = 20, HEIGHT = 15;
+
+    Handler handler;
     
     //tên phòng chơi, tên thế giới chứa phòng này
     public int roomName, worldName;
 
     //lưu tên phòng nằm cạnh phòng hiện tại
     //thứ tự lần lượt là tên phòng phía Đông, Tây, Nam, Bắc
-    private int[] exits = {0, 0, 0, 0};
+    protected int[] exits = {0, 0, 0, 0};
 
     //lưu bản đồ của phòng dưới dạng mã tên của các Tile
-    private int[][] roomMap;
+    protected int[][] roomMap;
 
     //demo2, kệ đoạn này
-    private ArrayList<Enemy> enemyList;
+    protected ArrayList<Enemy> enemyList;
 
-    public Room(){
+    public Room(Handler handler, String path){
+        this.handler = handler;
+
+        loadRoom(path);
+
         enemyList = new ArrayList<Enemy>();
     }
     
@@ -41,9 +49,7 @@ public class Room {
     //nên chưa phải dùng tick()
     public void tick(){
         for (Enemy e : enemyList){
-            if (!e.getIsDead()){
-                e.tick();
-            }
+            e.tick();
         }
     }
 
@@ -54,6 +60,10 @@ public class Room {
                 getTile(x, y).render(graphics, x, y);
             }
         }
+
+        graphics.setColor(Color.WHITE);
+		graphics.setFont(new Font("arial", Font.PLAIN, 15));
+		graphics.drawString("World: " + worldName + ", Room: " + roomName, Tile.TILE_HEIGHT * 2/3 + 600, 20);
 
         for (Enemy e : enemyList){
                 e.render(graphics);
@@ -109,7 +119,7 @@ public class Room {
         }
     }
 
-    public void addNewEnemy(Handler handler, int enemyID){
+    public void addNewEnemy(int enemyID){
         Random rand = new Random();
         int x, y;
         do {
@@ -117,10 +127,10 @@ public class Room {
             y = (rand.nextInt(13) + 2);
         } while (getTile(x, y).isSolid());
 
-        addNewEnemy(handler, enemyID, x, y);
+        addNewEnemy(enemyID, x, y);
     }
 
-    public void addNewEnemy(Handler handler, int enemyID, int numOfEnemies){
+    public void addNewEnemy(int enemyID, int numOfEnemies){
         for (int i = 0; i < numOfEnemies; i++){
             Random rand = new Random();
             int x, y;
@@ -130,11 +140,11 @@ public class Room {
             } while (getTile(x, y).isSolid());
 
 
-            addNewEnemy(handler, enemyID, x, y);
+            addNewEnemy(enemyID, x, y);
         }
     }
 
-    public void addNewEnemy(Handler handler, int enemyID, int x, int y){
+    public void addNewEnemy(int enemyID, int x, int y){
         switch (enemyID){
             case 1:
                 this.enemyList.add(new Enemy1(handler, x * 40, y * 40));
