@@ -29,7 +29,7 @@ public class World {
         init();
         initEasy();
 
-        currentRoom = worldMap[1][0];
+        currentRoom = worldMap[0][0];
     }
 
     //phương thức chuyển các phòng
