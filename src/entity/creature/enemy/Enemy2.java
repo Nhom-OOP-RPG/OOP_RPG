@@ -43,8 +43,8 @@ public class Enemy2 extends Enemy {
 
         currentFrameUpdate();
 
-        updateTarget(40f, 1000f);
         move();
+        updateTarget(40f, 1000f);
 
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){

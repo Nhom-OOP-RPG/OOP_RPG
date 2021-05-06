@@ -10,10 +10,9 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Random;
 
-import entity.creature.enemy.Boss0;
 import entity.creature.enemy.Enemy;
-import entity.creature.enemy.Enemy1;
-import entity.creature.enemy.Enemy2;
+import entity.creature.enemy.world0.*;
+import entity.creature.enemy.world1.*;
 import graphic.tile.Tile;
 import main.Handler;
 import utility.Utility;
@@ -21,6 +20,8 @@ import utility.Utility;
 public class Room {
     //phòng có kích thước 15x20
     public final int WIDTH = 20, HEIGHT = 15;
+    public final int GUMMY = 1, MUSHROOM = 2, SNAKE = 3,
+        BAT = 4, SKULL = 5, GOBLIN = 6;
 
     Handler handler;
     
@@ -146,14 +147,23 @@ public class Room {
 
     public void addNewEnemy(int enemyID, int x, int y){
         switch (enemyID){
-            case 1:
-                this.enemyList.add(new Enemy1(handler, x * 40, y * 40));
+            case GUMMY:
+                this.enemyList.add(new Gummy(handler, x * 40, y * 40));
                 return;
-            case 2:
-                this.enemyList.add(new Enemy2(handler, x * 40, y * 40));
+            case MUSHROOM:
+                this.enemyList.add(new Mushroom(handler, x * 40, y * 40));
                 return;
-            case 3:
-                this.enemyList.add(new Boss0(handler, x * 40, y * 40));
+            case SNAKE:
+                this.enemyList.add(new Snake(handler, x * 40, y * 40));
+                return;
+            case BAT:
+                this.enemyList.add(new Bat(handler, x * 40, y * 40));
+                return;
+            case SKULL:
+                this.enemyList.add(new Skull(handler, x * 40, y * 40));
+                return;
+            case GOBLIN:
+                this.enemyList.add(new Goblin(handler, x * 40, y * 40));
         }
     }
 

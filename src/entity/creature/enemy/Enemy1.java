@@ -14,9 +14,6 @@ public class Enemy1 extends Enemy {
     //Mã tên quái
     //private static final int ID = 0;
 
-    //như ở Player, chưa dùng đến
-    int atRoom = 0;
-
     private EnemyWeapon eMelee;
 
     public Enemy1(Handler handler, float x, float y) {
@@ -47,9 +44,9 @@ public class Enemy1 extends Enemy {
         
         currentFrameUpdate();
 
-        updateTarget(40f, 400f);
         move();
-
+        updateTarget(40f, 400f);
+        
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){
             eMelee.damaging();
