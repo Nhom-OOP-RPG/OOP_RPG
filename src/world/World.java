@@ -76,21 +76,21 @@ public class World {
 
     public void init() {
         worldMap = new Room[2][];
-        worldMap[0] = new Room[3];
+        worldMap[0] = new Room[5];
         worldMap[1] = new Room[2];
 
         setRoom(this.handler, 0, 0, "res/world/world0/room_0_0.txt");
         setRoom(this.handler, 0, 1, "res/world/world0/room_0_1.txt");
-        setBossRoom(this.handler, 0, 2, "res/world/world0/room_0_2.txt");
+        setRoom(this.handler, 0, 2, "res/world/world0/room_0_2.txt");
+        setRoom(this.handler, 0, 3, "res/world/world0/room_0_3.txt");
+        setBossRoom(this.handler, 0, 4, "res/world/world0/room_0_4.txt");
         setRoom(this.handler, 1, 0, "res/world/world1/room_1_0.txt");
         setRoom(this.handler, 1, 1, "res/world/world1/room_1_1.txt");
     }
 
     public void initEasy(){
-        worldMap[0][0].addNewEnemy(handler, 1, 3);
-        worldMap[0][0].addNewEnemy(handler, 2, 3);
         worldMap[0][1].addNewEnemy(handler, 2);
-        worldMap[0][2].addNewEnemy(handler, 3, 16, 10);
+        worldMap[0][4].addNewEnemy(handler, 3, 9, 6);
 
         worldMap[1][0].addNewEnemy(handler, 1, 2);
         worldMap[1][0].addNewEnemy(handler, 2, 4);

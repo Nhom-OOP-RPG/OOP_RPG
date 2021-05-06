@@ -13,7 +13,7 @@ public class Tile {
     public static Tile earthTile = new EarthTile(2);
     public static Tile wallTile = new WallTile(3);
     public static Tile desertfloor = new DesertFloorTile(4);
-    public static Tile concretefloor = new ConcreteFloorTile(5);
+    public static Tile rock = new RockTile(5);
     public static Tile desertwall = new DesertWallTile(6);
 
     //Chiều dài rộng trên màn hình

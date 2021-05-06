@@ -15,7 +15,7 @@ import main.Handler;
 
 public class Player extends Creature {
     //vị trí spawn đầu màn chơi (tính theo pixel)
-    public static final float DEFAULT_SPAWN_X = 40, DEFAULT_SPAWN_Y = 40; 
+    public static final float DEFAULT_SPAWN_X = 9 * 40, DEFAULT_SPAWN_Y = 7 * 40; 
 
     //thế giới và phòng hiện tại
     //các này t tạo ra cho có mà chưa dùng làm gì

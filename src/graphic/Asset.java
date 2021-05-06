@@ -11,7 +11,7 @@ public class Asset {
     public static BufferedImage blank;
     public static BufferedImage gate;
     public static BufferedImage grass, earth, wall;
-    public static BufferedImage concretefloor, desertfloor, desertwall;
+    public static BufferedImage rock, desertfloor, desertwall;
 
     //Player
     public static BufferedImage[][] player;
@@ -132,7 +132,7 @@ public class Asset {
         earth = Utility.loadImage("res/texture/tile/world0/earth.png");
         wall = Utility.loadImage("res/texture/tile/world0/wall.png");
 
-        concretefloor = Utility.loadImage("res/texture/tile/world1/concretefloor.png");
+        rock = Utility.loadImage("res/texture/tile/world1/rock.png");
         desertfloor = Utility.loadImage("res/texture/tile/world1/desertfloor.png");
         desertwall = Utility.loadImage("res/texture/tile/world1/desertwall.png");
     }
