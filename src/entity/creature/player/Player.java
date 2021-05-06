@@ -67,8 +67,10 @@ public class Player extends Creature {
             isDead = true;
             System.out.println("player dead");
         }
+
         getInput();
         move();
+        
         if (isAttacking){
             weapons[currentWeapon].damaging();
             isAttacking = false;
@@ -148,15 +150,7 @@ public class Player extends Creature {
             return;
         }
 
-        if (xMove > 0){
-            currentFrame = Asset.player[0][currentFrameID];
-        } else if (xMove < 0){
-            currentFrame = Asset.player[1][currentFrameID];
-        } else if (yMove > 0){
-            currentFrame = Asset.player[2][currentFrameID];
-        } else if (yMove < 0){
-            currentFrame = Asset.player[3][currentFrameID];
-        }
+        currentFrame = Asset.player[currentDirect][currentFrameID];
     }
     
     //Get Set

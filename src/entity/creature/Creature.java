@@ -11,6 +11,7 @@ import graphic.tile.Tile;
 import main.Handler;
 
 public abstract class Creature extends Entity {
+    public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
     //Máu
     protected int health, maxHealth;
     protected boolean isDead;
@@ -19,7 +20,8 @@ public abstract class Creature extends Entity {
 
     //Di chuyển ngang dọc bao nhiêu ô (tính theo pixel)
     protected float xMove, yMove;
-
+    protected int currentDirect;
+    
     //Các thành phần liên quan tới Animation
     //thời gian để chuyển animation, vì không delay thì animation sẽ nhanh quá
     protected int animationDelay;
@@ -34,6 +36,8 @@ public abstract class Creature extends Entity {
         speed = 2.5f;
         xMove = 0;
         yMove = 0;
+
+        currentDirect = 0;
 
         isDead = false;
     }
@@ -60,6 +64,7 @@ public abstract class Creature extends Entity {
             } else {
                 x = playerRight * Tile.TILE_WIDTH - bounds.x - bounds.width - 1;
             }
+            currentDirect = EAST;
         } else if (xMove < 0){ //Sang trai
             int playerLeft = (int) (x + xMove + bounds.x) / Tile.TILE_WIDTH;
             if (!isCollision(playerLeft, playerHead)
@@ -68,6 +73,7 @@ public abstract class Creature extends Entity {
             } else {
                 x = playerLeft * Tile.TILE_WIDTH + Tile.TILE_WIDTH - bounds.x;
             }
+            currentDirect = WEST;
         }
     }
 
@@ -84,6 +90,7 @@ public abstract class Creature extends Entity {
             } else {
                 y = playerTail * Tile.TILE_HEIGHT - bounds.y - bounds.height - 1;
             }
+            currentDirect = SOUTH;
         } else if (yMove < 0){ //Len tren
             int playerHead = (int) (y + yMove + bounds.y) / Tile.TILE_HEIGHT;
             if (!isCollision(playerLeft, playerHead)
@@ -92,6 +99,7 @@ public abstract class Creature extends Entity {
             } else {
                 y = playerHead * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - bounds.y;
             }
+            currentDirect = NORTH;
         }
     }
 
