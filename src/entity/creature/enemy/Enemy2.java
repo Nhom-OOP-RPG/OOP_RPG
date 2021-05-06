@@ -28,7 +28,6 @@ public class Enemy2 extends Enemy {
         attackDelayCount = 0;
         attackDelay = 100;
 
-        animationDelay = 50;
         currentFrame = Asset.bat[0];
     }
 
@@ -67,12 +66,21 @@ public class Enemy2 extends Enemy {
     //Chuyển đổi Animation
     @Override
     protected void currentFrameUpdate() {
-        animationDelay++;
-        if (animationDelay >= 10){
-            animationDelay = 0;
+        animationDelayCount++;
+
+        if (animationDelayCount >= animationDelay){
+            animationDelayCount = 0;
             currentFrameID = 1 - currentFrameID;
-            currentFrame = Asset.bat[currentFrameID];
+            changeToDamagedFrame = 0;
         }
+
+        if (isDamaged){
+            changeToDamagedFrame = 1;
+            isDamaged = false;
+            animationDelayCount = 0;
+        }
+
+        currentFrame = Asset.bat[currentFrameID + 2 * changeToDamagedFrame];
     }
 
     @Override

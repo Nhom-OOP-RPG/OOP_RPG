@@ -12,23 +12,19 @@ import main.Handler;
 
 public abstract class Creature extends Entity {
     public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
-    //Máu
+
     protected int health, maxHealth;
-    protected boolean isDead;
-    //tốc độ di chuyển (một bước đi được bao nhiêu pixel)
+    protected boolean isDead, isDamaged;
+
     protected float speed;
 
-    //Di chuyển ngang dọc bao nhiêu ô (tính theo pixel)
     protected float xMove, yMove;
     protected int currentDirect;
-    
-    //Các thành phần liên quan tới Animation
-    //thời gian để chuyển animation, vì không delay thì animation sẽ nhanh quá
-    protected int animationDelay;
-    //Ảnh animation hiện tại
-    protected BufferedImage currentFrame;
-    //Mã index của animation hiện tại
+
+    protected final int animationDelay, damagedAnimationDelay;
+    protected int animationDelayCount, changeToDamagedFrame;
     protected int currentFrameID;
+    protected BufferedImage currentFrame;
 
     public Creature(Handler handler, float x, float y, int width, int height) {
         super(handler, x, y, width, height);
@@ -39,7 +35,14 @@ public abstract class Creature extends Entity {
 
         currentDirect = 0;
 
+        animationDelay = 10;
+        damagedAnimationDelay = 10;
+
+        animationDelayCount = 0;
+        changeToDamagedFrame = 0;
+
         isDead = false;
+        isDamaged = false;
     }
 
 
@@ -116,6 +119,7 @@ public abstract class Creature extends Entity {
     }
     public void decreaseHealth(int n){
         health -= n;
+        isDamaged = true;
     }
 
     public void setDead(){

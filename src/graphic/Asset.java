@@ -35,7 +35,7 @@ public class Asset {
     
     private static void initPlayer(){
         //Player
-        player = new BufferedImage[4][2];
+        player = new BufferedImage[8][2];
         
         player[0][0] = Utility.loadImage("res/texture/player/player_right.png");
         player[0][1] = Utility.loadImage("res/texture/player/player_right_2.png");
@@ -48,6 +48,18 @@ public class Asset {
 
         player[3][0] = Utility.loadImage("res/texture/player/player_back.png");
         player[3][1] = Utility.loadImage("res/texture/player/player_back_2.png");
+
+        player[4][0] = Utility.loadImage("res/texture/player/player_right_damaged.png");
+        player[4][1] = Utility.loadImage("res/texture/player/player_right_2_damaged.png");
+
+        player[5][0] = Utility.loadImage("res/texture/player/player_left_damaged.png");
+        player[5][1] = Utility.loadImage("res/texture/player/player_left_2_damaged.png");
+        
+        player[6][0] = Utility.loadImage("res/texture/player/player_damaged.png");
+        player[6][1] = Utility.loadImage("res/texture/player/player_2_damaged.png");
+
+        player[7][0] = Utility.loadImage("res/texture/player/player_back_damaged.png");
+        player[7][1] = Utility.loadImage("res/texture/player/player_back_2_damaged.png");
     }
 
     private static void initEnemy(){
@@ -88,9 +100,11 @@ public class Asset {
         boss0[3][1] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_back_2.png");
 
         //World1
-        bat = new BufferedImage[2];
+        bat = new BufferedImage[4];
         bat[0] = Utility.loadImage("res/texture/enemy/world1/bat/bat.png");
         bat[1] = Utility.loadImage("res/texture/enemy/world1/bat/bat_2.png");
+        bat[2] = Utility.loadImage("res/texture/enemy/world1/bat/bat_damaged.png");
+        bat[3] = Utility.loadImage("res/texture/enemy/world1/bat/bat_2_damaged.png");
 
         skull = new BufferedImage[4][2];
         skull[0][0] = Utility.loadImage("res/texture/enemy/world1/skull/skull_right.png");

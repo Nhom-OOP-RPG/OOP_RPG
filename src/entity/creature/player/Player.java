@@ -53,8 +53,6 @@ public class Player extends Creature {
         keyPressedDelayCount = 20;
         keyPressedDelay = 20;
 
-
-        animationDelay = 0;
         currentFrame = Asset.player[0][0];
         currentFrameID = 0;
 
@@ -70,7 +68,7 @@ public class Player extends Creature {
 
         getInput();
         move();
-        
+
         if (isAttacking){
             weapons[currentWeapon].damaging();
             isAttacking = false;
@@ -135,22 +133,27 @@ public class Player extends Creature {
         }
     }
 
+    int i = 0;
     //Chuyển đổi animation của người chơi
     @Override
     protected void currentFrameUpdate() {
-        animationDelay++;
-        if (animationDelay >= 10){
-            animationDelay = 0;
-            currentFrameID = 1 - currentFrameID;
-
+        animationDelayCount++;
+        
+        if (animationDelayCount >= animationDelay){
+            if (xMove != 0 || yMove != 0){
+                currentFrameID = 1 - currentFrameID;
+            }
+            changeToDamagedFrame = 0;
+            animationDelayCount = 0;
             scratchedFrame = null;
         }
 
-        if (xMove == 0 && yMove == 0){
-            return;
+        if (isDamaged){
+            changeToDamagedFrame = 1;
+            isDamaged = false;
+            animationDelayCount = 0;
         }
-
-        currentFrame = Asset.player[currentDirect][currentFrameID];
+        currentFrame = Asset.player[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
     }
     
     //Get Set
