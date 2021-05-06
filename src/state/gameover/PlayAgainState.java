@@ -52,11 +52,10 @@ public class PlayAgainState extends State {
                 switch (selected) {
                     case 0:
                         handler.restartGame();
-                        isPlaying = false;
                         State.setState(handler.getGame().getMainMenuState());
                         break;
                     case 1:
-                        State.setState(handler.getGame().getMainMenuState());
+                        System.exit(0);
                 }
                 keyPressedDelayCount = 0;
             }

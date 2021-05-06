@@ -7,7 +7,6 @@ import entity.creature.enemy.enemyweapon.EnemyMelee;
 import entity.creature.enemy.enemyweapon.EnemyWeapon;
 import graphic.Asset;
 import main.Handler;
-import world.BossRoom;
 
 public class Boss0 extends Enemy {
 
