@@ -22,6 +22,7 @@ public class Enemy1 extends Enemy {
     public Enemy1(Handler handler, float x, float y) {
         super(handler, x, y);
         health = 50;
+        maxHealth = 50;
 
         bounds.x = 10;
         bounds.y = 20;

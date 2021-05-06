@@ -12,7 +12,7 @@ import main.Handler;
 
 public abstract class Creature extends Entity {
     //Máu
-    protected int health;
+    protected int health, maxHealth;
     protected boolean isDead;
     //tốc độ di chuyển (một bước đi được bao nhiêu pixel)
     protected float speed;

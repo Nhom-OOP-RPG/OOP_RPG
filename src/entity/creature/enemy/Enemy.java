@@ -23,6 +23,7 @@ public abstract class Enemy extends Creature {
         super(handler, x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
 
         health = 30;
+        maxHealth = 30;
         speed = 1.5f;
 
         this.target = handler.getPlayer();
@@ -76,7 +77,16 @@ public abstract class Enemy extends Creature {
         if (isDead) return;
         graphics.setColor(Color.WHITE);
 		graphics.setFont(new Font("arial", Font.PLAIN, 10));
-		graphics.drawString(getHealth()+" / " + this.health, (int) this.x, (int) this.y);
+		graphics.drawString(getHealth()+" / " + this.maxHealth, (int) this.x, (int) this.y);
+    }
+
+    protected void renderBossHealth(Graphics graphics){
+        if (isDead) return;
+        graphics.setColor(Color.BLACK);
+        graphics.fillRect((int) this.x - 40, (int) this.y - 20, 160, 20);
+        float ratio = (float) this.health / this.maxHealth;
+        graphics.setColor(Color.RED);
+        graphics.fillRect((int) this.x - 40, (int) this.y - 20, (int) (160 * ratio), 20);
     }
 
 

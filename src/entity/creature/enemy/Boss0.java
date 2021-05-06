@@ -1,7 +1,6 @@
 package entity.creature.enemy;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import entity.creature.enemy.enemyweapon.EnemyGun;
 import entity.creature.enemy.enemyweapon.EnemyMelee;
@@ -15,6 +14,8 @@ public class Boss0 extends Enemy {
 
     public Boss0(Handler handler, float x, float y) {
         super(handler, x, y);
+        this.health = 400;
+        this.maxHealth = 400;
 
         this.width *= 2;
         this.height *= 2;
@@ -56,6 +57,8 @@ public class Boss0 extends Enemy {
         eGun.tick();
         eGun.render(graphics);
         eMelee.render(graphics);
+
+        renderBossHealth(graphics);
     }
     
     //Chuyển đổi Animation
