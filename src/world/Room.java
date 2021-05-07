@@ -108,7 +108,7 @@ public class Room {
     //từ tọa độ (x, y), xét mã tên Tile để trả về Tile
     public Tile getTile(int x, int y){
         if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT){
-            return Tile.grassTile;
+            return Tile.blankTile;
         }
 
         Tile tile = Tile.tiles[roomMap[x][y]];
@@ -133,14 +133,7 @@ public class Room {
 
     public void addNewEnemy(int enemyID, int numOfEnemies){
         for (int i = 0; i < numOfEnemies; i++){
-            Random rand = new Random();
-            int x, y;
-            do {
-                x = (rand.nextInt(18) + 2);
-                y = (rand.nextInt(13) + 2);
-            } while (getTile(x, y).isSolid());
-
-            addNewEnemy(enemyID, x, y);
+            addNewEnemy(enemyID);
         }
     }
 

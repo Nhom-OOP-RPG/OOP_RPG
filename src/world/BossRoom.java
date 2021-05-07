@@ -37,7 +37,6 @@ public class BossRoom extends Room {
                     State.setState(handler.getGame().getWinGameState());
                 }
             }
-            return;
         }
 
         for (Enemy e : this.enemyList){

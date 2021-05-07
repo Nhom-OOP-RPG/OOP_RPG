@@ -52,7 +52,7 @@ public class PlayAgainState extends State {
             if (handler.getKeyManager().enter) {
                 switch (selected) {
                     case 0:
-                        handler.restartGame();
+                        isPlaying = false;
                         ((MainMenuState) handler.getGame().getMainMenuState()).removeContinueOption();
                         State.setState(handler.getGame().getMainMenuState());
                         break;

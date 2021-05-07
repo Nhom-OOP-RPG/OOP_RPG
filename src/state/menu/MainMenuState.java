@@ -58,7 +58,6 @@ public class MainMenuState extends State {
                         State.setState(handler.getGame().getGameState());
                         break;
                     case 1:
-                        handler.restartGame();
                         State.setState(handler.getGame().getChooseLevelState());
                         break;
                     case 2:
