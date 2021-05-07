@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import main.Game;
 import main.Handler;
 import state.State;
+import state.menu.MainMenuState;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -51,7 +52,8 @@ public class PlayAgainState extends State {
             if (handler.getKeyManager().enter) {
                 switch (selected) {
                     case 0:
-                        handler.restartGame();
+                        isPlaying = false;
+                        ((MainMenuState) handler.getGame().getMainMenuState()).removeContinueOption();
                         State.setState(handler.getGame().getMainMenuState());
                         break;
                     case 1:

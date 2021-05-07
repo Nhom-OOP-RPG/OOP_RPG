@@ -10,6 +10,7 @@ import main.Handler;
 
 public class World {
     public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
+    public static final int DEMO = 0, EASY = 1, HARD = 2;
     //public static final int 
 
 
@@ -23,13 +24,22 @@ public class World {
     private Room currentRoom;
 
     //Load các phòng chơi
-    public World(Handler handler){
+    public World(Handler handler, int level){
         this.handler = handler;
 
         init();
-        initEasy();
+        switch (level) {
+            case DEMO:
+                initDemo();
+                break;
+            case EASY:
+                initEasy();
+                break;
+            case HARD:
+                initHard();
+        }
 
-        currentRoom = worldMap[0][0];
+        currentRoom = worldMap[0][4];
     }
 
     //phương thức chuyển các phòng
@@ -49,6 +59,74 @@ public class World {
             player.setChangeRoomY(0);
         }
     }
+    
+
+    private void init() {
+        worldMap = new Room[2][];
+        worldMap[0] = new Room[5];
+        worldMap[1] = new Room[4];
+
+        setRoom(this.handler, 0, 0, "res/world/world0/room_0_0.txt");
+        setRoom(this.handler, 0, 1, "res/world/world0/room_0_1.txt");
+        setRoom(this.handler, 0, 2, "res/world/world0/room_0_2.txt");
+        setRoom(this.handler, 0, 3, "res/world/world0/room_0_3.txt");
+        setBossRoom(this.handler, 0, 4, "res/world/world0/room_0_4.txt");
+        setRoom(this.handler, 1, 0, "res/world/world1/room_1_0.txt");
+        setRoom(this.handler, 1, 1, "res/world/world1/room_1_1.txt");
+        setRoom(this.handler, 1, 2, "res/world/world1/room_1_2.txt");
+        setBossRoom(this.handler, 1, 3, "res/world/world1/room_1_3.txt");
+    }
+
+    private void initDemo(){
+
+    }
+
+    private void initEasy(){
+        //World0
+        //Room1
+        worldMap[0][1].addNewEnemy(Room.GUMMY, 2);
+        //Room2
+        worldMap[0][2].addNewEnemy(Room.GUMMY,3);
+        worldMap[0][2].addNewEnemy(Room.MUSHROOM, 1);
+        //Room3
+        worldMap[0][3].addNewEnemy(Room.MUSHROOM, 2);
+        worldMap[0][3].addNewEnemy(Room.SNAKE, 2);
+
+        //World1
+        //Room1
+        worldMap[1][1].addNewEnemy(Room.BAT, 2);
+        worldMap[1][1].addNewEnemy(Room.SKULL, 2);
+        //Room2
+        worldMap[1][2].addNewEnemy(Room.SKULL, 3);
+        worldMap[1][2].addNewEnemy(Room.GOBLIN, 2);
+        //Boss1
+        worldMap[1][3].addNewEnemy(Room.GOBLIN, 2);
+    }
+
+    private void initHard(){
+        //World0
+        //Room1
+        worldMap[0][1].addNewEnemy(Room.GUMMY, 5);
+        //Room2
+        worldMap[0][2].addNewEnemy(Room.GUMMY,4);
+        worldMap[0][2].addNewEnemy(Room.MUSHROOM, 3);
+        //Room3
+        worldMap[0][3].addNewEnemy(Room.MUSHROOM, 3);
+        worldMap[0][3].addNewEnemy(Room.SNAKE, 3);
+        //Boss0
+        worldMap[0][4].addNewEnemy(Room.SNAKE, 2);
+
+        //World1
+        //Room1
+        worldMap[1][1].addNewEnemy(Room.BAT, 4);
+        worldMap[1][1].addNewEnemy(Room.SKULL, 3);
+        //Room2
+        worldMap[1][2].addNewEnemy(Room.SKULL, 6);
+        worldMap[1][2].addNewEnemy(Room.GOBLIN, 4);
+        //Boss1
+        worldMap[1][3].addNewEnemy(Room.GOBLIN, 4);
+    }
+
     //Get Set
 
     //trả về phòng chơi hiện tại
@@ -58,6 +136,10 @@ public class World {
 
     public Room getRoom(int worldName, int roomName){
         return worldMap[worldName][roomName];
+    }
+
+    public void setCurrentRoom(int roomName){
+        currentRoom = worldMap[currentRoom.worldName][roomName];
     }
 
     public void setCurrentRoom(int worldName, int roomName){
@@ -70,28 +152,5 @@ public class World {
 
     public void setBossRoom(Handler handler, int worldName, int roomName, String path){
         worldMap[worldName][roomName] = new BossRoom(handler, path);
-    }
-
-    public void init() {
-        worldMap = new Room[2][];
-        worldMap[0] = new Room[5];
-        worldMap[1] = new Room[2];
-
-        setRoom(this.handler, 0, 0, "res/world/world0/room_0_0.txt");
-        setRoom(this.handler, 0, 1, "res/world/world0/room_0_1.txt");
-        setRoom(this.handler, 0, 2, "res/world/world0/room_0_2.txt");
-        setRoom(this.handler, 0, 3, "res/world/world0/room_0_3.txt");
-        setBossRoom(this.handler, 0, 4, "res/world/world0/room_0_4.txt");
-        setRoom(this.handler, 1, 0, "res/world/world1/room_1_0.txt");
-        setBossRoom(this.handler, 1, 1, "res/world/world1/room_1_1.txt");
-    }
-
-    public void initEasy(){
-        worldMap[0][1].addNewEnemy(2, 3);
-        worldMap[0][1].addNewEnemy(1, 2);
-
-        worldMap[1][0].addNewEnemy(1, 2);
-        worldMap[1][0].addNewEnemy(2, 4);
-        worldMap[1][1].addNewEnemy(1);
     }
 }

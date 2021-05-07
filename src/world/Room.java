@@ -10,17 +10,18 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Random;
 
-import entity.creature.enemy.Boss0;
 import entity.creature.enemy.Enemy;
-import entity.creature.enemy.Enemy1;
-import entity.creature.enemy.Enemy2;
+import entity.creature.enemy.world0.*;
+import entity.creature.enemy.world1.*;
 import graphic.tile.Tile;
 import main.Handler;
 import utility.Utility;
 
 public class Room {
     //phòng có kích thước 15x20
-    public final int WIDTH = 20, HEIGHT = 15;
+    public static final int WIDTH = 20, HEIGHT = 15;
+    public static final int GUMMY = 1, MUSHROOM = 2, SNAKE = 3,
+        BAT = 4, SKULL = 5, GOBLIN = 6;
 
     Handler handler;
     
@@ -107,7 +108,7 @@ public class Room {
     //từ tọa độ (x, y), xét mã tên Tile để trả về Tile
     public Tile getTile(int x, int y){
         if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT){
-            return Tile.grassTile;
+            return Tile.blankTile;
         }
 
         Tile tile = Tile.tiles[roomMap[x][y]];
@@ -132,28 +133,29 @@ public class Room {
 
     public void addNewEnemy(int enemyID, int numOfEnemies){
         for (int i = 0; i < numOfEnemies; i++){
-            Random rand = new Random();
-            int x, y;
-            do {
-                x = (rand.nextInt(18) + 2);
-                y = (rand.nextInt(13) + 2);
-            } while (getTile(x, y).isSolid());
-
-
-            addNewEnemy(enemyID, x, y);
+            addNewEnemy(enemyID);
         }
     }
 
     public void addNewEnemy(int enemyID, int x, int y){
         switch (enemyID){
-            case 1:
-                this.enemyList.add(new Enemy1(handler, x * 40, y * 40));
+            case GUMMY:
+                this.enemyList.add(new Gummy(handler, x * 40, y * 40));
                 return;
-            case 2:
-                this.enemyList.add(new Enemy2(handler, x * 40, y * 40));
+            case MUSHROOM:
+                this.enemyList.add(new Mushroom(handler, x * 40, y * 40));
                 return;
-            case 3:
-                this.enemyList.add(new Boss0(handler, x * 40, y * 40));
+            case SNAKE:
+                this.enemyList.add(new Snake(handler, x * 40, y * 40));
+                return;
+            case BAT:
+                this.enemyList.add(new Bat(handler, x * 40, y * 40));
+                return;
+            case SKULL:
+                this.enemyList.add(new Skull(handler, x * 40, y * 40));
+                return;
+            case GOBLIN:
+                this.enemyList.add(new Goblin(handler, x * 40, y * 40));
         }
     }
 

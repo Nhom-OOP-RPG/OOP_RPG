@@ -45,16 +45,14 @@ public class Player extends Creature {
         bounds.height = 30;
 
         weapons = new PlayerWeapon[2];
-        weapons[0] = new PlayerMelee(handler, 20);
-        weapons[1] = new PlayerGun(handler, 40);
+        weapons[0] = new PlayerMelee(handler, 25);
+        weapons[1] = new PlayerGun(handler, 20);
 
         currentWeapon = 0;
         isAttacking = false;
         keyPressedDelayCount = 20;
         keyPressedDelay = 20;
 
-
-        animationDelay = 0;
         currentFrame = Asset.player[0][0];
         currentFrameID = 0;
 
@@ -67,8 +65,10 @@ public class Player extends Creature {
             isDead = true;
             System.out.println("player dead");
         }
+
         getInput();
         move();
+
         if (isAttacking){
             weapons[currentWeapon].damaging();
             isAttacking = false;
@@ -133,30 +133,28 @@ public class Player extends Creature {
         }
     }
 
+    int i = 0;
     //Chuyển đổi animation của người chơi
     @Override
     protected void currentFrameUpdate() {
-        animationDelay++;
-        if (animationDelay >= 10){
-            animationDelay = 0;
-            currentFrameID = 1 - currentFrameID;
+        animationDelayCount++;
+        
+        if (isDamaged){
+            changeToDamagedFrame = 1;
+            isDamaged = false;
+            animationDelayCount = 0;
+        }
 
+        if (animationDelayCount >= animationDelay){
+            if (xMove != 0 || yMove != 0){
+                currentFrameID = 1 - currentFrameID;
+            }
+            changeToDamagedFrame = 0;
+            animationDelayCount = 0;
             scratchedFrame = null;
         }
 
-        if (xMove == 0 && yMove == 0){
-            return;
-        }
-
-        if (xMove > 0){
-            currentFrame = Asset.player[0][currentFrameID];
-        } else if (xMove < 0){
-            currentFrame = Asset.player[1][currentFrameID];
-        } else if (yMove > 0){
-            currentFrame = Asset.player[2][currentFrameID];
-        } else if (yMove < 0){
-            currentFrame = Asset.player[3][currentFrameID];
-        }
+        currentFrame = Asset.player[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
     }
     
     //Get Set

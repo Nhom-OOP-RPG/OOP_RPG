@@ -24,7 +24,7 @@ public abstract class Enemy extends Creature {
 
         health = 30;
         maxHealth = 30;
-        speed = 1.5f;
+        speed = 1f;
 
         this.target = handler.getPlayer();
 
@@ -32,8 +32,7 @@ public abstract class Enemy extends Creature {
         bounds.y = 10;
         bounds.width = 20;
         bounds.height = 20;
-
-        animationDelay = 0;
+        
         currentFrameID = 0;
     }
 
@@ -46,31 +45,37 @@ public abstract class Enemy extends Creature {
 
         float xDiffer = target.getX() - x;
         float yDiffer = target.getY() - y;
-        float tanTargetToThis = yDiffer / xDiffer;
         
         distanceToTarget = (float) java.lang.Math.sqrt(xDiffer*xDiffer + yDiffer*yDiffer);
 
-        angleToTarget = Math.toDegrees(Math.atan(tanTargetToThis));
+        angleToTarget = Math.toDegrees(Math.atan(yDiffer / xDiffer));
         if (xDiffer < 0) angleToTarget += 180;
         if (angleToTarget < 0) angleToTarget += 360;
 
         if (distanceToTarget <= near) return;
         if (distanceToTarget >= far) return;
 
-        if (tanTargetToThis >= -1 && tanTargetToThis <= 1){
-            if (xDiffer < 0){
-                xMove -= speed;
-            } else {
-                xMove += speed;
-            }
-        } else if (tanTargetToThis < -1 || tanTargetToThis > 1){
-            if (yDiffer < 0){
-                yMove -= speed;
-            } else {
-                yMove += speed;
-            }
+        if (xDiffer < 0){
+            xMove -= speed;
+        } else {
+            xMove += speed;
         }
 
+        if (yDiffer < 0){
+            yMove -= speed;
+        } else {
+            yMove += speed;
+        }
+
+        if (angleToTarget < 45 && angleToTarget >= 315){
+            currentDirect = EAST;
+        } else if (angleToTarget < 135) {
+            currentDirect = SOUTH;
+        } else if (angleToTarget < 225) {
+            currentDirect = WEST;
+        } else {
+            currentDirect = NORTH;
+        }
     }
 
     protected void renderHealth(Graphics graphics){

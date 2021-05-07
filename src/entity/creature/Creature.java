@@ -11,22 +11,20 @@ import graphic.tile.Tile;
 import main.Handler;
 
 public abstract class Creature extends Entity {
-    //Máu
+    public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
+
     protected int health, maxHealth;
-    protected boolean isDead;
-    //tốc độ di chuyển (một bước đi được bao nhiêu pixel)
+    protected boolean isDead, isDamaged;
+
     protected float speed;
 
-    //Di chuyển ngang dọc bao nhiêu ô (tính theo pixel)
     protected float xMove, yMove;
+    protected int currentDirect;
 
-    //Các thành phần liên quan tới Animation
-    //thời gian để chuyển animation, vì không delay thì animation sẽ nhanh quá
-    protected int animationDelay;
-    //Ảnh animation hiện tại
-    protected BufferedImage currentFrame;
-    //Mã index của animation hiện tại
+    protected final int animationDelay, damagedAnimationDelay;
+    protected int animationDelayCount, changeToDamagedFrame;
     protected int currentFrameID;
+    protected BufferedImage currentFrame;
 
     public Creature(Handler handler, float x, float y, int width, int height) {
         super(handler, x, y, width, height);
@@ -35,7 +33,16 @@ public abstract class Creature extends Entity {
         xMove = 0;
         yMove = 0;
 
+        currentDirect = 0;
+
+        animationDelay = 10;
+        damagedAnimationDelay = 10;
+
+        animationDelayCount = 0;
+        changeToDamagedFrame = 0;
+
         isDead = false;
+        isDamaged = false;
     }
 
 
@@ -60,6 +67,7 @@ public abstract class Creature extends Entity {
             } else {
                 x = playerRight * Tile.TILE_WIDTH - bounds.x - bounds.width - 1;
             }
+            currentDirect = EAST;
         } else if (xMove < 0){ //Sang trai
             int playerLeft = (int) (x + xMove + bounds.x) / Tile.TILE_WIDTH;
             if (!isCollision(playerLeft, playerHead)
@@ -68,6 +76,7 @@ public abstract class Creature extends Entity {
             } else {
                 x = playerLeft * Tile.TILE_WIDTH + Tile.TILE_WIDTH - bounds.x;
             }
+            currentDirect = WEST;
         }
     }
 
@@ -84,6 +93,7 @@ public abstract class Creature extends Entity {
             } else {
                 y = playerTail * Tile.TILE_HEIGHT - bounds.y - bounds.height - 1;
             }
+            currentDirect = SOUTH;
         } else if (yMove < 0){ //Len tren
             int playerHead = (int) (y + yMove + bounds.y) / Tile.TILE_HEIGHT;
             if (!isCollision(playerLeft, playerHead)
@@ -92,6 +102,7 @@ public abstract class Creature extends Entity {
             } else {
                 y = playerHead * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - bounds.y;
             }
+            currentDirect = NORTH;
         }
     }
 
@@ -108,6 +119,7 @@ public abstract class Creature extends Entity {
     }
     public void decreaseHealth(int n){
         health -= n;
+        isDamaged = true;
     }
 
     public void setDead(){
