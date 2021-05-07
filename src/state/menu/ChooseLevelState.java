@@ -48,9 +48,12 @@ public class ChooseLevelState extends State {
             if (handler.getKeyManager().enter) {
                 if (selected == 0){
                     isPlaying = true;
+                    handler.setNewGame(1);
                     State.setState(handler.getGame().getGameState());
                 } else {
-                    System.exit(0);
+                    isPlaying = true;
+                    handler.setNewGame(2);
+                    State.setState(handler.getGame().getGameState());
                 }
                 keyPressedDelayCount = 0;
             }

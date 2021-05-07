@@ -4,7 +4,8 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Font;
 
-import entity.creature.enemy.Boss0;
+import entity.creature.enemy.world0.Boss0;
+import entity.creature.enemy.world1.Boss1;
 import entity.creature.enemy.Enemy;
 import graphic.Asset;
 import graphic.tile.Tile;
@@ -18,6 +19,8 @@ public class BossRoom extends Room {
         
         if (worldName == 0){
             enemyList.add(new Boss0(handler, 9 * 40, 6 * 40));
+        } else if (worldName == 1) {
+            enemyList.add(new Boss1(handler, 13 * 40, 6 * 40));
         }
     }
 
@@ -28,13 +31,12 @@ public class BossRoom extends Room {
                     && (int) handler.getPlayer().getCenterY()/40 == 6){
                 if (worldName == 0){
                     handler.getWorld().setCurrentRoom(1, 0);
-                    handler.getPlayer().setX(40f);
-                    handler.getPlayer().setY(40f);
+                    handler.getPlayer().setX(9 * 40f);
+                    handler.getPlayer().setY(7 * 40f);
                 } else if (worldName == 1){
                     State.setState(handler.getGame().getWinGameState());
                 }
             }
-            return;
         }
 
         for (Enemy e : this.enemyList){

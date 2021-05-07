@@ -17,13 +17,13 @@ public class Handler{
     public Handler(Game game){
         this.game = game;
 
-        player = new Player(this);
-        world = new World(this);
+        // player = new Player(this);
+        // world = new World(this);
     }
 
-    public void restartGame(){
+    public void setNewGame(int level){
         player = new Player(this);
-        world = new World(this);
+        world = new World(this, level);
     }
 
     //Get Set
