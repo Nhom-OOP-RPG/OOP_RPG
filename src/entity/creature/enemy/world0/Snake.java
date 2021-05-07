@@ -18,9 +18,9 @@ public class Snake extends Enemy {
         maxHealth = 50;
 
         bounds.x = 10;
-        bounds.y = 20;
+        bounds.y = 5;
         bounds.width = 20;
-        bounds.height = 20;
+        bounds.height = 35;
 
         eMelee = new EnemyMelee(handler, 5, 50, this, Asset.scratchVenom);
         attackDelayCount = 0;

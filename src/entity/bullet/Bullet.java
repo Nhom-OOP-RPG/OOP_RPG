@@ -8,6 +8,7 @@ import entity.Entity;
 import entity.creature.enemy.Enemy;
 import graphic.tile.Tile;
 import main.Handler;
+import world.Room;
 
 public class Bullet extends Entity {
 
@@ -82,8 +83,10 @@ public class Bullet extends Entity {
         int x = (int) getCenterX() / Tile.TILE_WIDTH;
         int y = (int) getCenterY() / Tile.TILE_HEIGHT;
 
-        if (x < 0 || x > handler.getWorld().getRoom().WIDTH
-                || y < 0 || y > handler.getWorld().getRoom().HEIGHT){
+        handler.getWorld().getRoom();
+        handler.getWorld().getRoom();
+        if (x < 0 || x > Room.WIDTH
+                || y < 0 || y > Room.HEIGHT){
             return true;
         }
 

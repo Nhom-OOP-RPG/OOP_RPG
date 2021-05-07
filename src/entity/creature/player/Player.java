@@ -45,8 +45,8 @@ public class Player extends Creature {
         bounds.height = 30;
 
         weapons = new PlayerWeapon[2];
-        weapons[0] = new PlayerMelee(handler, 25);
-        weapons[1] = new PlayerGun(handler, 20);
+        weapons[0] = new PlayerMelee(handler, 15);
+        weapons[1] = new PlayerGun(handler, 10);
 
         currentWeapon = 0;
         isAttacking = false;

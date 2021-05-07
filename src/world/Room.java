@@ -18,14 +18,12 @@ import main.Handler;
 import utility.Utility;
 
 public class Room {
-    //phòng có kích thước 15x20
     public static final int WIDTH = 20, HEIGHT = 15;
     public static final int GUMMY = 1, MUSHROOM = 2, SNAKE = 3,
         BAT = 4, SKULL = 5, GOBLIN = 6;
 
     Handler handler;
     
-    //tên phòng chơi, tên thế giới chứa phòng này
     public int roomName, worldName;
 
     //lưu tên phòng nằm cạnh phòng hiện tại

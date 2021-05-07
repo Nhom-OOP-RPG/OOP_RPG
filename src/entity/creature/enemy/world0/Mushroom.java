@@ -15,10 +15,10 @@ public class Mushroom extends Enemy{
         health = 40;
         maxHealth = 40;
 
-        bounds.x = 10;
-        bounds.y = 20;
-        bounds.width = 20;
-        bounds.height = 20;
+        bounds.x = 5;
+        bounds.y = 5;
+        bounds.width = 30;
+        bounds.height = 35;
 
         eGun = new EnemyGun(handler, 3, 200f, this, Asset.bulletGreen);
         attackDelayCount = 0;

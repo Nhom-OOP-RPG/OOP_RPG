@@ -17,10 +17,10 @@ public class Skull extends Enemy{
         health = 50;
         maxHealth = 50;
 
-        bounds.x = 10;
-        bounds.y = 20;
-        bounds.width = 20;
-        bounds.height = 20;
+        bounds.x = 7;
+        bounds.y = 5;
+        bounds.width = 26;
+        bounds.height = 35;
 
         eMelee = new EnemyMelee(handler, 7, 50, this, Asset.scratchGrey);
         attackDelayCount = 0;

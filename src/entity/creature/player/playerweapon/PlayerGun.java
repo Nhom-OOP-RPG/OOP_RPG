@@ -9,7 +9,7 @@ import graphic.Asset;
 import main.Handler;
 
 public class PlayerGun extends PlayerWeapon{
-    public static final int DEFAULT_NUM_BULLET = 40;
+    public static final int DEFAULT_NUM_BULLET = 1000;
     
     private int numOfBullet;
     private ArrayList<Bullet> shootedBullet;
@@ -20,7 +20,7 @@ public class PlayerGun extends PlayerWeapon{
 
         numOfBullet = DEFAULT_NUM_BULLET;
         shootedBullet = new ArrayList<Bullet>();
-        bulletFrame  = Asset.bulletRed;
+        bulletFrame = Asset.bulletPlayer;
     }
 
     public void shoot() {
