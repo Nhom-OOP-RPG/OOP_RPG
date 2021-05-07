@@ -13,15 +13,15 @@ public class Goblin extends Enemy {
 
     public Goblin(Handler handler, float x, float y) {
         super(handler, x, y);
-        health = 50;
-        maxHealth = 50;
+        health = 60;
+        maxHealth = 60;
 
         bounds.x = 10;
         bounds.y = 20;
         bounds.width = 20;
         bounds.height = 20;
 
-        eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletBomb);
+        eGun = new EnemyGun(handler, 7, 240f, this, Asset.bulletBomb);
         attackDelayCount = 0;
         attackDelay = 100;
 
@@ -62,7 +62,7 @@ public class Goblin extends Enemy {
         currentFrameUpdate();
 
         move();
-        updateTarget(40f, 1000f);
+        updateTarget(80f, 240f);
         
 
         attackDelayCount++;

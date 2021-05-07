@@ -14,10 +14,10 @@ public class Bat extends Enemy {
 
     public Bat(Handler handler, float x, float y) {
         super(handler, x, y);
-        health = 40;
-        maxHealth = 40;
+        health = 35;
+        maxHealth = 35;
 
-        eGun = new EnemyGun(handler, 10, 4000f, this);
+        eGun = new EnemyGun(handler, 5, 200f, this);
         attackDelayCount = 0;
         attackDelay = 100;
 
@@ -37,7 +37,7 @@ public class Bat extends Enemy {
         currentFrameUpdate();
 
         move();
-        updateTarget(40f, 1000f);
+        updateTarget(40f, 200f);
 
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){

@@ -24,10 +24,10 @@ public class Boss1 extends Enemy {
         this.bounds.width = 50;
         this.bounds.height = 60;
 
-        eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletFlame);
-        eMelee = new EnemyMelee(handler, 10, 100, this, Asset.scratchRed);
+        eGun = new EnemyGun(handler, 10, 300f, this, Asset.bulletFlame);
+        eMelee = new EnemyMelee(handler, 15, 100, this, Asset.scratchRed);
         attackDelayCount = 0;
-        attackDelay = 100;
+        attackDelay = 80;
     }
 
     @Override
@@ -43,11 +43,16 @@ public class Boss1 extends Enemy {
         currentFrameUpdate();
 
         move();
-        updateTarget(80f, 400f);
+        updateTarget(80f, 1000f);
 
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){
-            ((EnemyGun) eGun).damaging8Dir();
+            if (this.health < 150){
+                ((EnemyGun) eGun).damaging8Dir();
+            } else if (this.health < 300){
+                eGun.damaging();
+            }
+
             eMelee.damaging();
             attackDelayCount = 0;
         }

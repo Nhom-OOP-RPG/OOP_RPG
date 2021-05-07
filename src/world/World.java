@@ -82,32 +82,49 @@ public class World {
     }
 
     private void initEasy(){
-        worldMap[0][1].addNewEnemy(Room.GUMMY);
-        worldMap[0][1].addNewEnemy(Room.MUSHROOM);
-        worldMap[0][1].addNewEnemy(Room.SNAKE);
+        //World0
+        //Room1
+        worldMap[0][1].addNewEnemy(Room.GUMMY, 2);
+        //Room2
+        worldMap[0][2].addNewEnemy(Room.GUMMY,3);
+        worldMap[0][2].addNewEnemy(Room.MUSHROOM, 1);
+        //Room3
+        worldMap[0][3].addNewEnemy(Room.MUSHROOM, 2);
+        worldMap[0][3].addNewEnemy(Room.SNAKE, 2);
 
-        worldMap[1][1].addNewEnemy(Room.BAT);
-        worldMap[1][1].addNewEnemy(Room.SKULL);
-        worldMap[1][1].addNewEnemy(Room.GOBLIN);
+        //World1
+        //Room1
+        worldMap[1][1].addNewEnemy(Room.BAT, 2);
+        worldMap[1][1].addNewEnemy(Room.SKULL, 2);
+        //Room2
+        worldMap[1][2].addNewEnemy(Room.SKULL, 3);
+        worldMap[1][2].addNewEnemy(Room.GOBLIN, 2);
+        //Boss1
+        worldMap[1][3].addNewEnemy(Room.GOBLIN, 2);
     }
 
     private void initHard(){
-        worldMap[0][1].addNewEnemy(Room.GUMMY);
-        worldMap[0][1].addNewEnemy(Room.MUSHROOM);
-        worldMap[0][1].addNewEnemy(Room.SNAKE);
-        worldMap[0][2].addNewEnemy(Room.GUMMY, 2);
-        worldMap[0][2].addNewEnemy(Room.MUSHROOM, 2);
-        worldMap[0][2].addNewEnemy(Room.SNAKE, 2);
-        worldMap[0][3].addNewEnemy(Room.GUMMY, 3);
+        //World0
+        //Room1
+        worldMap[0][1].addNewEnemy(Room.GUMMY, 5);
+        //Room2
+        worldMap[0][2].addNewEnemy(Room.GUMMY,4);
+        worldMap[0][2].addNewEnemy(Room.MUSHROOM, 3);
+        //Room3
         worldMap[0][3].addNewEnemy(Room.MUSHROOM, 3);
         worldMap[0][3].addNewEnemy(Room.SNAKE, 3);
+        //Boss0
+        worldMap[0][4].addNewEnemy(Room.SNAKE, 2);
 
-        worldMap[1][1].addNewEnemy(Room.BAT);
-        worldMap[1][1].addNewEnemy(Room.SKULL);
-        worldMap[1][1].addNewEnemy(Room.GOBLIN);
-        worldMap[1][2].addNewEnemy(Room.BAT, 2);
-        worldMap[1][2].addNewEnemy(Room.SKULL, 2);
-        worldMap[1][2].addNewEnemy(Room.GOBLIN, 2);
+        //World1
+        //Room1
+        worldMap[1][1].addNewEnemy(Room.BAT, 4);
+        worldMap[1][1].addNewEnemy(Room.SKULL, 3);
+        //Room2
+        worldMap[1][2].addNewEnemy(Room.SKULL, 6);
+        worldMap[1][2].addNewEnemy(Room.GOBLIN, 4);
+        //Boss1
+        worldMap[1][3].addNewEnemy(Room.GOBLIN, 4);
     }
 
     //Get Set
@@ -119,6 +136,10 @@ public class World {
 
     public Room getRoom(int worldName, int roomName){
         return worldMap[worldName][roomName];
+    }
+
+    public void setCurrentRoom(int roomName){
+        currentRoom = worldMap[currentRoom.worldName][roomName];
     }
 
     public void setCurrentRoom(int worldName, int roomName){
