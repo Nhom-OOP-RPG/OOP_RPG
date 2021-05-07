@@ -20,7 +20,7 @@ public class Mushroom extends Enemy{
         bounds.width = 20;
         bounds.height = 20;
 
-        eGun = new EnemyGun(handler, 10, 4000f, this);
+        eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletGreen);
         attackDelayCount = 0;
         attackDelay = 100;
 
@@ -30,15 +30,22 @@ public class Mushroom extends Enemy{
     @Override
     protected void currentFrameUpdate() {
         animationDelayCount++;
+
+        if (isDamaged){
+            changeToDamagedFrame = 1;
+            isDamaged = false;
+            animationDelayCount = 0;
+        }
+
         if (animationDelayCount >= animationDelay){
             if (xMove != 0 || yMove != 0){
                 currentFrameID = 1 - currentFrameID;
             }
-            //changeToDamagedFrame = 0;
+            changeToDamagedFrame = 0;
             animationDelayCount = 0;
         }
 
-        currentFrame = Asset.mushroom[currentDirect][currentFrameID];
+        currentFrame = Asset.mushroom[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
     }
 
     @Override

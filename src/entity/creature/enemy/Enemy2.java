@@ -68,16 +68,16 @@ public class Enemy2 extends Enemy {
     protected void currentFrameUpdate() {
         animationDelayCount++;
 
-        if (animationDelayCount >= animationDelay){
-            animationDelayCount = 0;
-            currentFrameID = 1 - currentFrameID;
-            changeToDamagedFrame = 0;
-        }
-
         if (isDamaged){
             changeToDamagedFrame = 1;
             isDamaged = false;
             animationDelayCount = 0;
+        }
+
+        if (animationDelayCount >= animationDelay){
+            animationDelayCount = 0;
+            currentFrameID = 1 - currentFrameID;
+            changeToDamagedFrame = 0;
         }
 
         currentFrame = Asset.bat[currentFrameID + 2 * changeToDamagedFrame];

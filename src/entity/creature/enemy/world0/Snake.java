@@ -22,7 +22,7 @@ public class Snake extends Enemy {
         bounds.width = 20;
         bounds.height = 20;
 
-        eMelee = new EnemyMelee(handler, 5, 50, this, Asset.scratchGrey);
+        eMelee = new EnemyMelee(handler, 5, 50, this, Asset.scratchVenom);
         attackDelayCount = 0;
         attackDelay = 70;
 
@@ -64,15 +64,22 @@ public class Snake extends Enemy {
     @Override
     protected void currentFrameUpdate() {
         animationDelayCount++;
+
+        if (isDamaged){
+            changeToDamagedFrame = 1;
+            isDamaged = false;
+            animationDelayCount = 0;
+        }
+
         if (animationDelayCount >= animationDelay){
             if (xMove != 0 || yMove != 0){
                 currentFrameID = 1 - currentFrameID;
             }
-            //changeToDamagedFrame = 0;
+            changeToDamagedFrame = 0;
             animationDelayCount = 0;
         }
 
-        currentFrame = Asset.snake[currentDirect][currentFrameID];
+        currentFrame = Asset.snake[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
     }
 
     @Override

@@ -139,6 +139,12 @@ public class Player extends Creature {
     protected void currentFrameUpdate() {
         animationDelayCount++;
         
+        if (isDamaged){
+            changeToDamagedFrame = 1;
+            isDamaged = false;
+            animationDelayCount = 0;
+        }
+
         if (animationDelayCount >= animationDelay){
             if (xMove != 0 || yMove != 0){
                 currentFrameID = 1 - currentFrameID;
@@ -148,11 +154,6 @@ public class Player extends Creature {
             scratchedFrame = null;
         }
 
-        if (isDamaged){
-            changeToDamagedFrame = 1;
-            isDamaged = false;
-            animationDelayCount = 0;
-        }
         currentFrame = Asset.player[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
     }
     

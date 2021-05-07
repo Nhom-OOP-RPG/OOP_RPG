@@ -21,8 +21,8 @@ public class Asset {
     public static BufferedImage[][] mushroom, snake, boss0, skull, goblin, boss1;
 
     //Other
-    public static BufferedImage[] bulletRed, bulletRock, bulletFlame;
-    public static BufferedImage scratchGrey, scratchGummy;
+    public static BufferedImage[] bulletPlayer, bulletRed, bulletGreen, bulletRock, bulletFlame, bulletBomb;
+    public static BufferedImage scratchGrey, scratchGummy, scratchRock, scratchRed, scratchVenom;
     public static BufferedImage[] cutGrey;
     public static BufferedImage dead, heart;
 
@@ -65,11 +65,13 @@ public class Asset {
     private static void initEnemy(){
         //Enemy
         //World0
-        gummy = new BufferedImage[2];
+        gummy = new BufferedImage[4];
         gummy[0] = Utility.loadImage("res/texture/enemy/world0/gummy/gummy.png");
         gummy[1] = Utility.loadImage("res/texture/enemy/world0/gummy/gummy_2.png");
+        gummy[2] = Utility.loadImage("res/texture/enemy/world0/gummy/gummy_damaged.png");
+        gummy[3] = Utility.loadImage("res/texture/enemy/world0/gummy/gummy_2_damaged.png");
 
-        mushroom = new BufferedImage[4][2];
+        mushroom = new BufferedImage[8][2];
         mushroom[0][0] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_right.png");
         mushroom[0][1] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_right_2.png");
         mushroom[1][0] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_left.png");
@@ -78,8 +80,16 @@ public class Asset {
         mushroom[2][1] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_2.png");
         mushroom[3][0] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_back.png");
         mushroom[3][1] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_back_2.png");
+        mushroom[4][0] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_right_damaged.png");
+        mushroom[4][1] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_right_2_damaged.png");
+        mushroom[5][0] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_left_damaged.png");
+        mushroom[5][1] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_left_2_damaged.png");
+        mushroom[6][0] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_damaged.png");
+        mushroom[6][1] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_2_damaged.png");
+        mushroom[7][0] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_back_damaged.png");
+        mushroom[7][1] = Utility.loadImage("res/texture/enemy/world0/mushroom/mushroom_back_2_damaged.png");
 
-        snake = new BufferedImage[4][2];
+        snake = new BufferedImage[8][2];
         snake[0][0] = Utility.loadImage("res/texture/enemy/world0/snake/snake_right.png");
         snake[0][1] = Utility.loadImage("res/texture/enemy/world0/snake/snake_right_2.png");
         snake[1][0] = Utility.loadImage("res/texture/enemy/world0/snake/snake_left.png");
@@ -88,8 +98,16 @@ public class Asset {
         snake[2][1] = Utility.loadImage("res/texture/enemy/world0/snake/snake_2.png");
         snake[3][0] = Utility.loadImage("res/texture/enemy/world0/snake/snake_back.png");
         snake[3][1] = Utility.loadImage("res/texture/enemy/world0/snake/snake_back_2.png");
+        snake[4][0] = Utility.loadImage("res/texture/enemy/world0/snake/snake_right_damaged.png");
+        snake[4][1] = Utility.loadImage("res/texture/enemy/world0/snake/snake_right_2_damaged.png");
+        snake[5][0] = Utility.loadImage("res/texture/enemy/world0/snake/snake_left_damaged.png");
+        snake[5][1] = Utility.loadImage("res/texture/enemy/world0/snake/snake_left_2_damaged.png");
+        snake[6][0] = Utility.loadImage("res/texture/enemy/world0/snake/snake_damaged.png");
+        snake[6][1] = Utility.loadImage("res/texture/enemy/world0/snake/snake_2_damaged.png");
+        snake[7][0] = Utility.loadImage("res/texture/enemy/world0/snake/snake_back_damaged.png");
+        snake[7][1] = Utility.loadImage("res/texture/enemy/world0/snake/snake_back_2_damaged.png");
 
-        boss0 = new BufferedImage[4][2];
+        boss0 = new BufferedImage[8][2];
         boss0[0][0] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_right.png");
         boss0[0][1] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_right_2.png");
         boss0[1][0] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_left.png");
@@ -98,6 +116,14 @@ public class Asset {
         boss0[2][1] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_2.png");
         boss0[3][0] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_back.png");
         boss0[3][1] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_back_2.png");
+        boss0[4][0] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_right_damaged.png");
+        boss0[4][1] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_right_2_damaged.png");
+        boss0[5][0] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_left_damaged.png");
+        boss0[5][1] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_left_2_damaged.png");
+        boss0[6][0] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_damaged.png");
+        boss0[6][1] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_2_damaged.png");
+        boss0[7][0] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_back_damaged.png");
+        boss0[7][1] = Utility.loadImage("res/texture/enemy/world0/boss0/boss0_back_2_damaged.png");
 
         //World1
         bat = new BufferedImage[4];
@@ -106,7 +132,7 @@ public class Asset {
         bat[2] = Utility.loadImage("res/texture/enemy/world1/bat/bat_damaged.png");
         bat[3] = Utility.loadImage("res/texture/enemy/world1/bat/bat_2_damaged.png");
 
-        skull = new BufferedImage[4][2];
+        skull = new BufferedImage[8][2];
         skull[0][0] = Utility.loadImage("res/texture/enemy/world1/skull/skull_right.png");
         skull[0][1] = Utility.loadImage("res/texture/enemy/world1/skull/skull_right_2.png");
         skull[1][0] = Utility.loadImage("res/texture/enemy/world1/skull/skull_left.png");
@@ -115,8 +141,16 @@ public class Asset {
         skull[2][1] = Utility.loadImage("res/texture/enemy/world1/skull/skull_2.png");
         skull[3][0] = Utility.loadImage("res/texture/enemy/world1/skull/skull_back.png");
         skull[3][1] = Utility.loadImage("res/texture/enemy/world1/skull/skull_back_2.png");
+        skull[4][0] = Utility.loadImage("res/texture/enemy/world1/skull/skull_right_damaged.png");
+        skull[4][1] = Utility.loadImage("res/texture/enemy/world1/skull/skull_right_2_damaged.png");
+        skull[5][0] = Utility.loadImage("res/texture/enemy/world1/skull/skull_left_damaged.png");
+        skull[5][1] = Utility.loadImage("res/texture/enemy/world1/skull/skull_left_2_damaged.png");
+        skull[6][0] = Utility.loadImage("res/texture/enemy/world1/skull/skull_damaged.png");
+        skull[6][1] = Utility.loadImage("res/texture/enemy/world1/skull/skull_2_damaged.png");
+        skull[7][0] = Utility.loadImage("res/texture/enemy/world1/skull/skull_back_damaged.png");
+        skull[7][1] = Utility.loadImage("res/texture/enemy/world1/skull/skull_back_2_damaged.png");
 
-        goblin = new BufferedImage[4][2];
+        goblin = new BufferedImage[8][2];
         goblin[0][0] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_right.png");
         goblin[0][1] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_right_2.png");
         goblin[1][0] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_left.png");
@@ -125,8 +159,16 @@ public class Asset {
         goblin[2][1] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_2.png");
         goblin[3][0] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_back.png");
         goblin[3][1] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_back_2.png");
+        goblin[4][0] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_right_damaged.png");
+        goblin[4][1] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_right_2_damaged.png");
+        goblin[5][0] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_left_damaged.png");
+        goblin[5][1] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_left_2_damaged.png");
+        goblin[6][0] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_damaged.png");
+        goblin[6][1] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_2_damaged.png");
+        goblin[7][0] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_back_damaged.png");
+        goblin[7][1] = Utility.loadImage("res/texture/enemy/world1/goblin/goblin_back_2_damaged.png");
 
-        boss1 = new BufferedImage[4][2];
+        boss1 = new BufferedImage[8][2];
         boss1[0][0] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_right.png");
         boss1[0][1] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_right_2.png");
         boss1[1][0] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_left.png");
@@ -135,6 +177,14 @@ public class Asset {
         boss1[2][1] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_2.png");
         boss1[3][0] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_back.png");
         boss1[3][1] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_back_2.png");
+        boss1[4][0] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_right_damaged.png");
+        boss1[4][1] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_right_2_damaged.png");
+        boss1[5][0] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_left_damaged.png");
+        boss1[5][1] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_left_2_damaged.png");
+        boss1[6][0] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_damaged.png");
+        boss1[6][1] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_2_damaged.png");
+        boss1[7][0] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_back_damaged.png");
+        boss1[7][1] = Utility.loadImage("res/texture/enemy/world1/boss1/boss1_back_2_damaged.png");
 
     }
 
@@ -153,9 +203,17 @@ public class Asset {
 
     private static void initOther(){
         //Bullet
+        bulletPlayer = new BufferedImage[2];
+        bulletPlayer[0] = Utility.loadImage("res/texture/other/bullet/bulletPlayer.png");
+        bulletPlayer[1] = Utility.loadImage("res/texture/other/bullet/bulletPlayer_explode.png");
+
         bulletRed = new BufferedImage[2];
         bulletRed[0] = Utility.loadImage("res/texture/other/bullet/bulletRed.png");
         bulletRed[1] = Utility.loadImage("res/texture/other/bullet/bulletRed_explode.png");
+
+        bulletGreen = new BufferedImage[2];
+        bulletGreen[0] = Utility.loadImage("res/texture/other/bullet/bulletGreen.png");
+        bulletGreen[1] = Utility.loadImage("res/texture/other/bullet/bulletGreen_explode.png");
 
         bulletRock = new BufferedImage[2];
         bulletRock[0] = Utility.loadImage("res/texture/other/bullet/bulletRock.png");
@@ -165,9 +223,16 @@ public class Asset {
         bulletFlame[0] = Utility.loadImage("res/texture/other/bullet/bulletFlame.png");
         bulletFlame[1] = Utility.loadImage("res/texture/other/bullet/bulletFlame_explode.png");
 
+        bulletBomb = new BufferedImage[2];
+        bulletBomb[0] = Utility.loadImage("res/texture/other/bullet/bulletBomb.png");
+        bulletBomb[1] = Utility.loadImage("res/texture/other/bullet/bulletBomb_explode.png");
+
         //Cut
         scratchGrey = Utility.loadImage("res/texture/other/cut/scratchGrey.png");
         scratchGummy = Utility.loadImage("res/texture/other/cut/scratchGummy.png");
+        scratchRock = Utility.loadImage("res/texture/other/cut/scratchRock.png");
+        scratchRed = Utility.loadImage("res/texture/other/cut/scratchRed.png");
+        scratchVenom = Utility.loadImage("res/texture/other/cut/scratchVenom.png");
 
         cutGrey = new BufferedImage[4];
         cutGrey[0] = Utility.loadImage("res/texture/other/cut/cutGrey_right.png");

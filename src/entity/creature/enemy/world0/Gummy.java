@@ -65,11 +65,20 @@ public class Gummy extends Enemy {
     @Override
     protected void currentFrameUpdate() {
         animationDelayCount++;
+
+        if (isDamaged){
+            changeToDamagedFrame = 1;
+            isDamaged = false;
+            animationDelayCount = 0;
+        }
+
         if (animationDelayCount >= animationDelay){
             animationDelayCount = 0;
             currentFrameID = 1 - currentFrameID;
-            currentFrame = Asset.gummy[currentFrameID];
+            changeToDamagedFrame = 0;
         }
+
+        currentFrame = Asset.gummy[currentFrameID + 2 * changeToDamagedFrame];
     }
 
     @Override

@@ -25,7 +25,7 @@ public class Boss1 extends Enemy {
         this.bounds.height = 60;
 
         eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletFlame);
-        eMelee = new EnemyMelee(handler, 10, 100, this);
+        eMelee = new EnemyMelee(handler, 10, 100, this, Asset.scratchRed);
         attackDelayCount = 0;
         attackDelay = 100;
     }

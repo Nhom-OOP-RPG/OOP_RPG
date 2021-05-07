@@ -64,15 +64,22 @@ public class Skull extends Enemy{
     @Override
     protected void currentFrameUpdate() {
         animationDelayCount++;
+
+        if (isDamaged){
+            changeToDamagedFrame = 1;
+            isDamaged = false;
+            animationDelayCount = 0;
+        }
+
         if (animationDelayCount >= animationDelay){
             if (xMove != 0 || yMove != 0){
                 currentFrameID = 1 - currentFrameID;
             }
-            //changeToDamagedFrame = 0;
+            changeToDamagedFrame = 0;
             animationDelayCount = 0;
         }
 
-        currentFrame = Asset.skull[currentDirect][currentFrameID];
+        currentFrame = Asset.skull[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
     }
 
     @Override

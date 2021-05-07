@@ -21,7 +21,7 @@ public class Goblin extends Enemy {
         bounds.width = 20;
         bounds.height = 20;
 
-        eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletFlame);
+        eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletBomb);
         attackDelayCount = 0;
         attackDelay = 100;
 
@@ -31,15 +31,22 @@ public class Goblin extends Enemy {
     @Override
     protected void currentFrameUpdate() {
         animationDelayCount++;
+
+        if (isDamaged){
+            changeToDamagedFrame = 1;
+            isDamaged = false;
+            animationDelayCount = 0;
+        }
+
         if (animationDelayCount >= animationDelay){
             if (xMove != 0 || yMove != 0){
                 currentFrameID = 1 - currentFrameID;
             }
-            //changeToDamagedFrame = 0;
+            changeToDamagedFrame = 0;
             animationDelayCount = 0;
         }
 
-        currentFrame = Asset.goblin[currentDirect][currentFrameID];
+        currentFrame = Asset.goblin[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
     }
 
     @Override

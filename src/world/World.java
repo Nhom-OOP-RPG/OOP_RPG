@@ -29,7 +29,7 @@ public class World {
         init();
         initEasy();
 
-        currentRoom = worldMap[1][0];
+        currentRoom = worldMap[0][0];
     }
 
     //phương thức chuyển các phòng
@@ -96,12 +96,12 @@ public class World {
         // worldMap[1][0].addNewEnemy(2, 4);
         // worldMap[1][1].addNewEnemy(1);
 
-        worldMap[0][1].addNewEnemy(1);
-        worldMap[0][1].addNewEnemy(2);
-        worldMap[0][1].addNewEnemy(3);
+        worldMap[0][1].addNewEnemy(Room.GUMMY);
+        worldMap[0][1].addNewEnemy(Room.MUSHROOM);
+        worldMap[0][1].addNewEnemy(Room.SNAKE);
 
-        worldMap[1][1].addNewEnemy(4);
-        worldMap[1][1].addNewEnemy(5);
-        worldMap[1][1].addNewEnemy(6);
+        worldMap[1][1].addNewEnemy(Room.BAT);
+        worldMap[1][1].addNewEnemy(Room.SKULL);
+        worldMap[1][1].addNewEnemy(Room.GOBLIN);
     }
 }

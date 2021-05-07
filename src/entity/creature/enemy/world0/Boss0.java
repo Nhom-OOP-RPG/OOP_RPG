@@ -24,10 +24,10 @@ public class Boss0 extends Enemy {
         this.bounds.x = 15;
         this.bounds.y = 10;
         this.bounds.width = 50;
-        this.bounds.height = 60;
+        this.bounds.height = 70;
 
         eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletRock);
-        eMelee = new EnemyMelee(handler, 10, 100, this);
+        eMelee = new EnemyMelee(handler, 10, 100, this, Asset.scratchRock);
         attackDelayCount = 0;
         attackDelay = 100;
     }
