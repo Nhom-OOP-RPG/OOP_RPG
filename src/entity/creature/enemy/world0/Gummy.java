@@ -15,15 +15,15 @@ public class Gummy extends Enemy {
 
     public Gummy(Handler handler, float x, float y) {
         super(handler, x, y);
-        health = 50;
-        maxHealth = 50;
+        health = 25;
+        maxHealth = 25;
 
         bounds.x = 10;
         bounds.y = 20;
         bounds.width = 20;
         bounds.height = 20;
 
-        eMelee = new EnemyMelee(handler, 5, 50, this, Asset.scratchGummy);
+        eMelee = new EnemyMelee(handler, 1, 50, this, Asset.scratchGummy);
         attackDelayCount = 0;
         attackDelay = 70;
 
@@ -41,7 +41,7 @@ public class Gummy extends Enemy {
         
         currentFrameUpdate();
 
-        updateTarget(40f, 400f);
+        updateTarget(40f, 160f);
         move();
 
         attackDelayCount++;

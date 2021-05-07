@@ -41,7 +41,7 @@ public class Snake extends Enemy {
         currentFrameUpdate();
 
         move();
-        updateTarget(40f, 400f);
+        updateTarget(40f, 200f);
         
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){

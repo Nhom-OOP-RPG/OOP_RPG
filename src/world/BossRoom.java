@@ -58,7 +58,6 @@ public class BossRoom extends Room {
 
         if (enemyList.get(0).getIsDead()){
             graphics.drawImage(Asset.gate, 9 * 40, 6 * 40, 40, 40, null);
-            return;
         }
 
         for (Enemy e : enemyList){

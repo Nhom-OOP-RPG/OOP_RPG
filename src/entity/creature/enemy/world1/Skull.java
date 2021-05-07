@@ -22,7 +22,7 @@ public class Skull extends Enemy{
         bounds.width = 20;
         bounds.height = 20;
 
-        eMelee = new EnemyMelee(handler, 5, 50, this, Asset.scratchGrey);
+        eMelee = new EnemyMelee(handler, 7, 50, this, Asset.scratchGrey);
         attackDelayCount = 0;
         attackDelay = 70;
 
@@ -41,7 +41,7 @@ public class Skull extends Enemy{
         currentFrameUpdate();
 
         move();
-        updateTarget(40f, 400f);
+        updateTarget(40f, 240f);
         
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){

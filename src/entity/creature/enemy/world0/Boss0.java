@@ -15,8 +15,8 @@ public class Boss0 extends Enemy {
 
     public Boss0(Handler handler, float x, float y) {
         super(handler, x, y);
-        this.health = 400;
-        this.maxHealth = 400;
+        this.health = 300;
+        this.maxHealth = 300;
 
         this.width = DEFAULT_WIDTH * 2;
         this.height = DEFAULT_HEIGHT * 2;
@@ -45,11 +45,16 @@ public class Boss0 extends Enemy {
         currentFrameUpdate();
 
         move();
-        updateTarget(80f, 400f);
-
+        updateTarget(80f, 1000f);
+       
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){
-            ((EnemyGun) eGun).damaging8Dir();
+            if (this.health < 100){
+                ((EnemyGun) eGun).damaging8Dir();
+            } else if (this.health < 200){
+                eGun.damaging();
+            }
+
             eMelee.damaging();
             attackDelayCount = 0;
         }
