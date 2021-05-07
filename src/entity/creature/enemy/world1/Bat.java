@@ -36,8 +36,8 @@ public class Bat extends Enemy {
         if (isDead) return;
         if (health <= 0) {
             if (i == 1) {
-                hp = new Hp(handler, x, y, width, height, true);
-                if(Math.abs(handler.getPlayer().getCenterX() - hp.getX()) <= 30 && Math.abs(handler.getPlayer().getCenterY() - hp.getY()) <= 30){
+                hp = new Hp( x, y, true);
+                if(Math.abs(handler.getPlayer().getCenterX()-hp.getX() - 20.0) <= 10 || Math.abs(handler.getPlayer().getCenterY()-hp.getY() - 20.0) <= 10){
     
                     hp.setAlpha(false);
                     if (100-handler.getPlayer().getHealth() < 90) {
