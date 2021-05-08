@@ -85,6 +85,7 @@ public class World {
         //World0
         //Room1
         worldMap[0][1].addNewEnemy(Room.GUMMY, 2);
+        worldMap[0][1].addNewEnemy(Room.BAT, 10);
         //Room2
         worldMap[0][2].addNewEnemy(Room.GUMMY,3);
         worldMap[0][2].addNewEnemy(Room.MUSHROOM, 1);
