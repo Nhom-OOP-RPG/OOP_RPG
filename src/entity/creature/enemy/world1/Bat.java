@@ -38,7 +38,7 @@ public class Bat extends Enemy {
                 if(handler.getPlayer().getBounds().intersects(hp.getBounds())){
     
                     hp.setAlpha(false);
-                    if (100-handler.getPlayer().getHealth() < 90) {
+                    if (100-handler.getPlayer().getHealth() > 10) {
                         handler.getPlayer().setHealth(handler.getPlayer().getHealth() + 10);
                     } else handler.getPlayer().setHealth(100);
                     i--;
