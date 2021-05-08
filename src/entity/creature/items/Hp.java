@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import graphic.Asset;
 
+import java.awt.Rectangle;
 public class Hp{
 
     private boolean alpha;
@@ -21,7 +22,7 @@ public class Hp{
     public void render(Graphics graphics) {
         
         if (alpha) {
-            graphics.drawImage(Asset.heart, (int)x+ 20, (int)y+ 20, null);
+            graphics.drawImage(Asset.heart, (int)x + 20, (int)y + 20, null);
         }
         else return;
         
@@ -37,5 +38,9 @@ public class Hp{
 
     public float getY(){
         return y;
+    }
+
+    public Rectangle getBounds(){
+        return new Rectangle((int) x + 20 , (int) y + 20 , 20, 20);
     }
 }
