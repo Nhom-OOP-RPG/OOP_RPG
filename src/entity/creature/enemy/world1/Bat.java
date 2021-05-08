@@ -32,12 +32,10 @@ public class Bat extends Enemy {
     @Override
     public void tick(){
         eGun.tick();
-
-        if (isDead) return;
         if (health <= 0) {
             if (i == 1) {
                 hp = new Hp( x, y, true);
-                if(Math.abs(handler.getPlayer().getCenterX()-hp.getX() - 20.0) <= 10 || Math.abs(handler.getPlayer().getCenterY()-hp.getY() - 20.0) <= 10){
+                if(handler.getPlayer().getBounds().intersects(hp.getBounds())){
     
                     hp.setAlpha(false);
                     if (100-handler.getPlayer().getHealth() < 90) {
