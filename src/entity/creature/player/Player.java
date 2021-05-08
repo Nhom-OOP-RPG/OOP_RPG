@@ -15,6 +15,7 @@ import graphic.Asset;
 import graphic.tile.Tile;
 import main.Handler;
 
+import java.awt.Rectangle;
 
 public class Player extends Creature {
     //vị trí spawn đầu màn chơi (tính theo pixel)
@@ -182,5 +183,9 @@ public class Player extends Creature {
 
     public void setScratchedFrame(BufferedImage frame){
         this.scratchedFrame = frame;
+    }
+
+    public Rectangle getBounds(){
+        return new Rectangle((int)getCenterX(), (int) getCenterY(),  20, 20);
     }
 }
