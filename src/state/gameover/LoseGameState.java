@@ -21,7 +21,7 @@ public class LoseGameState extends State {
     public void tick() {
         if (handler.getKeyManager().enter) {
             if (handler.getPlayer().getLives() > 0) {
-                handler.getPlayer().setMaxHealth();
+                handler.getPlayer().setToMaxHealth();
                 handler.getPlayer().setX(360f);
                 handler.getPlayer().setY(280f);
                 handler.getWorld().setCurrentRoom(0);

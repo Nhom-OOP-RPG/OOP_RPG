@@ -11,6 +11,8 @@ import entity.creature.player.Player;
 import main.Handler;
 
 public abstract class Enemy extends Creature {
+    public static final int DEMO = 0, EASY = 1, HARD = 2;
+
     private Player target;
 
     protected float distanceToTarget;
@@ -19,12 +21,12 @@ public abstract class Enemy extends Creature {
     protected int attackDelayCount;
     protected int attackDelay;
 
-    public Enemy(Handler handler, float x, float y){
+    public Enemy(Handler handler, float x, float y, int level){
         super(handler, x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
 
-        health = 30;
-        maxHealth = 30;
-        speed = 1f;
+        init(level);
+
+        health = maxHealth;
 
         this.target = handler.getPlayer();
 
@@ -34,6 +36,7 @@ public abstract class Enemy extends Creature {
         bounds.height = 20;
         
         currentFrameID = 0;
+        attackDelayCount = 0;
     }
 
 
@@ -92,6 +95,22 @@ public abstract class Enemy extends Creature {
         graphics.fillRect((int) this.x - 20, (int) this.y - 25, (int) (120 * ratio), 20);
     }
 
+    protected void init(int level){
+        switch (level) {
+            case DEMO:
+                initDemo();
+                break;
+            case EASY:
+                initEasy();
+                break;
+            case HARD:
+                initHard();
+        }
+    }
+
+    protected abstract void initDemo();
+    protected abstract void initEasy();
+    protected abstract void initHard();
 
     public float getDistanceToTarget() {
         return distanceToTarget;

@@ -12,19 +12,13 @@ public class Skull extends Enemy{
 
     private EnemyMelee eMelee;
 
-    public Skull(Handler handler, float x, float y) {
-        super(handler, x, y);
-        health = 50;
-        maxHealth = 50;
+    public Skull(Handler handler, float x, float y, int level) {
+        super(handler, x, y, level);
 
         bounds.x = 7;
         bounds.y = 5;
         bounds.width = 26;
-        bounds.height = 35;
-
-        eMelee = new EnemyMelee(handler, 7, 50, this, Asset.scratchGrey);
-        attackDelayCount = 0;
-        attackDelay = 70;
+        bounds.height = 34;
 
         currentFrame = Asset.skull[0][0];
     }
@@ -85,5 +79,29 @@ public class Skull extends Enemy{
     @Override
     protected BufferedImage setDeadFrame() {
         return Asset.dead;
+    }
+
+    @Override
+    protected void initDemo() {
+        maxHealth = 50;   
+        speed = 1.5f;
+        eMelee = new EnemyMelee(handler, 7, 50, this, Asset.scratchGrey);
+        attackDelay = 70;    
+    }
+
+    @Override
+    protected void initEasy() {
+        maxHealth = 50;   
+        speed = 1.5f;
+        eMelee = new EnemyMelee(handler, 7, 50, this, Asset.scratchGrey);
+        attackDelay = 70;     
+    }
+
+    @Override
+    protected void initHard() {
+        maxHealth = 50;   
+        speed = 1.5f;
+        eMelee = new EnemyMelee(handler, 7, 50, this, Asset.scratchGrey);
+        attackDelay = 70;    
     }
 }

@@ -12,14 +12,13 @@ public class Bat extends Enemy {
 
     private EnemyGun eGun;
 
-    public Bat(Handler handler, float x, float y) {
-        super(handler, x, y);
-        health = 35;
-        maxHealth = 35;
-
-        eGun = new EnemyGun(handler, 5, 200f, this);
-        attackDelayCount = 0;
-        attackDelay = 100;
+    public Bat(Handler handler, float x, float y, int level) {
+        super(handler, x, y, level);
+        
+        bounds.x = 10;
+        bounds.y = 10;
+        bounds.width = 20;
+        bounds.height = 20;
 
         currentFrame = Asset.bat[0];
     }
@@ -77,5 +76,29 @@ public class Bat extends Enemy {
     @Override
     protected BufferedImage setDeadFrame() {
         return Asset.dead;
+    }
+
+    @Override
+    protected void initDemo() {
+        maxHealth = 35;
+        speed = 1f;
+        eGun = new EnemyGun(handler, 5, 200f, this);
+        attackDelay = 100;
+    }
+
+    @Override
+    protected void initEasy() {
+        maxHealth = 35;
+        speed = 1f;
+        eGun = new EnemyGun(handler, 5, 200f, this);
+        attackDelay = 100;
+    }
+
+    @Override
+    protected void initHard() {
+        maxHealth = 35;
+        speed = 1f;
+        eGun = new EnemyGun(handler, 5, 200f, this);
+        attackDelay = 100;
     }
 }

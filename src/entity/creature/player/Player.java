@@ -38,6 +38,10 @@ public class Player extends Creature {
     public Player(Handler handler){
         super(handler, DEFAULT_SPAWN_X, DEFAULT_SPAWN_Y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
 
+        maxHealth = 100;
+        health = 100;
+        speed = 2.5f;
+
         lives = 3;
 
         bounds.x = 10;
@@ -167,8 +171,8 @@ public class Player extends Creature {
         lives--;
     }
 
-    public void setMaxHealth(){
-        health = 100;
+    public void setToMaxHealth(){
+        health = maxHealth;
         isDead = false;
     }
 

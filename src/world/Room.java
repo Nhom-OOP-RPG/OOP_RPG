@@ -25,6 +25,7 @@ public class Room {
     Handler handler;
     
     public int roomName, worldName;
+    int level;
 
     //lưu tên phòng nằm cạnh phòng hiện tại
     //thứ tự lần lượt là tên phòng phía Đông, Tây, Nam, Bắc
@@ -36,11 +37,12 @@ public class Room {
     //demo2, kệ đoạn này
     protected ArrayList<Enemy> enemyList;
 
-    public Room(Handler handler, String path){
+    public Room(Handler handler, String path, int level){
         this.handler = handler;
 
         loadRoom(path);
 
+        this.level = level;
         enemyList = new ArrayList<Enemy>();
     }
     
@@ -138,22 +140,22 @@ public class Room {
     public void addNewEnemy(int enemyID, int x, int y){
         switch (enemyID){
             case GUMMY:
-                this.enemyList.add(new Gummy(handler, x * 40, y * 40));
+                this.enemyList.add(new Gummy(handler, x * 40, y * 40, level));
                 return;
             case MUSHROOM:
-                this.enemyList.add(new Mushroom(handler, x * 40, y * 40));
+                this.enemyList.add(new Mushroom(handler, x * 40, y * 40, level));
                 return;
             case SNAKE:
-                this.enemyList.add(new Snake(handler, x * 40, y * 40));
+                this.enemyList.add(new Snake(handler, x * 40, y * 40, level));
                 return;
             case BAT:
-                this.enemyList.add(new Bat(handler, x * 40, y * 40));
+                this.enemyList.add(new Bat(handler, x * 40, y * 40, level));
                 return;
             case SKULL:
-                this.enemyList.add(new Skull(handler, x * 40, y * 40));
+                this.enemyList.add(new Skull(handler, x * 40, y * 40, level));
                 return;
             case GOBLIN:
-                this.enemyList.add(new Goblin(handler, x * 40, y * 40));
+                this.enemyList.add(new Goblin(handler, x * 40, y * 40, level));
         }
     }
 

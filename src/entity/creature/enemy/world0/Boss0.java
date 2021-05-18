@@ -13,10 +13,8 @@ public class Boss0 extends Enemy {
 
     private EnemyWeapon eGun, eMelee;
 
-    public Boss0(Handler handler, float x, float y) {
-        super(handler, x, y);
-        this.health = 300;
-        this.maxHealth = 300;
+    public Boss0(Handler handler, float x, float y, int level) {
+        super(handler, x, y, level);
 
         this.width = DEFAULT_WIDTH * 2;
         this.height = DEFAULT_HEIGHT * 2;
@@ -24,12 +22,9 @@ public class Boss0 extends Enemy {
         this.bounds.x = 15;
         this.bounds.y = 10;
         this.bounds.width = 50;
-        this.bounds.height = 70;
+        this.bounds.height = 69;
 
-        eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletRock);
-        eMelee = new EnemyMelee(handler, 10, 100, this, Asset.scratchRock);
-        attackDelayCount = 0;
-        attackDelay = 100;
+        currentFrame = Asset.boss0[0][0];
     }
 
     @Override
@@ -91,6 +86,33 @@ public class Boss0 extends Enemy {
         }
 
         currentFrame = Asset.boss0[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
+    }
+
+    @Override
+    protected void initDemo() {
+        this.maxHealth = 300;
+        speed = 2f;
+        eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletRock);
+        eMelee = new EnemyMelee(handler, 10, 100, this, Asset.scratchRock);
+        attackDelay = 100;
+    }
+
+    @Override
+    protected void initEasy() {
+        this.maxHealth = 300;
+        speed = 2f;
+        eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletRock);
+        eMelee = new EnemyMelee(handler, 10, 100, this, Asset.scratchRock);
+        attackDelay = 100;
+    }
+
+    @Override
+    protected void initHard() {
+        this.maxHealth = 300;
+        speed = 2f;
+        eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletRock);
+        eMelee = new EnemyMelee(handler, 10, 100, this, Asset.scratchRock);
+        attackDelay = 100;        
     }
     
 }

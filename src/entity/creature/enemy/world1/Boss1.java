@@ -11,10 +11,8 @@ public class Boss1 extends Enemy {
 
     private EnemyWeapon eGun, eMelee;
 
-    public Boss1(Handler handler, float x, float y) {
-        super(handler, x, y);
-        this.health = 400;
-        this.maxHealth = 400;
+    public Boss1(Handler handler, float x, float y, int level) {
+        super(handler, x, y, level);
 
         this.width = DEFAULT_WIDTH * 2;
         this.height = DEFAULT_HEIGHT * 2;
@@ -24,10 +22,7 @@ public class Boss1 extends Enemy {
         this.bounds.width = 50;
         this.bounds.height = 60;
 
-        eGun = new EnemyGun(handler, 10, 300f, this, Asset.bulletFlame);
-        eMelee = new EnemyMelee(handler, 15, 100, this, Asset.scratchRed);
-        attackDelayCount = 0;
-        attackDelay = 80;
+        currentFrame = Asset.boss1[0][0];
     }
 
     @Override
@@ -89,6 +84,33 @@ public class Boss1 extends Enemy {
         }
 
         currentFrame = Asset.boss1[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
+    }
+
+    @Override
+    protected void initDemo() {
+        this.maxHealth = 400;
+        speed = 3f;
+        eGun = new EnemyGun(handler, 10, 300f, this, Asset.bulletFlame);
+        eMelee = new EnemyMelee(handler, 15, 100, this, Asset.scratchRed);
+        attackDelay = 80;
+    }
+
+    @Override
+    protected void initEasy() {
+        this.maxHealth = 400;
+        speed = 3f;
+        eGun = new EnemyGun(handler, 10, 300f, this, Asset.bulletFlame);
+        eMelee = new EnemyMelee(handler, 15, 100, this, Asset.scratchRed);
+        attackDelay = 80;
+    }
+
+    @Override
+    protected void initHard() {
+        this.maxHealth = 400;
+        speed = 3f;
+        eGun = new EnemyGun(handler, 10, 300f, this, Asset.bulletFlame);
+        eMelee = new EnemyMelee(handler, 15, 100, this, Asset.scratchRed);
+        attackDelay = 80;
     }
     
 }

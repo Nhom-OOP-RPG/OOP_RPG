@@ -11,19 +11,13 @@ public class Goblin extends Enemy {
 
     private EnemyGun eGun;
 
-    public Goblin(Handler handler, float x, float y) {
-        super(handler, x, y);
-        health = 60;
-        maxHealth = 60;
+    public Goblin(Handler handler, float x, float y, int level) {
+        super(handler, x, y, level);
 
         bounds.x = 5;
         bounds.y = 5;
         bounds.width = 30;
-        bounds.height = 35;
-
-        eGun = new EnemyGun(handler, 7, 240f, this, Asset.bulletBomb);
-        attackDelayCount = 0;
-        attackDelay = 100;
+        bounds.height = 34;
 
         currentFrame = Asset.goblin[0][0];
     }
@@ -81,6 +75,30 @@ public class Goblin extends Enemy {
         if (isDead) return;
 
         renderHealth(graphics);
+    }
+
+    @Override
+    protected void initDemo() {
+        maxHealth = 60;
+        speed = 1.5f;
+        eGun = new EnemyGun(handler, 7, 240f, this, Asset.bulletBomb);
+        attackDelay = 100;
+    }
+
+    @Override
+    protected void initEasy() {
+        maxHealth = 60;
+        speed = 1.5f;
+        eGun = new EnemyGun(handler, 7, 240f, this, Asset.bulletBomb);
+        attackDelay = 100;
+    }
+
+    @Override
+    protected void initHard() {
+        maxHealth = 60;
+        speed = 1.5f;
+        eGun = new EnemyGun(handler, 7, 240f, this, Asset.bulletBomb);
+        attackDelay = 100;
     }
     
 }

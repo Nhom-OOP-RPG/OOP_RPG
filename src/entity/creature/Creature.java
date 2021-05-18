@@ -28,8 +28,10 @@ public abstract class Creature extends Entity {
 
     public Creature(Handler handler, float x, float y, int width, int height) {
         super(handler, x, y, width, height);
-        health = 100;
-        speed = 2.5f;
+        maxHealth = 0;
+        health = 0;
+        speed = 0;
+
         xMove = 0;
         yMove = 0;
 

@@ -12,19 +12,13 @@ public class Snake extends Enemy {
 
     private EnemyMelee eMelee;
 
-    public Snake(Handler handler, float x, float y) {
-        super(handler, x, y);
-        health = 50;
-        maxHealth = 50;
+    public Snake(Handler handler, float x, float y, int level) {
+        super(handler, x, y, level);
 
         bounds.x = 10;
         bounds.y = 5;
         bounds.width = 20;
-        bounds.height = 35;
-
-        eMelee = new EnemyMelee(handler, 5, 50, this, Asset.scratchVenom);
-        attackDelayCount = 0;
-        attackDelay = 70;
+        bounds.height = 34;
 
         currentFrame = Asset.snake[0][0];
     }
@@ -85,5 +79,25 @@ public class Snake extends Enemy {
     @Override
     protected BufferedImage setDeadFrame() {
         return Asset.dead;
+    }
+
+    @Override
+    protected void initDemo() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void initEasy() {
+        maxHealth = 50;
+        speed = 1.5f;
+        eMelee = new EnemyMelee(handler, 5, 50, this, Asset.scratchVenom);
+        attackDelay = 70;
+    }
+
+    @Override
+    protected void initHard() {
+        // TODO Auto-generated method stub
+        
     }
 }

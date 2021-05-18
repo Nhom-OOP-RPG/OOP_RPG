@@ -10,19 +10,13 @@ import main.Handler;
 public class Mushroom extends Enemy{
     private EnemyGun eGun;
 
-    public Mushroom(Handler handler, float x, float y) {
-        super(handler, x, y);
-        health = 40;
-        maxHealth = 40;
+    public Mushroom(Handler handler, float x, float y, int level) {
+        super(handler, x, y, level);
 
         bounds.x = 5;
         bounds.y = 5;
         bounds.width = 30;
-        bounds.height = 35;
-
-        eGun = new EnemyGun(handler, 3, 200f, this, Asset.bulletGreen);
-        attackDelayCount = 0;
-        attackDelay = 100;
+        bounds.height = 34;
 
         currentFrame = Asset.mushroom[0][0];
     }
@@ -80,6 +74,30 @@ public class Mushroom extends Enemy{
         if (isDead) return;
 
         renderHealth(graphics);
+    }
+
+    @Override
+    protected void initDemo() {
+        maxHealth = 1;
+        speed = 1f;
+        eGun = new EnemyGun(handler, 3, 200f, this, Asset.bulletGreen);
+        attackDelay = 100;        
+    }
+
+    @Override
+    protected void initEasy() {
+        maxHealth = 40;
+        speed = 1f;
+        eGun = new EnemyGun(handler, 3, 200f, this, Asset.bulletGreen);
+        attackDelay = 100;
+    }
+
+    @Override
+    protected void initHard() {
+        maxHealth = 40;
+        speed = 1f;
+        eGun = new EnemyGun(handler, 3, 200f, this, Asset.bulletGreen);
+        attackDelay = 100;        
     }
     
 }

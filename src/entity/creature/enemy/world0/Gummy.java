@@ -13,19 +13,13 @@ public class Gummy extends Enemy {
 
     private EnemyMelee eMelee;
 
-    public Gummy(Handler handler, float x, float y) {
-        super(handler, x, y);
-        health = 25;
-        maxHealth = 25;
+    public Gummy(Handler handler, float x, float y, int level) {
+        super(handler, x, y, level);
 
         bounds.x = 10;
         bounds.y = 20;
         bounds.width = 20;
-        bounds.height = 20;
-
-        eMelee = new EnemyMelee(handler, 1, 50, this, Asset.scratchGummy);
-        attackDelayCount = 0;
-        attackDelay = 70;
+        bounds.height = 19;
 
         currentFrame = Asset.gummy[0];
     }
@@ -84,5 +78,29 @@ public class Gummy extends Enemy {
     @Override
     protected BufferedImage setDeadFrame() {
         return Asset.dead;
+    }
+
+    @Override
+    protected void initDemo() {
+        maxHealth = 1;
+        speed = 1f;
+        eMelee = new EnemyMelee(handler, 1, 50, this, Asset.scratchGummy);
+        attackDelay = 70;
+    }
+
+    @Override
+    protected void initEasy() {
+        maxHealth = 15;
+        speed = 0.5f;
+        eMelee = new EnemyMelee(handler, 1, 50, this, Asset.scratchGummy);
+        attackDelay = 70;
+    }
+
+    @Override
+    protected void initHard() {
+        maxHealth = 25;
+        speed = 1f;
+        eMelee = new EnemyMelee(handler, 2, 50, this, Asset.scratchGummy);
+        attackDelay = 50;
     }
 }

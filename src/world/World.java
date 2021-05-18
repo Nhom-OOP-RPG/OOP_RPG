@@ -15,6 +15,7 @@ public class World {
 
 
     Handler handler;
+    int level;
     //Danh sách các phòng
     //index đầu tiên: tên thế giới chứa phòng
     //index thứ hai: tên phòng chơi
@@ -26,18 +27,9 @@ public class World {
     //Load các phòng chơi
     public World(Handler handler, int level){
         this.handler = handler;
+        this.level = level;
 
         init();
-        switch (level) {
-            case DEMO:
-                initDemo();
-                break;
-            case EASY:
-                initEasy();
-                break;
-            case HARD:
-                initHard();
-        }
 
         currentRoom = worldMap[0][0];
     }
@@ -75,19 +67,29 @@ public class World {
         setRoom(this.handler, 1, 1, "res/world/world1/room_1_1.txt");
         setRoom(this.handler, 1, 2, "res/world/world1/room_1_2.txt");
         setBossRoom(this.handler, 1, 3, "res/world/world1/room_1_3.txt");
+
+        switch (level) {
+            case DEMO:
+                initEnemyDemo();
+                break;
+            case EASY:
+                initEnemyEasy();
+                break;
+            case HARD:
+                initEnemyHard();
+        }
     }
 
-    private void initDemo(){
+    private void initEnemyDemo(){
 
     }
 
-    private void initEasy(){
+    private void initEnemyEasy(){
         //World0
         //Room1
-        worldMap[0][1].addNewEnemy(Room.GUMMY, 2);
-        worldMap[0][1].addNewEnemy(Room.BAT, 10);
+        worldMap[0][1].addNewEnemy(Room.GUMMY, 15);
         //Room2
-        worldMap[0][2].addNewEnemy(Room.GUMMY,3);
+        worldMap[0][2].addNewEnemy(Room.GUMMY, 3);
         worldMap[0][2].addNewEnemy(Room.MUSHROOM, 1);
         //Room3
         worldMap[0][3].addNewEnemy(Room.MUSHROOM, 2);
@@ -104,7 +106,7 @@ public class World {
         worldMap[1][3].addNewEnemy(Room.GOBLIN, 2);
     }
 
-    private void initHard(){
+    private void initEnemyHard(){
         //World0
         //Room1
         worldMap[0][1].addNewEnemy(Room.GUMMY, 5);
@@ -148,10 +150,10 @@ public class World {
     }
 
     public void setRoom(Handler handler, int worldName, int roomName, String path){
-        worldMap[worldName][roomName] = new Room(handler, path);
+        worldMap[worldName][roomName] = new Room(handler, path, level);
     }
 
     public void setBossRoom(Handler handler, int worldName, int roomName, String path){
-        worldMap[worldName][roomName] = new BossRoom(handler, path);
+        worldMap[worldName][roomName] = new BossRoom(handler, path, level);
     }
 }

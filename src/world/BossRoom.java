@@ -14,13 +14,13 @@ import state.State;
 
 public class BossRoom extends Room {
 
-    public BossRoom(Handler handler, String path) {
-        super(handler, path);
+    public BossRoom(Handler handler, String path, int level) {
+        super(handler, path, level);
         
         if (worldName == 0){
-            enemyList.add(new Boss0(handler, 9 * 40, 6 * 40));
+            enemyList.add(new Boss0(handler, 9 * 40, 6 * 40, level));
         } else if (worldName == 1) {
-            enemyList.add(new Boss1(handler, 13 * 40, 6 * 40));
+            enemyList.add(new Boss1(handler, 13 * 40, 6 * 40, level));
         }
     }
 
