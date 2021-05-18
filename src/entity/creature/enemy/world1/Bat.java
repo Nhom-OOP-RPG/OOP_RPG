@@ -89,7 +89,7 @@ public class Bat extends Enemy {
     @Override
     protected void initEasy() {
         maxHealth = 35;
-        speed = 1f;
+        speed = 0.75f;
         eGun = new EnemyGun(handler, 5, 200f, this);
         attackDelay = 100;
     }

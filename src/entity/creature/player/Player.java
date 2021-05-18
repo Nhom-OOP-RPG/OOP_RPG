@@ -47,7 +47,7 @@ public class Player extends Creature {
         bounds.x = 10;
         bounds.y = 10;
         bounds.width = 20;
-        bounds.height = 30;
+        bounds.height = 29;
 
         weapons = new PlayerWeapon[2];
         weapons[0] = new PlayerMelee(handler, 15);
@@ -103,21 +103,25 @@ public class Player extends Creature {
         xMove = 0;
         yMove = 0;
 
-        if (handler.getKeyManager().up){
-            yMove = -speed;
-            attackDirect = 3;
-        }
-        if (handler.getKeyManager().down){
-            yMove = speed;
-            attackDirect = 2;
-        }
         if (handler.getKeyManager().left){
             xMove = -speed;
-            attackDirect = 1;
+            currentDirect = WEST;
+            attackDirect = WEST;
         }
         if (handler.getKeyManager().right){
             xMove = speed;
-            attackDirect = 0;
+            currentDirect = EAST;
+            attackDirect = EAST;
+        }
+        if (handler.getKeyManager().up){
+            yMove = -speed;
+            currentDirect = NORTH;
+            attackDirect = NORTH;
+        }
+        if (handler.getKeyManager().down){
+            yMove = speed;
+            currentDirect = SOUTH;
+            attackDirect = SOUTH;
         }
 
         keyPressedDelayCount++;
@@ -128,10 +132,7 @@ public class Player extends Creature {
             }
 
             if (handler.getKeyManager().changeWeapon){
-                currentWeapon++;
-                if (currentWeapon >= 2){
-                    currentWeapon = 0;
-                }
+                currentWeapon = 1 - currentWeapon;
                 System.out.println("change weapon");
                 keyPressedDelayCount = 0;
             }

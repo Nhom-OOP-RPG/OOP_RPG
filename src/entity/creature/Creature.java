@@ -59,52 +59,46 @@ public abstract class Creature extends Entity {
     //nếu không va chạm thì sẽ đi bình thường
     //nếu đi bình thường mà có va chạm thì đi đến kịch chỗ va chạm và không đi tiếp nữa
     public void moveX(){
-        int playerHead = (int) (y + bounds.y) / Tile.TILE_HEIGHT;
-        int playerTail = (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
+        int head = (int) (y + bounds.y) / Tile.TILE_HEIGHT;
+        int tail = (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
         if (xMove > 0){ //Sang phai
-            int playerRight = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILE_WIDTH;
-            if (!isCollision(playerRight, playerHead)
-              && !isCollision(playerRight, playerTail)){
+            int right = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILE_WIDTH;
+            if (!isCollision(right, head)
+              && !isCollision(right, tail)){
                 x += xMove;
             } else {
-                x = playerRight * Tile.TILE_WIDTH - bounds.x - bounds.width - 1;
+                x = right * Tile.TILE_WIDTH - bounds.x - bounds.width - 1;
             }
-            currentDirect = EAST;
         } else if (xMove < 0){ //Sang trai
-            int playerLeft = (int) (x + xMove + bounds.x) / Tile.TILE_WIDTH;
-            if (!isCollision(playerLeft, playerHead)
-              && !isCollision(playerLeft, playerTail)){
+            int left = (int) (x + xMove + bounds.x) / Tile.TILE_WIDTH;
+            if (!isCollision(left, head)
+              && !isCollision(left, tail)){
                   x += xMove;
             } else {
-                x = playerLeft * Tile.TILE_WIDTH + Tile.TILE_WIDTH - bounds.x;
+                x = left * Tile.TILE_WIDTH + Tile.TILE_WIDTH - bounds.x;
             }
-            currentDirect = WEST;
         }
     }
 
     //thực hiện di chuyển phương dọc
     //xử lý va chạm tương tự phương ngang
     public void moveY(){
-        int playerLeft = (int) (x + bounds.x) / Tile.TILE_WIDTH;
-        int playerRight = (int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH;
+        int left = (int) (x + bounds.x) / Tile.TILE_WIDTH;
+        int right = (int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH;
         if (yMove > 0){ //Xuong duoi
-            int playerTail = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
-            if (!isCollision(playerLeft, playerTail)
-              && !isCollision(playerRight, playerTail)){
+            int tail = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
+            if (!isCollision(left, tail) && !isCollision(right, tail)){
                 y += yMove;
             } else {
-                y = playerTail * Tile.TILE_HEIGHT - bounds.y - bounds.height - 1;
+                y = tail * Tile.TILE_HEIGHT - bounds.y - bounds.height - 1;
             }
-            currentDirect = SOUTH;
         } else if (yMove < 0){ //Len tren
-            int playerHead = (int) (y + yMove + bounds.y) / Tile.TILE_HEIGHT;
-            if (!isCollision(playerLeft, playerHead)
-              && !isCollision(playerRight, playerHead)){
+            int head = (int) (y + yMove + bounds.y) / Tile.TILE_HEIGHT;
+            if (!isCollision(left, head) && !isCollision(right, head)){
                 y += yMove;
             } else {
-                y = playerHead * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - bounds.y;
+                y = head * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - bounds.y;
             }
-            currentDirect = NORTH;
         }
     }
 

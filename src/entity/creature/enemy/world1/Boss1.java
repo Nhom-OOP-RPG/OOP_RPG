@@ -98,7 +98,7 @@ public class Boss1 extends Enemy {
     @Override
     protected void initEasy() {
         this.maxHealth = 400;
-        speed = 3f;
+        speed = 2f;
         eGun = new EnemyGun(handler, 10, 300f, this, Asset.bulletFlame);
         eMelee = new EnemyMelee(handler, 15, 100, this, Asset.scratchRed);
         attackDelay = 80;
@@ -107,7 +107,7 @@ public class Boss1 extends Enemy {
     @Override
     protected void initHard() {
         this.maxHealth = 400;
-        speed = 3f;
+        speed = 2f;
         eGun = new EnemyGun(handler, 10, 300f, this, Asset.bulletFlame);
         eMelee = new EnemyMelee(handler, 15, 100, this, Asset.scratchRed);
         attackDelay = 80;

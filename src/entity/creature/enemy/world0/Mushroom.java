@@ -87,7 +87,7 @@ public class Mushroom extends Enemy{
     @Override
     protected void initEasy() {
         maxHealth = 40;
-        speed = 1f;
+        speed = 0.75f;
         eGun = new EnemyGun(handler, 3, 200f, this, Asset.bulletGreen);
         attackDelay = 100;
     }
