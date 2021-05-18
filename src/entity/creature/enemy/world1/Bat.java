@@ -80,9 +80,9 @@ public class Bat extends Enemy {
 
     @Override
     protected void initDemo() {
-        maxHealth = 35;
+        maxHealth = 1;
         speed = 1f;
-        eGun = new EnemyGun(handler, 5, 200f, this);
+        eGun = new EnemyGun(handler, 1, 200f, this);
         attackDelay = 100;
     }
 

@@ -83,21 +83,25 @@ public class Snake extends Enemy {
 
     @Override
     protected void initDemo() {
-        // TODO Auto-generated method stub
-        
+        maxHealth = 1;
+        speed = 1f;
+        eMelee = new EnemyMelee(handler, 1, 50f, this, Asset.scratchVenom);
+        attackDelay = 100;
     }
 
     @Override
     protected void initEasy() {
         maxHealth = 50;
         speed = 1.5f;
-        eMelee = new EnemyMelee(handler, 5, 50, this, Asset.scratchVenom);
+        eMelee = new EnemyMelee(handler, 5, 50f, this, Asset.scratchVenom);
         attackDelay = 70;
     }
 
     @Override
     protected void initHard() {
-        // TODO Auto-generated method stub
-        
+        maxHealth = 50;
+        speed = 1.5f;
+        eMelee = new EnemyMelee(handler, 5, 50f, this, Asset.scratchVenom);
+        attackDelay = 70;
     }
 }

@@ -12,6 +12,7 @@ public class ChooseLevelState extends State {
 
     private String[] optionsLevel;
 
+    private static final String DEMO = "Demo";
     private static final String EASY = "Easy";
 	private static final String HARD = "Hard";
 
@@ -20,7 +21,7 @@ public class ChooseLevelState extends State {
     public ChooseLevelState(Handler handler) {
         super(handler);
         this.selected = 0;
-        this.optionsLevel = new String[] {EASY, HARD};
+        this.optionsLevel = new String[] {DEMO, EASY, HARD};
     }
 
     @Override
@@ -47,6 +48,10 @@ public class ChooseLevelState extends State {
 
             if (handler.getKeyManager().enter) {
                 if (selected == 0){
+                    isPlaying = true;
+                    handler.setNewGame(0);
+                    State.setState(handler.getGame().getGameState());
+                } else if (selected == 1){
                     isPlaying = true;
                     handler.setNewGame(1);
                     State.setState(handler.getGame().getGameState());

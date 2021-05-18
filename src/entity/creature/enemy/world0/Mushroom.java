@@ -80,7 +80,7 @@ public class Mushroom extends Enemy{
     protected void initDemo() {
         maxHealth = 1;
         speed = 1f;
-        eGun = new EnemyGun(handler, 3, 200f, this, Asset.bulletGreen);
+        eGun = new EnemyGun(handler, 1, 200f, this, Asset.bulletGreen);
         attackDelay = 100;        
     }
 

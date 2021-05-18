@@ -81,13 +81,27 @@ public class World {
     }
 
     private void initEnemyDemo(){
+        //World0
+        //Room1
+        worldMap[0][1].addNewEnemy(Room.GUMMY, 1);
+        //Room2
+        worldMap[0][2].addNewEnemy(Room.MUSHROOM, 1);
+        //Room3
+        worldMap[0][3].addNewEnemy(Room.SNAKE, 1);
 
+        //World1
+        //Room1
+        worldMap[1][1].addNewEnemy(Room.BAT, 1);
+        //Room2
+        worldMap[1][2].addNewEnemy(Room.SKULL, 1);
+        //Boss1
+        worldMap[1][3].addNewEnemy(Room.GOBLIN, 1);
     }
 
     private void initEnemyEasy(){
         //World0
         //Room1
-        worldMap[0][1].addNewEnemy(Room.GUMMY, 15);
+        worldMap[0][1].addNewEnemy(Room.GUMMY, 2);
         //Room2
         worldMap[0][2].addNewEnemy(Room.GUMMY, 3);
         worldMap[0][2].addNewEnemy(Room.MUSHROOM, 1);

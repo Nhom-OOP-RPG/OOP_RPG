@@ -84,15 +84,15 @@ public class Gummy extends Enemy {
     protected void initDemo() {
         maxHealth = 1;
         speed = 1f;
-        eMelee = new EnemyMelee(handler, 1, 50, this, Asset.scratchGummy);
-        attackDelay = 70;
+        eMelee = new EnemyMelee(handler, 1, 50f, this, Asset.scratchGummy);
+        attackDelay = 100;
     }
 
     @Override
     protected void initEasy() {
         maxHealth = 15;
         speed = 0.5f;
-        eMelee = new EnemyMelee(handler, 1, 50, this, Asset.scratchGummy);
+        eMelee = new EnemyMelee(handler, 1, 50f, this, Asset.scratchGummy);
         attackDelay = 70;
     }
 
@@ -100,7 +100,7 @@ public class Gummy extends Enemy {
     protected void initHard() {
         maxHealth = 25;
         speed = 1f;
-        eMelee = new EnemyMelee(handler, 2, 50, this, Asset.scratchGummy);
+        eMelee = new EnemyMelee(handler, 2, 50f, this, Asset.scratchGummy);
         attackDelay = 50;
     }
 }

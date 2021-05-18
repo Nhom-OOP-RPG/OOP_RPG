@@ -88,11 +88,11 @@ public class Boss1 extends Enemy {
 
     @Override
     protected void initDemo() {
-        this.maxHealth = 400;
-        speed = 3f;
-        eGun = new EnemyGun(handler, 10, 300f, this, Asset.bulletFlame);
-        eMelee = new EnemyMelee(handler, 15, 100, this, Asset.scratchRed);
-        attackDelay = 80;
+        this.maxHealth = 1;
+        speed = 1f;
+        eGun = new EnemyGun(handler, 1, 300f, this, Asset.bulletFlame);
+        eMelee = new EnemyMelee(handler, 1, 100f, this, Asset.scratchRed);
+        attackDelay = 100;
     }
 
     @Override

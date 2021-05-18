@@ -83,17 +83,17 @@ public class Skull extends Enemy{
 
     @Override
     protected void initDemo() {
-        maxHealth = 50;   
-        speed = 1.5f;
-        eMelee = new EnemyMelee(handler, 7, 50, this, Asset.scratchGrey);
-        attackDelay = 70;    
+        maxHealth = 1;   
+        speed = 1f;
+        eMelee = new EnemyMelee(handler, 7, 50f, this, Asset.scratchGrey);
+        attackDelay = 100;    
     }
 
     @Override
     protected void initEasy() {
         maxHealth = 50;   
         speed = 1.5f;
-        eMelee = new EnemyMelee(handler, 7, 50, this, Asset.scratchGrey);
+        eMelee = new EnemyMelee(handler, 7, 50f, this, Asset.scratchGrey);
         attackDelay = 70;     
     }
 
@@ -101,7 +101,7 @@ public class Skull extends Enemy{
     protected void initHard() {
         maxHealth = 50;   
         speed = 1.5f;
-        eMelee = new EnemyMelee(handler, 7, 50, this, Asset.scratchGrey);
+        eMelee = new EnemyMelee(handler, 7, 50f, this, Asset.scratchGrey);
         attackDelay = 70;    
     }
 }

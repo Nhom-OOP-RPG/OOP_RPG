@@ -79,9 +79,9 @@ public class Goblin extends Enemy {
 
     @Override
     protected void initDemo() {
-        maxHealth = 60;
-        speed = 1.5f;
-        eGun = new EnemyGun(handler, 7, 240f, this, Asset.bulletBomb);
+        maxHealth = 1;
+        speed = 1f;
+        eGun = new EnemyGun(handler, 1, 240f, this, Asset.bulletBomb);
         attackDelay = 100;
     }
 
