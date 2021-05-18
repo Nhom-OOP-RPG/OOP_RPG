@@ -5,17 +5,12 @@ import java.awt.image.BufferedImage;
 
 import entity.creature.enemy.Enemy;
 import entity.creature.enemy.enemyweapon.EnemyGun;
-import entity.creature.items.Hp;
 import graphic.Asset;
 import main.Handler;
 
 public class Bat extends Enemy {
 
     private EnemyGun eGun;
-
-    private Hp hp;
-
-    private int i = 1;
 
     public Bat(Handler handler, float x, float y) {
         super(handler, x, y);
@@ -33,17 +28,6 @@ public class Bat extends Enemy {
     public void tick(){
         eGun.tick();
         if (health <= 0) {
-            if (i == 1) {
-                hp = new Hp( x, y, true);
-                if(handler.getPlayer().getBounds().intersects(hp.getBounds())){
-    
-                    hp.setAlpha(false);
-                    if (100-handler.getPlayer().getHealth() > 10) {
-                        handler.getPlayer().setHealth(handler.getPlayer().getHealth() + 10);
-                    } else handler.getPlayer().setHealth(100);
-                    i--;
-                }
-            }
             setDead();
             return;
         }
@@ -65,7 +49,7 @@ public class Bat extends Enemy {
         eGun.render(graphics);
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
         
-        if (isDead) hp.render(graphics);
+        if (isDead) return;
 
         renderHealth(graphics);
     }
