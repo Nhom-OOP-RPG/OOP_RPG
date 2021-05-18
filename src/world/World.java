@@ -56,7 +56,7 @@ public class World {
     private void init() {
         worldMap = new Room[2][];
         worldMap[0] = new Room[5];
-        worldMap[1] = new Room[4];
+        worldMap[1] = new Room[5];
 
         setRoom(this.handler, 0, 0, "res/world/world0/room_0_0.txt");
         setRoom(this.handler, 0, 1, "res/world/world0/room_0_1.txt");
@@ -66,7 +66,8 @@ public class World {
         setRoom(this.handler, 1, 0, "res/world/world1/room_1_0.txt");
         setRoom(this.handler, 1, 1, "res/world/world1/room_1_1.txt");
         setRoom(this.handler, 1, 2, "res/world/world1/room_1_2.txt");
-        setBossRoom(this.handler, 1, 3, "res/world/world1/room_1_3.txt");
+        setRoom(this.handler, 1, 3, "res/world/world1/room_1_3.txt");
+        setBossRoom(this.handler, 1, 4, "res/world/world1/room_1_4.txt");
 
         switch (level) {
             case DEMO:
@@ -103,7 +104,7 @@ public class World {
         //Room1
         worldMap[0][1].addNewEnemy(Room.GUMMY, 2);
         //Room2
-        worldMap[0][2].addNewEnemy(Room.GUMMY, 3);
+        worldMap[0][2].addNewEnemy(Room.GUMMY,3);
         worldMap[0][2].addNewEnemy(Room.MUSHROOM, 1);
         //Room3
         worldMap[0][3].addNewEnemy(Room.MUSHROOM, 2);
@@ -116,7 +117,7 @@ public class World {
         //Room2
         worldMap[1][2].addNewEnemy(Room.SKULL, 3);
         worldMap[1][2].addNewEnemy(Room.GOBLIN, 2);
-        //Boss1
+        //Room3
         worldMap[1][3].addNewEnemy(Room.GOBLIN, 2);
     }
 
@@ -140,8 +141,10 @@ public class World {
         //Room2
         worldMap[1][2].addNewEnemy(Room.SKULL, 6);
         worldMap[1][2].addNewEnemy(Room.GOBLIN, 4);
-        //Boss1
+        //Room3
         worldMap[1][3].addNewEnemy(Room.GOBLIN, 4);
+        //Boss1
+        worldMap[0][4].addNewEnemy(Room.GOBLIN, 2);
     }
 
     //Get Set
