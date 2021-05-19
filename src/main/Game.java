@@ -1,6 +1,6 @@
 /*
 Lớp Game chứa tất cả những gì liên quan tới việc chạy game
-Khi Main gọi Game.start(), hàm sẽ tạo thread, gọi đến hàm run() để chạy game:
+Khi Main gọi Game.start(), chương trình tạo thread, gọi đến hàm run() để chạy game:
     - đầu tiên run() gọi init() để khởi tạo các thành phần
     - sau đó đi vào vòng lặp, vòng lặp sẽ thực hiện lặp liên tục 60 nhịp/giây (theo khởi tạo fps), gọi tick() và render():
             + tick(): cập nhật lại dữ liệu (gọi đến tick() nhỏ trong state hiện tại)
@@ -31,10 +31,10 @@ import state.gameover.PlayAgainState;
 
 
 public class Game implements Runnable {
-    //Cua so
+    //Cửa sổ
     private Display display;
 
-    //Title va kich thuoc cua so
+    //Title và kích thước cửa sổ
     public final String GAME_TITLE = "OOP-RPG";
     public static final int WINDOW_WIDTH = 40*20, WINDOW_HEIGHT = 40*15;
 
@@ -47,7 +47,7 @@ public class Game implements Runnable {
     //Input
     private KeyManager keyManager;
 
-    // Handler
+    //Handler
     private Handler handler;
 
     //State
@@ -60,14 +60,15 @@ public class Game implements Runnable {
     private State loseGameState;
     private State playAgainState;
 
-    //Khoi tao game
+    //Khởi tạo game
     private void init(){
-        //Tao cua so va input
+        //Tạo cửa sổ mới
         display = new Display(GAME_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
+        //Tạo input từ bàn phím
         keyManager = new KeyManager();
         display.getFrame().addKeyListener(keyManager);
 
-        //Khoi tao tai nguyen
+        //Khởi tạo tài nguyên (ảnh)
         Asset.init();
 
         //Handler
@@ -83,20 +84,21 @@ public class Game implements Runnable {
         loseGameState = new LoseGameState(handler);
         playAgainState = new PlayAgainState(handler);
 
-        //handler.setNewGame(1);
         State.setState(mainMenuState);
     }
 
-    //Cap nhat du lieu
+    //Hàm tick() để cập nhật State hiện tại 
     private void tick(){
+        //Nhận input từ bàn phím
         keyManager.tick();
 
+        //Cập nhật
         if (State.getState() != null){
             State.getState().tick();
         }
     }
 
-    //In ra man hinh
+    //Hàm render() để in ra màn hình State hiện tại
     private void render(){
         bufferStrategy = display.getCanvas().getBufferStrategy();
         if (bufferStrategy == null){
@@ -105,11 +107,10 @@ public class Game implements Runnable {
         }
         graphics = bufferStrategy.getDrawGraphics();
         
-        //Clear man hinh
+        //Clear màn hình cũ
         graphics.clearRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        //Ve len cua so
-
+        //Vẽ lên cửa sổ theo render() của State hiện tại
         if (State.getState() != null){
             State.getState().render(graphics);
         }
@@ -118,14 +119,14 @@ public class Game implements Runnable {
         graphics.dispose();
     }
 
-    //Chay chuong trinh
+    //Chạy chương trình
     public void run(){
-        //Khoi tao game
+        //Khởi tạo game
         this.init();
 
         FPSTimer timer = new FPSTimer(60);
   
-        //Chay game
+        //Chạy game
         while (isRunning){
             if (timer.check()){
                 tick();
@@ -145,7 +146,7 @@ public class Game implements Runnable {
         thread.start();
     }
 
-    //Thoat game
+    //Thoát game
     public synchronized void stop(){
         if (!isRunning) return;
 

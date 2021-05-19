@@ -1,5 +1,5 @@
-//Class tinh thoi gian mot vong lap (Game.run())
-//KHONG CAN QUAN TAM
+//Class tính thời gian nhịp xử lý của game (dùng trong Game.run())
+//KHÔNG CẦN QUAN TÂM
 
 package main.fps;
 

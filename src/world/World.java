@@ -24,13 +24,14 @@ public class World {
     //phòng chơi người chơi đang đứng
     private Room currentRoom;
 
-    //Load các phòng chơi
     public World(Handler handler, int level){
         this.handler = handler;
         this.level = level;
 
+        //Khởi tạo thế giới
         init();
 
+        //set phòng 0, thế giới 0 làm xuất phát
         currentRoom = worldMap[0][0];
     }
 
@@ -52,7 +53,7 @@ public class World {
         }
     }
     
-
+    //Init phòng chơi mới
     private void init() {
         worldMap = new Room[2][];
         worldMap[0] = new Room[5];

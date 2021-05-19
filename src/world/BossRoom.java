@@ -17,6 +17,7 @@ public class BossRoom extends Room {
     public BossRoom(Handler handler, String path, int level) {
         super(handler, path, level);
         
+        //Tự động khởi tạo một con boss vào đầu danh sách quái
         if (worldName == 0){
             enemyList.add(new Boss0(handler, 9 * 40, 6 * 40, level));
         } else if (worldName == 1) {
@@ -26,6 +27,7 @@ public class BossRoom extends Room {
 
     @Override
     public void tick(){
+        //Nếu boss chết -> Mở cổng chuyển thế giới hoặc win game
         if (enemyList.get(0).getIsDead()){
             if ((int) handler.getPlayer().getCenterX()/40 == 9
                     && (int) handler.getPlayer().getCenterY()/40 == 6){

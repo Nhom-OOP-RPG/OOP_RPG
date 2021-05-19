@@ -25,6 +25,8 @@ public class Room {
     Handler handler;
     
     public int roomName, worldName;
+    
+    //Mức độ (DEMO, EASY, HARD)
     int level;
 
     //lưu tên phòng nằm cạnh phòng hiện tại
@@ -34,7 +36,7 @@ public class Room {
     //lưu bản đồ của phòng dưới dạng mã tên của các Tile
     protected int[][] roomMap;
 
-    //demo2, kệ đoạn này
+    //Danh sách quái trong phòng
     protected ArrayList<Enemy> enemyList;
 
     public Room(Handler handler, String path, int level){
@@ -46,15 +48,14 @@ public class Room {
         enemyList = new ArrayList<Enemy>();
     }
     
-    //cơ bản mình chưa làm phòng có các hành động như có gai nhấp nhô hay biến mặt đất thành lửa (như trong Soul Knight)
-    //nên chưa phải dùng tick()
+    //Cập nhật quái
     public void tick(){
         for (Enemy e : enemyList){
             e.tick();
         }
     }
 
-    //In phòng chơi ra (in từng Tile ra)
+    //In phòng chơi ra (Tile, Quái)
     public void render(Graphics graphics){
         for (int y = 0; y < HEIGHT; y++){
             for (int x = 0; x < WIDTH; x++){
@@ -71,23 +72,30 @@ public class Room {
         }
     }
 
-    //load phòng chơi
+    //LOAD PHÒNG CHƠI
     //dòng đầu tiên ghi 2 số là tên thế giới chứa phòng và tên phòng
-    //dòng 2 ghi số lối ra của phòng (0 <= exitNum = n <= 4)
+    //dòng thứ hai ghi số lối ra của phòng (0 <= exitNum = n <= 4)
+
     //n dòng tiếp theo, mỗi dòng ghi 2 số là hướng ra và tên phòng tiếp theo ở hướng ra đó
-    //  hướng ra 0 = Đông, 1 = Tây, 2 = Nam, 3 = Bắc
+    //      hướng ra: 0 = Đông, 1 = Tây, 2 = Nam, 3 = Bắc
+
     //cuối cùng là ma trận 15x20 ghi mã tên các Tile của phòng (nhớ đoạn nào không ra được thì bao bằng tường để tránh lỗi)
     void loadRoom(String path){
         String file = Utility.loadFileAString(path);
         String[] tokens = file.split("\\s+");
 
+        //tên thế giới chứa phòng và tên phòng
         worldName = Utility.parseInt(tokens[0]);
         roomName = Utility.parseInt(tokens[1]);
+
+        //số lối ra của phòng
         int exitNum = Utility.parseInt(tokens[2]);
+        //các hướng ra và tên phòng tiếp theo ở hướng ra đó
         for (int i = 3; i < 2 + 2 * exitNum; i += 2){
             exits[Utility.parseInt(tokens[i])] = Utility.parseInt(tokens[i+1]);
         }
 
+        //ma trận 15x20 ghi mã tên các Tile
         roomMap = new int[WIDTH][HEIGHT];
         for (int x = 0; x < WIDTH; x++){
             for (int y = 0; y < HEIGHT; y++){
@@ -96,6 +104,7 @@ public class Room {
         }
     }
 
+    //GET
     //lấy tên phòng ra theo hướng dir
     public int getExit(int dir){
         return exits[dir];
@@ -120,6 +129,8 @@ public class Room {
         }
     }
 
+    //Add quái mới vào phòng
+    //add theo mã tên quái -> Random vị trí
     public void addNewEnemy(int enemyID){
         Random rand = new Random();
         int x, y;
@@ -131,12 +142,14 @@ public class Room {
         addNewEnemy(enemyID, x, y);
     }
 
+    //add theo mã tên quái với số lượng -> Random vị trí
     public void addNewEnemy(int enemyID, int numOfEnemies){
         for (int i = 0; i < numOfEnemies; i++){
             addNewEnemy(enemyID);
         }
     }
 
+    //add theo mã tên quái và vị trí xác định (tính theo vị trí tile)
     public void addNewEnemy(int enemyID, int x, int y){
         switch (enemyID){
             case GUMMY:
