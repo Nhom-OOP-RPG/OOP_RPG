@@ -10,6 +10,11 @@ public class HealthItem extends Item {
         super(handler, x, y);
 
         frame = Asset.health;
+
+        bounds.x = 10;
+        bounds.y = 10;
+        bounds.width = 20;
+        bounds.height = 30;
         
         health = rand.nextInt() % 20 + 10;
     }
