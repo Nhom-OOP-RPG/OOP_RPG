@@ -26,6 +26,8 @@ public class Player extends Creature {
     //các này t tạo ra cho có mà chưa dùng làm gì
     int atWorld, atRoom = 0;
 
+    private int energy, energyDelay, energyDelayCount;
+
     private int currentWeapon;
     private PlayerWeapon[] weapons;
     public int attackDirect;
@@ -49,6 +51,10 @@ public class Player extends Creature {
         bounds.width = 20;
         bounds.height = 29;
 
+        energy = 100;
+        energyDelay = 100;
+        energyDelayCount = 0;
+
         weapons = new PlayerWeapon[2];
         weapons[0] = new PlayerMelee(handler, 15);
         weapons[1] = new PlayerGun(handler, 10);
@@ -69,6 +75,12 @@ public class Player extends Creature {
         if (health <= 0) {
             isDead = true;
             System.out.println("player dead");
+        }
+
+        energyDelayCount++;
+        if (energy < 100 && energyDelayCount > energyDelay){
+            energy++;
+            energyDelayCount = 0;
         }
 
         getInput();
@@ -93,9 +105,11 @@ public class Player extends Creature {
         for (int i = 0; i < lives; i++){
             graphics.drawImage(Asset.heart, Tile.TILE_WIDTH * 2/3 * i, 0, Tile.TILE_WIDTH * 2/3, Tile.TILE_HEIGHT * 2/3, null);
         }
-        graphics.setColor(Color.WHITE);
+        graphics.setColor(Color.RED);
 		graphics.setFont(new Font("arial", Font.PLAIN, 15));
-		graphics.drawString(getHealth()+" / 100", Tile.TILE_WIDTH * 2/3 + 60, 20);
+		graphics.drawString(getHealth()+ " / 100", Tile.TILE_WIDTH * 2/3 + 60, 20);
+        graphics.setColor(Color.BLUE);
+        graphics.drawString(energy + " / 100", Tile.TILE_WIDTH * 2/3 + 140, 20);
     }
     
     //Kiểm tra input để cập nhật xMove, yMove
@@ -166,6 +180,30 @@ public class Player extends Creature {
     //Get Set
     public int getLives(){
         return lives;
+    }
+
+    public void increaseHealth(int h){
+        if (health + h > maxHealth){
+            health = maxHealth;
+        } else {
+            health += h;
+        }
+    }
+
+    public void increaseEnergy(int e){
+        if (energy + e > 100){
+            energy = 100;
+        } else {
+            energy += e;
+        }
+    }
+
+    public void decreaseEnergy(int e){
+        if (energy + e < 0){
+            energy = 0;
+        } else {
+            energy -= e;
+        }
     }
 
     public void decreaseLives(){

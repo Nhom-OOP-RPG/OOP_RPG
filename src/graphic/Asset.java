@@ -26,10 +26,14 @@ public class Asset {
     public static BufferedImage[] cutGrey;
     public static BufferedImage dead, heart;
 
+    //Item
+    public static BufferedImage health, energy;
+
     public static void init(){
         initTile();
         initPlayer();
         initEnemy();
+        initItem();
         initOther();
     }
     
@@ -242,5 +246,10 @@ public class Asset {
 
         dead = Utility.loadImage("res/texture/other/dead.png");
         heart = Utility.loadImage("res/texture/other/heart.png");
+    }
+
+    private static void initItem(){
+        health = Utility.loadImage("res/texture/item/health.png");
+        energy = Utility.loadImage("res/texture/item/energy.png");
     }
 }

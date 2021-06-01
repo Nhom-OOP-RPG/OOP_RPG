@@ -66,6 +66,7 @@ public class PlayerGun extends PlayerWeapon{
         if (numOfBullet > 0){
             shoot();
             numOfBullet--;
+            handler.getPlayer().decreaseEnergy(3);
         } else {
             System.out.println("out of bullet");
         }

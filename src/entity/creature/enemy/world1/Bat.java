@@ -25,6 +25,8 @@ public class Bat extends Enemy {
     @Override
     public void tick(){
         eGun.tick();
+
+        if (isDead) return;
         if (health <= 0) {
             setDead();
             return;

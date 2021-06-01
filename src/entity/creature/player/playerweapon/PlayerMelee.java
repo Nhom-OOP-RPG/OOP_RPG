@@ -34,7 +34,8 @@ public class PlayerMelee extends PlayerWeapon {
                 e.decreaseHealth(this.damage);
                 System.out.println("hit");
             }
-        }    
+        }
+        handler.getPlayer().decreaseEnergy(2); 
     }
 
     private void getAttackBox(){

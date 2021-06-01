@@ -121,8 +121,9 @@ public abstract class Creature extends Entity {
 
     public void setDead(){
         isDead = true;
-        bounds.setBounds((int) x, (int) y, 0, 0);
+        bounds.setBounds((int) this.x, (int) this.y, 0, 0);
         currentFrame = Asset.dead;
+        handler.getWorld().getRoom().addNewItem((int) this.x, (int) this.y);
     }
 
     public int getHealth(){
