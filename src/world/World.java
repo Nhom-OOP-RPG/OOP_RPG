@@ -11,8 +11,7 @@ import main.Handler;
 public class World {
     public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
     public static final int DEMO = 0, EASY = 1, HARD = 2;
-    //public static final int 
-
+    //public static final int
 
     Handler handler;
     int level;
@@ -145,7 +144,7 @@ public class World {
         //Room3
         worldMap[1][3].addNewEnemy(Room.GOBLIN, 4);
         //Boss1
-        worldMap[0][4].addNewEnemy(Room.GOBLIN, 2);
+        worldMap[1][4].addNewEnemy(Room.GOBLIN, 2);
     }
 
     //Get Set

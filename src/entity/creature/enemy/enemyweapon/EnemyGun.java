@@ -44,8 +44,8 @@ public class EnemyGun extends EnemyWeapon{
     }
 
     private void shoot(double angle){
-        float startX = user.getX();
-        float startY = user.getY();
+        float startX = user.getCenterX();
+        float startY = user.getCenterY();
 
         shootedBullet.add(new Bullet(handler, startX, startY, false, damage, 4f, angle, bulletFrame));
     }

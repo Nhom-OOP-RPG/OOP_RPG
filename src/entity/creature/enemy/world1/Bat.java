@@ -1,7 +1,6 @@
 package entity.creature.enemy.world1;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import entity.creature.enemy.Enemy;
 import entity.creature.enemy.enemyweapon.EnemyGun;
@@ -71,11 +70,6 @@ public class Bat extends Enemy {
         }
 
         currentFrame = Asset.bat[currentFrameID + 2 * changeToDamagedFrame];
-    }
-
-    @Override
-    protected BufferedImage setDeadFrame() {
-        return Asset.dead;
     }
 
     @Override

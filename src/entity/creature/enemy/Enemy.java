@@ -46,8 +46,8 @@ public abstract class Enemy extends Creature {
         xMove = 0;
         yMove = 0;
 
-        float xDiffer = target.getX() - x;
-        float yDiffer = target.getY() - y;
+        float xDiffer = target.getCenterX() - this.getCenterX();
+        float yDiffer = target.getCenterY() - this.getCenterY();
         
         distanceToTarget = (float) java.lang.Math.sqrt(xDiffer*xDiffer + yDiffer*yDiffer);
 
@@ -60,13 +60,13 @@ public abstract class Enemy extends Creature {
 
         if (xDiffer < 0){
             xMove -= speed;
-        } else {
+        } else if (xDiffer > 2){
             xMove += speed;
         }
 
         if (yDiffer < 0){
             yMove -= speed;
-        } else {
+        } else if (yDiffer > 2) {
             yMove += speed;
         }
 

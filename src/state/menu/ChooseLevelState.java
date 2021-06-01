@@ -29,13 +29,13 @@ public class ChooseLevelState extends State {
         keyPressedDelayCount++;
         if (keyPressedDelayCount >= keyPressedDelay){
             if (handler.getKeyManager().up) {
-                selected = 0;
+                if (selected > 0) selected--;
                 keyPressedDelayCount = 0;
                 return;
             }
 
             if (handler.getKeyManager().down) {
-                selected = 1;
+                if (selected < 2) selected++;
                 keyPressedDelayCount = 0;
                 return;
             }

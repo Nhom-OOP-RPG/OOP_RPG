@@ -172,8 +172,11 @@ public class Player extends Creature {
         lives--;
     }
 
-    public void setToMaxHealth(){
+    public void revive(){
         health = maxHealth;
+        scratchedFrame = null;
+        currentFrame = Asset.player[0][0];
+        currentFrameID = 0;
         isDead = false;
     }
 

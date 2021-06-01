@@ -7,6 +7,7 @@ package entity.creature;
 import java.awt.image.BufferedImage;
 
 import entity.Entity;
+import graphic.Asset;
 import graphic.tile.Tile;
 import main.Handler;
 
@@ -121,7 +122,7 @@ public abstract class Creature extends Entity {
     public void setDead(){
         isDead = true;
         bounds.setBounds((int) x, (int) y, 0, 0);
-        currentFrame = setDeadFrame();
+        currentFrame = Asset.dead;
     }
 
     public int getHealth(){
@@ -138,8 +139,4 @@ public abstract class Creature extends Entity {
 
     //chuyển đổi Animation
     protected abstract void currentFrameUpdate();
-
-    protected BufferedImage setDeadFrame(){
-        return null;
-    }
 }

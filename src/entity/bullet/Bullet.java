@@ -23,7 +23,7 @@ public class Bullet extends Entity {
     private BufferedImage[] frame;
 
     public Bullet(Handler handler, float startX, float startY, boolean isFromPlayer, int damage, float speed, double angle, BufferedImage[] bulletFrame) {
-        super(handler, startX, startY, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        super(handler, startX - 20, startY - 20, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
         this.isFromPlayer = isFromPlayer;
         vector = new float[2];

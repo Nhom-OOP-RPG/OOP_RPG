@@ -1,7 +1,6 @@
 package entity.creature.enemy.world0;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import entity.creature.enemy.Enemy;
 import entity.creature.enemy.enemyweapon.EnemyMelee;
@@ -73,11 +72,6 @@ public class Gummy extends Enemy {
         }
 
         currentFrame = Asset.gummy[currentFrameID + 2 * changeToDamagedFrame];
-    }
-
-    @Override
-    protected BufferedImage setDeadFrame() {
-        return Asset.dead;
     }
 
     @Override

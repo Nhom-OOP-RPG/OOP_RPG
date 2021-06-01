@@ -7,6 +7,7 @@ import entity.creature.enemy.enemyweapon.EnemyGun;
 import entity.creature.enemy.enemyweapon.EnemyMelee;
 import entity.creature.enemy.enemyweapon.EnemyWeapon;
 import graphic.Asset;
+import graphic.tile.Tile;
 import main.Handler;
 
 public class Boss0 extends Enemy {
@@ -115,4 +116,57 @@ public class Boss0 extends Enemy {
         attackDelay = 100;        
     }
     
+    @Override
+    public void moveX(){
+        int head = (int) (y + bounds.y) / Tile.TILE_HEIGHT;
+        int tail = (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
+        int middle = (head + tail) / 2;
+
+        if (xMove > 0){ //Sang phai
+            int right = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILE_WIDTH;
+            if (!isCollision(right, head)
+              && !isCollision(right, tail)
+              && !isCollision(right, middle)){
+                x += xMove;
+            } else {
+                x = right * Tile.TILE_WIDTH - bounds.x - bounds.width - 1;
+            }
+        } else if (xMove < 0){ //Sang trai
+            int left = (int) (x + xMove + bounds.x) / Tile.TILE_WIDTH;
+            if (!isCollision(left, head)
+              && !isCollision(left, tail)
+              && !isCollision(left, middle)){
+                  x += xMove;
+            } else {
+                x = left * Tile.TILE_WIDTH + Tile.TILE_WIDTH - bounds.x;
+            }
+        }
+    }
+
+    @Override
+    public void moveY(){
+        int left = (int) (x + bounds.x) / Tile.TILE_WIDTH;
+        int right = (int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH;
+        int middle = (left + right) / 2;
+
+        if (yMove > 0){ //Xuong duoi
+            int tail = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
+            if (!isCollision(left, tail) 
+              && !isCollision(right, tail)
+              && !isCollision(middle, tail)){
+                y += yMove;
+            } else {
+                y = tail * Tile.TILE_HEIGHT - bounds.y - bounds.height - 1;
+            }
+        } else if (yMove < 0){ //Len tren
+            int head = (int) (y + yMove + bounds.y) / Tile.TILE_HEIGHT;
+            if (!isCollision(left, head) 
+              && !isCollision(right, head)
+              && !isCollision(middle, head)){
+                y += yMove;
+            } else {
+                y = head * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - bounds.y;
+            }
+        }
+    }
 }

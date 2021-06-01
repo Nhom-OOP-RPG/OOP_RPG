@@ -1,7 +1,6 @@
 package entity.creature.enemy.world1;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import entity.creature.enemy.Enemy;
 import entity.creature.enemy.enemyweapon.EnemyMelee;
@@ -74,11 +73,6 @@ public class Skull extends Enemy{
         }
 
         currentFrame = Asset.skull[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
-    }
-
-    @Override
-    protected BufferedImage setDeadFrame() {
-        return Asset.dead;
     }
 
     @Override

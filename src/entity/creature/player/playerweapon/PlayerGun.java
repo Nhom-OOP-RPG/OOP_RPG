@@ -24,8 +24,8 @@ public class PlayerGun extends PlayerWeapon{
     }
 
     public void shoot() {
-        float startX = handler.getPlayer().getX();
-        float startY = handler.getPlayer().getY();
+        float startX = handler.getPlayer().getCenterX();
+        float startY = handler.getPlayer().getCenterY();
 
         double angle;
         switch (direct){

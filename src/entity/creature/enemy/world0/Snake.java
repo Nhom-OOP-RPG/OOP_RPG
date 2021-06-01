@@ -1,7 +1,6 @@
 package entity.creature.enemy.world0;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import entity.creature.enemy.Enemy;
 import entity.creature.enemy.enemyweapon.EnemyMelee;
@@ -74,11 +73,6 @@ public class Snake extends Enemy {
         }
 
         currentFrame = Asset.snake[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
-    }
-
-    @Override
-    protected BufferedImage setDeadFrame() {
-        return Asset.dead;
     }
 
     @Override
