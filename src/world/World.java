@@ -31,7 +31,7 @@ public class World {
         init();
 
         //set phòng 0, thế giới 0 làm xuất phát
-        currentRoom = worldMap[0][0];
+        currentRoom = worldMap[0][4];
     }
 
     //phương thức chuyển các phòng

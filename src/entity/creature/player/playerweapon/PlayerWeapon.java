@@ -7,12 +7,15 @@ import main.Handler;
 public abstract class PlayerWeapon {
     public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
     Handler handler;
+
     protected int damage;
     protected int direct;
+    protected int energy;
 
     public PlayerWeapon(Handler handler, int damage){
         this.handler = handler;
         this.damage = damage;
+        energy = 1;
     }
 
     public abstract void tick();

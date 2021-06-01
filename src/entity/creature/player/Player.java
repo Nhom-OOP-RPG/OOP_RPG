@@ -198,12 +198,12 @@ public class Player extends Creature {
         }
     }
 
-    public void decreaseEnergy(int e){
-        if (energy + e < 0){
-            energy = 0;
-        } else {
+    public boolean decreaseEnergy(int e){
+        if (energy > e){
             energy -= e;
+            return true;
         }
+        return false;
     }
 
     public void decreaseLives(){

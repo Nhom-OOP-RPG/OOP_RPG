@@ -24,7 +24,8 @@ public class Asset {
     public static BufferedImage[] bulletPlayer, bulletRed, bulletGreen, bulletRock, bulletFlame, bulletBomb;
     public static BufferedImage scratchGrey, scratchGummy, scratchRock, scratchRed, scratchVenom;
     public static BufferedImage[] cutGrey;
-    public static BufferedImage dead, heart;
+    public static BufferedImage heart;
+    public static BufferedImage dead, deadBoss0;
 
     //Item
     public static BufferedImage health, energy;
@@ -244,7 +245,8 @@ public class Asset {
         cutGrey[2] = Utility.loadImage("res/texture/other/cut/cutGrey_down.png");
         cutGrey[3] = Utility.loadImage("res/texture/other/cut/cutGrey_up.png");
 
-        dead = Utility.loadImage("res/texture/other/dead.png");
+        dead = Utility.loadImage("res/texture/other/dead/dead.png");
+        deadBoss0 = Utility.loadImage("res/texture/other/dead/dead_boss0.png");
         heart = Utility.loadImage("res/texture/other/heart.png");
     }
 

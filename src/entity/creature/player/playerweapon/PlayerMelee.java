@@ -18,6 +18,8 @@ public class PlayerMelee extends PlayerWeapon {
     public PlayerMelee(Handler handler, int damage) {
         super(handler, damage);
 
+        energy = 2;
+
         this.range = 60;
         attackBox = new Rectangle();
 
@@ -27,6 +29,10 @@ public class PlayerMelee extends PlayerWeapon {
 
     @Override
     public void damaging() {
+        if (!handler.getPlayer().decreaseEnergy(energy)) {
+            System.out.println("out of energy");
+            return;
+        }
         setDirect();
         getAttackBox();
         for (Enemy e : handler.getWorld().getRoom().getEnemyList()){
@@ -35,7 +41,6 @@ public class PlayerMelee extends PlayerWeapon {
                 System.out.println("hit");
             }
         }
-        handler.getPlayer().decreaseEnergy(2); 
     }
 
     private void getAttackBox(){

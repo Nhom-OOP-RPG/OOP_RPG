@@ -18,6 +18,8 @@ public class PlayerGun extends PlayerWeapon{
     public PlayerGun(Handler handler, int damage) {
         super(handler, damage);
 
+        energy = 4;
+
         numOfBullet = DEFAULT_NUM_BULLET;
         shootedBullet = new ArrayList<Bullet>();
         bulletFrame = Asset.bulletPlayer;
@@ -62,11 +64,15 @@ public class PlayerGun extends PlayerWeapon{
 
     @Override
     public void damaging(){
+        if (!handler.getPlayer().decreaseEnergy(energy)) {
+            System.out.println("out of energy");
+            return;
+        }
+
         setDirect();
         if (numOfBullet > 0){
             shoot();
             numOfBullet--;
-            handler.getPlayer().decreaseEnergy(3);
         } else {
             System.out.println("out of bullet");
         }
