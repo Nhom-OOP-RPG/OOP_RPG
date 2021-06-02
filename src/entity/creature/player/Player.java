@@ -203,7 +203,7 @@ public class Player extends Creature {
     }
 
     public boolean decreaseEnergy(int e){
-        if (energy > e){
+        if (energy >= e){
             energy -= e;
             return true;
         }

@@ -94,7 +94,11 @@ public class PlayerMelee extends PlayerWeapon {
     @Override
     public void render(Graphics graphics) {
         if (isUltimate){
-            graphics.drawImage(attackFrame[frameID], attackBox.x, attackBox.y, attackBox.width, attackBox.height, null);
+            if (direct == NORTH || direct == SOUTH){
+                graphics.drawImage(Asset.cutUltimateVertical, attackBox.x, attackBox.y, attackBox.width, attackBox.height, null);
+            } else {
+                graphics.drawImage(Asset.cutUltimateHorizontal, attackBox.x, attackBox.y, attackBox.width, attackBox.height, null);
+            }
         } else {
             graphics.drawImage(attackFrame[frameID], attackBox.x, attackBox.y, attackBox.width, attackBox.height, null);
         }
@@ -103,7 +107,7 @@ public class PlayerMelee extends PlayerWeapon {
             int x = (int) handler.getPlayer().getX();
             int y = (int) handler.getPlayer().getY();
             float ratio = (float) (this. ultimateDelay - this.ultimateDelayCount) / this.ultimateDelay;
-            graphics.setColor(Color.PINK);
+            graphics.setColor(Color.GREEN.darker());
             graphics.fillRect(x, y - 10, (int) (40 * ratio), 5);
         }
 

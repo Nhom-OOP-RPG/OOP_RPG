@@ -1,7 +1,6 @@
 package entity.creature.player.playerweapon;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -11,14 +10,12 @@ import main.Handler;
 
 public class PlayerGun extends PlayerWeapon{
     private ArrayList<Bullet> shootedBullet;
-    BufferedImage[] bulletFrame;
 
     public PlayerGun(Handler handler, int damage) {
         super(handler, damage);
 
         energy = 4;
         shootedBullet = new ArrayList<Bullet>();
-        bulletFrame = Asset.bulletPlayer;
     }
 
     public void shoot() {
@@ -45,13 +42,13 @@ public class PlayerGun extends PlayerWeapon{
 
         if (isUltimate){
             int d = this.damage + isUltimateToInt * ultimateDamage;
-            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 40, bulletFrame));
-            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 20, bulletFrame));
-            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle, bulletFrame));
-            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle - 20, bulletFrame));
-            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle - 40, bulletFrame));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 40, Asset.bulletPlayer_ultimate));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 20, Asset.bulletPlayer_ultimate));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle, Asset.bulletPlayer_ultimate));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle - 20, Asset.bulletPlayer_ultimate));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle - 40, Asset.bulletPlayer_ultimate));
         } else {
-            shootedBullet.add(new Bullet(handler, startX, startY, true, this.damage, 7f, angle, bulletFrame));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, this.damage, 7f, angle, Asset.bulletPlayer));
         }
     }
 
@@ -95,7 +92,7 @@ public class PlayerGun extends PlayerWeapon{
             int x = (int) handler.getPlayer().getX();
             int y = (int) handler.getPlayer().getY();
             float ratio = (float) (this. ultimateDelay - this.ultimateDelayCount) / this.ultimateDelay;
-            graphics.setColor(Color.GREEN);
+            graphics.setColor(Color.GREEN.darker());
             graphics.fillRect(x, y - 10, (int) (40 * ratio), 5);
         }
     }

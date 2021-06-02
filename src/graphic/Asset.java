@@ -21,10 +21,11 @@ public class Asset {
     public static BufferedImage[][] mushroom, snake, boss0, skull, goblin, boss1;
 
     //Other
-    public static BufferedImage[] bulletPlayer, bulletRed, bulletGreen, bulletRock, bulletFlame, bulletBomb;
+    public static BufferedImage[] bulletPlayer, bulletPlayer_ultimate;
+    public static BufferedImage[] bulletRed, bulletGreen, bulletRock, bulletFlame, bulletBomb;
     public static BufferedImage scratchGrey, scratchGummy, scratchRock, scratchRed, scratchVenom;
     public static BufferedImage[] cutGrey;
-    public static BufferedImage heart;
+    public static BufferedImage heart, cutUltimateVertical, cutUltimateHorizontal;
     public static BufferedImage dead, deadBoss0, deadBoss1;
 
     //Item
@@ -213,6 +214,10 @@ public class Asset {
         bulletPlayer[0] = Utility.loadImage("res/texture/other/bullet/bulletPlayer.png");
         bulletPlayer[1] = Utility.loadImage("res/texture/other/bullet/bulletPlayer_explode.png");
 
+        bulletPlayer_ultimate = new BufferedImage[2];
+        bulletPlayer_ultimate[0] = Utility.loadImage("res/texture/other/bullet/bulletPlayer_ultimate.png");
+        bulletPlayer_ultimate[1] = Utility.loadImage("res/texture/other/bullet/bulletPlayer_ultimate_explode.png");
+
         bulletRed = new BufferedImage[2];
         bulletRed[0] = Utility.loadImage("res/texture/other/bullet/bulletRed.png");
         bulletRed[1] = Utility.loadImage("res/texture/other/bullet/bulletRed_explode.png");
@@ -245,6 +250,9 @@ public class Asset {
         cutGrey[1] = Utility.loadImage("res/texture/other/cut/cutGrey_left.png");
         cutGrey[2] = Utility.loadImage("res/texture/other/cut/cutGrey_down.png");
         cutGrey[3] = Utility.loadImage("res/texture/other/cut/cutGrey_up.png");
+
+        cutUltimateVertical = Utility.loadImage("res/texture/other/cut/cutUltimate_vertical.png");
+        cutUltimateHorizontal = Utility.loadImage("res/texture/other/cut/cutUltimate_horizontal.png");
 
         dead = Utility.loadImage("res/texture/other/dead/dead.png");
         deadBoss0 = Utility.loadImage("res/texture/other/dead/dead_boss0.png");
