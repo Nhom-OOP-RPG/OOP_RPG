@@ -25,10 +25,11 @@ public class Asset {
     public static BufferedImage scratchGrey, scratchGummy, scratchRock, scratchRed, scratchVenom;
     public static BufferedImage[] cutGrey;
     public static BufferedImage heart;
-    public static BufferedImage dead, deadBoss0;
+    public static BufferedImage dead, deadBoss0, deadBoss1;
 
     //Item
     public static BufferedImage health, energy;
+    public static BufferedImage health_effect, energy_effect;
 
     public static void init(){
         initTile();
@@ -247,11 +248,17 @@ public class Asset {
 
         dead = Utility.loadImage("res/texture/other/dead/dead.png");
         deadBoss0 = Utility.loadImage("res/texture/other/dead/dead_boss0.png");
+        deadBoss1 = Utility.loadImage("res/texture/other/dead/dead_boss1.png");
+
         heart = Utility.loadImage("res/texture/other/heart.png");
     }
 
     private static void initItem(){
         health = Utility.loadImage("res/texture/item/health.png");
         energy = Utility.loadImage("res/texture/item/energy.png");
+
+        //effect
+        health_effect = Utility.loadImage("res/texture/other/effect/health_effect.png");
+        energy_effect = Utility.loadImage("res/texture/other/effect/energy_effect.png");
     }
 }

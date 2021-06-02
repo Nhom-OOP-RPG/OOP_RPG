@@ -22,6 +22,7 @@ public class HealthItem extends Item {
     @Override
     protected void affect() {
         handler.getPlayer().increaseHealth(health);
+        handler.getPlayer().setOverlayFrame(Asset.health_effect);
         System.out.println("pick up health");
     }
     

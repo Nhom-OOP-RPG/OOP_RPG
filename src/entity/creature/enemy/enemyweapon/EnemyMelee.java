@@ -27,7 +27,7 @@ public class EnemyMelee extends EnemyWeapon{
     public void damaging(){
         if (user.getDistanceToTarget() <= range){
             handler.getPlayer().decreaseHealth(damage);
-            handler.getPlayer().setScratchedFrame(scratchFrame);
+            handler.getPlayer().setOverlayFrame(scratchFrame);
             System.out.println("enemy attack");
         }
     }

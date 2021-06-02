@@ -35,7 +35,7 @@ public class Player extends Creature {
     private int keyPressedDelayCount;
     private int keyPressedDelay;
 
-    private BufferedImage scratchedFrame;
+    private BufferedImage overlayFrame;
 
     public Player(Handler handler){
         super(handler, DEFAULT_SPAWN_X, DEFAULT_SPAWN_Y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
@@ -67,7 +67,7 @@ public class Player extends Creature {
         currentFrame = Asset.player[0][0];
         currentFrameID = 0;
 
-        scratchedFrame = null;
+        overlayFrame = null;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class Player extends Creature {
     public void render(Graphics graphics) {
         currentFrameUpdate();
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
-        graphics.drawImage(scratchedFrame, (int) x, (int) y, width, height, null);
+        graphics.drawImage(overlayFrame, (int) x, (int) y, width, height, null);
 
         weapons[currentWeapon].render(graphics);
 
@@ -171,7 +171,7 @@ public class Player extends Creature {
             }
             changeToDamagedFrame = 0;
             animationDelayCount = 0;
-            scratchedFrame = null;
+            overlayFrame = null;
         }
 
         currentFrame = Asset.player[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
@@ -212,7 +212,7 @@ public class Player extends Creature {
 
     public void revive(){
         health = maxHealth;
-        scratchedFrame = null;
+        overlayFrame = null;
         currentFrame = Asset.player[0][0];
         currentFrameID = 0;
         isDead = false;
@@ -227,8 +227,8 @@ public class Player extends Creature {
         this.y = y - this.height / 2;
     }
 
-    public void setScratchedFrame(BufferedImage frame){
-        this.scratchedFrame = frame;
+    public void setOverlayFrame(BufferedImage frame){
+        this.overlayFrame = frame;
     }
 
     public Rectangle getBounds(){

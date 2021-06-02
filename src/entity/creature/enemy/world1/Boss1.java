@@ -33,6 +33,7 @@ public class Boss1 extends Enemy {
         if (isDead) return;
         if (health <= 0) {
             setDead();
+            currentFrame = Asset.deadBoss1;
             return;
         }
 

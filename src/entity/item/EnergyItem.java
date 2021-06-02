@@ -22,6 +22,7 @@ public class EnergyItem extends Item {
     @Override
     protected void affect() {
         handler.getPlayer().increaseEnergy(energy);
+        handler.getPlayer().setOverlayFrame(Asset.energy_effect);
         System.out.println("pick up energy");
     }
     

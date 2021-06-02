@@ -23,7 +23,7 @@ public abstract class Item extends Entity {
         frame = null;
         isPickup = false;
 
-        healthRate = 25;
+        healthRate = 50;
         energyRate = healthRate + 25;
     }
 
