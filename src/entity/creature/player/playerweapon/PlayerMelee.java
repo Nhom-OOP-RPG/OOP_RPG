@@ -107,7 +107,9 @@ public class PlayerMelee extends PlayerWeapon {
             int x = (int) handler.getPlayer().getX();
             int y = (int) handler.getPlayer().getY();
             float ratio = (float) (this. ultimateDelay - this.ultimateDelayCount) / this.ultimateDelay;
-            graphics.setColor(Color.GREEN.darker());
+            graphics.setColor(Color.BLACK);
+            graphics.fillRect(x, y - 10, (int) 40, 5);
+            graphics.setColor(Color.YELLOW);
             graphics.fillRect(x, y - 10, (int) (40 * ratio), 5);
         }
 
