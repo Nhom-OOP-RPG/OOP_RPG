@@ -48,7 +48,7 @@ public abstract class PlayerWeapon {
     }
 
     protected void setDirect(){
-        this.direct = handler.getPlayer().attackDirect;
+        this.direct = handler.getPlayer().getCurrentDirect();
     }
 
     public void ultimate(){

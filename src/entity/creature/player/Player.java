@@ -30,7 +30,6 @@ public class Player extends Creature {
 
     private int currentWeapon;
     private PlayerWeapon[] weapons;
-    public int attackDirect;
     private boolean isAttacking;
     private int keyPressedDelayCount;
     private int keyPressedDelay;
@@ -120,22 +119,18 @@ public class Player extends Creature {
         if (handler.getKeyManager().left){
             xMove = -speed;
             currentDirect = WEST;
-            attackDirect = WEST;
         }
         if (handler.getKeyManager().right){
             xMove = speed;
             currentDirect = EAST;
-            attackDirect = EAST;
         }
         if (handler.getKeyManager().up){
             yMove = -speed;
             currentDirect = NORTH;
-            attackDirect = NORTH;
         }
         if (handler.getKeyManager().down){
             yMove = speed;
             currentDirect = SOUTH;
-            attackDirect = SOUTH;
         }
 
         keyPressedDelayCount++;
@@ -246,5 +241,9 @@ public class Player extends Creature {
 
     public Rectangle getBounds(){
         return new Rectangle((int)getCenterX(), (int) getCenterY(),  20, 20);
+    }
+
+    public int getCurrentDirect(){
+        return currentDirect;
     }
 }
