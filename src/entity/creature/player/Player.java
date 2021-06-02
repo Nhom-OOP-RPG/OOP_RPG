@@ -213,6 +213,10 @@ public class Player extends Creature {
         return false;
     }
 
+    public void increaseSpeed(float s){
+        speed += s;
+    }
+
     public void decreaseLives(){
         lives--;
     }

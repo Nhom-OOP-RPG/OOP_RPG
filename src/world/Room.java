@@ -21,7 +21,7 @@ import utility.Utility;
 public class Room {
     public static final int WIDTH = 20, HEIGHT = 15;
     public static final int GUMMY = 1, MUSHROOM = 2, SNAKE = 3, BAT = 4, SKULL = 5, GOBLIN = 6;
-    public static final int HEALTH_ITEM = 1, ENERGY_ITEM = 2, MELEE_DAMAGE_ITEM = 3, GUN_DAMAGE_ITEM = 4;
+    public static final int HEALTH_ITEM = 1, ENERGY_ITEM = 2, MELEE_DAMAGE_ITEM = 3, GUN_DAMAGE_ITEM = 4, SPEED_ITEM = 5;
 
     Handler handler;
     
@@ -204,6 +204,9 @@ public class Room {
                 break;
             case GUN_DAMAGE_ITEM:
                 itemList.add(new GunIncreaseDamage(handler, x, y));
+                break;
+            case SPEED_ITEM:
+                itemList.add(new SpeedItem(handler, x, y));
                 break;
         }
     }
