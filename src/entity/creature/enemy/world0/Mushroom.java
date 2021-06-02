@@ -8,6 +8,7 @@ import graphic.Asset;
 import main.Handler;
 
 public class Mushroom extends Enemy{
+    
     private EnemyGun eGun;
 
     public Mushroom(Handler handler, float x, float y, int level) {

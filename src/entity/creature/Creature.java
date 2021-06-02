@@ -7,7 +7,6 @@ package entity.creature;
 import java.awt.image.BufferedImage;
 
 import entity.Entity;
-import graphic.Asset;
 import graphic.tile.Tile;
 import main.Handler;
 
@@ -22,7 +21,7 @@ public abstract class Creature extends Entity {
     protected float xMove, yMove;
     protected int currentDirect;
 
-    protected final int animationDelay, damagedAnimationDelay;
+    protected final int animationDelay;
     protected int animationDelayCount, changeToDamagedFrame;
     protected int currentFrameID;
     protected BufferedImage currentFrame;
@@ -39,7 +38,6 @@ public abstract class Creature extends Entity {
         currentDirect = 0;
 
         animationDelay = 10;
-        damagedAnimationDelay = 10;
 
         animationDelayCount = 0;
         changeToDamagedFrame = 0;
@@ -117,13 +115,6 @@ public abstract class Creature extends Entity {
     public void decreaseHealth(int n){
         health -= n;
         isDamaged = true;
-    }
-
-    public void setDead(){
-        isDead = true;
-        bounds.setBounds((int) this.x, (int) this.y, 0, 0);
-        currentFrame = Asset.dead;
-        handler.getWorld().getRoom().addNewItem((int) this.x, (int) this.y);
     }
 
     public int getHealth(){

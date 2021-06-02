@@ -15,36 +15,35 @@ public abstract class Item extends Entity {
 
     protected static Random rand = new Random();
 
-    private static int healthRate, energyRate, meleeRate, gunRate, speedRate;
-
+    private static final int HEALTH_RATE  = 25, ENERGY_RATE = 50, MELEE_RATE = 60, GUN_RATE = 70, SPEED_RATE = 75;
 
     public Item(Handler handler, float x, float y) {
         super(handler, x, y, DEFAULT_HEIGHT, DEFAULT_WIDTH);
         frame = null;
-        isPickup = false;
-
-        healthRate = 25;
-        energyRate = healthRate + 25;
-        meleeRate = energyRate + 10;
-        gunRate = meleeRate + 10;
-        speedRate = gunRate + 5;    
+        isPickup = false;  
     }
 
     public static int randItemID(){
         int i = rand.nextInt(100);
 
         //return HEALTH_ITEM;
-        if (i < healthRate){
+        if (i < HEALTH_RATE){
             return HEALTH_ITEM;
-        } else if (i < energyRate){
+        }
+        if (i < ENERGY_RATE){
             return ENERGY_ITEM;
-        } else if (i < meleeRate){
+        }
+        if (i < MELEE_RATE){
             return MELEE_DAMAGE_ITEM;
-        } else if (i < gunRate){
+        }
+        if (i < GUN_RATE){
             return GUN_DAMAGE_ITEM;
-        } else if (i < speedRate){
+        }
+        if (i < SPEED_RATE){
             return SPEED_ITEM;
         }
+
+        System.out.println(i);
         return 0;
     }
 

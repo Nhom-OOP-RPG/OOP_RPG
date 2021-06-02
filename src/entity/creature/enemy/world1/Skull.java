@@ -39,7 +39,6 @@ public class Skull extends Enemy{
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){
             eMelee.damaging();
-            eMelee.tick();
             attackDelayCount = 0;
         }
     }

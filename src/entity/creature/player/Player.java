@@ -244,6 +244,7 @@ public class Player extends Creature {
 
     public void setOverlayFrame(BufferedImage frame){
         this.overlayFrame = frame;
+        this.animationDelayCount = 0;
     }
 
     public Rectangle getBounds(){
