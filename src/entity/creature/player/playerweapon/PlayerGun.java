@@ -2,6 +2,7 @@ package entity.creature.player.playerweapon;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.awt.Color;
 import java.util.ArrayList;
 
 import entity.bullet.Bullet;
@@ -9,9 +10,6 @@ import graphic.Asset;
 import main.Handler;
 
 public class PlayerGun extends PlayerWeapon{
-    public static final int DEFAULT_NUM_BULLET = 1000;
-    
-    private int numOfBullet;
     private ArrayList<Bullet> shootedBullet;
     BufferedImage[] bulletFrame;
 
@@ -19,8 +17,6 @@ public class PlayerGun extends PlayerWeapon{
         super(handler, damage);
 
         energy = 4;
-
-        numOfBullet = DEFAULT_NUM_BULLET;
         shootedBullet = new ArrayList<Bullet>();
         bulletFrame = Asset.bulletPlayer;
     }
@@ -47,7 +43,16 @@ public class PlayerGun extends PlayerWeapon{
                 return;
         }
 
-        shootedBullet.add(new Bullet(handler, startX, startY, true, this.damage, 7f, angle, bulletFrame));
+        if (isUltimate){
+            int d = this.damage + isUltimateToInt * ultimateDamage;
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 40, bulletFrame));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 20, bulletFrame));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle, bulletFrame));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle - 20, bulletFrame));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle - 40, bulletFrame));
+        } else {
+            shootedBullet.add(new Bullet(handler, startX, startY, true, this.damage, 7f, angle, bulletFrame));
+        }
     }
 
     @Override
@@ -60,32 +65,38 @@ public class PlayerGun extends PlayerWeapon{
                 b.tick();
             }
         }
+
+        if (isUltimate){
+            ultimateDelayCount++;
+            if (ultimateDelayCount > ultimateDelay){
+                isUltimate = false;
+                isUltimateToInt = 0;
+            }
+        }
     }
 
     @Override
     public void damaging(){
-        if (!handler.getPlayer().decreaseEnergy(energy)) {
-            System.out.println("out of energy");
+        if (!isUltimate && !handler.getPlayer().decreaseEnergy(energy)) {
             return;
         }
 
         setDirect();
-        if (numOfBullet > 0){
-            shoot();
-            numOfBullet--;
-        } else {
-            System.out.println("out of bullet");
-        }
-    }
-    
-    public void addBullet(int n){
-        numOfBullet += n;
+        shoot();
     }
 
     @Override
     public void render(Graphics graphics) {
         for (Bullet b : shootedBullet){
             b.render(graphics);
+        }
+
+        if (isUltimate){
+            int x = (int) handler.getPlayer().getX();
+            int y = (int) handler.getPlayer().getY();
+            float ratio = (float) (this. ultimateDelay - this.ultimateDelayCount) / this.ultimateDelay;
+            graphics.setColor(Color.GREEN);
+            graphics.fillRect(x, y - 10, (int) (40 * ratio), 5);
         }
     }
 }

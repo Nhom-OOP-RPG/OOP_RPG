@@ -52,7 +52,7 @@ public class Player extends Creature {
         bounds.height = 29;
 
         energy = 100;
-        energyDelay = 100;
+        energyDelay = 70;
         energyDelayCount = 0;
 
         weapons = new PlayerWeapon[2];
@@ -150,6 +150,10 @@ public class Player extends Creature {
                 System.out.println("change weapon");
                 keyPressedDelayCount = 0;
             }
+
+            if (handler.getKeyManager().ultimate){
+                weapons[currentWeapon].ultimate();
+            }
         }
     }
 
@@ -203,6 +207,7 @@ public class Player extends Creature {
             energy -= e;
             return true;
         }
+        System.out.println("out of energy");
         return false;
     }
 
