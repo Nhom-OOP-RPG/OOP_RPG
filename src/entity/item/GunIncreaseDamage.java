@@ -11,19 +11,18 @@ public class GunIncreaseDamage extends Item {
 
         frame = Asset.gunDamage;
 
-
         bounds.x = 10;
         bounds.y = 10;
         bounds.width = 20;
         bounds.height = 20;
         
-        damage = rand.nextInt() % 5 + 5;
+        damage = rand.nextInt(5) + 5;
     }
 
     @Override
     protected void affect() {
         handler.getPlayer().getWeapon(1).increaseDamage(damage);
-        System.out.println("pick up gun increase damage");
+        System.out.println("pick up gun increase damage " + damage);
     }
     
 }

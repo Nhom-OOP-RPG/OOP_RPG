@@ -16,14 +16,14 @@ public class EnergyItem extends Item {
         bounds.width = 10;
         bounds.height = 20;
         
-        energy = rand.nextInt() % 20 + 10;
+        energy = rand.nextInt(20) + 10;
     }
 
     @Override
     protected void affect() {
         handler.getPlayer().increaseEnergy(energy);
         handler.getPlayer().setOverlayFrame(Asset.energy_effect);
-        System.out.println("pick up energy");
+        System.out.println("pick up energy " + energy);
     }
     
 }

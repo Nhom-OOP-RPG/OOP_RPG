@@ -16,14 +16,14 @@ public class HealthItem extends Item {
         bounds.width = 10;
         bounds.height = 20;
         
-        health = rand.nextInt() % 20 + 10;
+        health = rand.nextInt(20) + 10;
     }
 
     @Override
     protected void affect() {
         handler.getPlayer().increaseHealth(health);
         handler.getPlayer().setOverlayFrame(Asset.health_effect);
-        System.out.println("pick up health");
+        System.out.println("pick up health " + health);
     }
     
 }
