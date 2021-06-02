@@ -6,6 +6,7 @@ import java.awt.Font;
 
 import entity.creature.enemy.world0.Boss0;
 import entity.creature.enemy.world1.Boss1;
+import entity.item.Item;
 import entity.creature.enemy.Enemy;
 import graphic.Asset;
 import graphic.tile.Tile;
@@ -44,6 +45,13 @@ public class BossRoom extends Room {
         for (Enemy e : this.enemyList){
                 e.tick();
         }
+
+        for (int i = itemList.size() - 1; i >= 0; i--){
+            itemList.get(i).tick();
+            if (itemList.get(i).isPickup()){
+                itemList.remove(i);
+            }
+        }
     }
 
     @Override
@@ -66,5 +74,8 @@ public class BossRoom extends Room {
             e.render(graphics);
         }
 
+        for (Item i : itemList){
+            i.render(graphics);
+        }
     }
 }

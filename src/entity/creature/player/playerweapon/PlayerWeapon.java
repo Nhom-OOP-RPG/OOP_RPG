@@ -19,7 +19,7 @@ public abstract class PlayerWeapon {
     public PlayerWeapon(Handler handler, int damage){
         this.handler = handler;
         this.damage = damage;
-        this.ultimateDamage = 2 * this.damage;
+        this.ultimateDamage = this.damage;
         this.energy = 1;
 
         isUltimate = false;
