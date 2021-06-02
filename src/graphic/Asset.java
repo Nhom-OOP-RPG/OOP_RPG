@@ -29,7 +29,7 @@ public class Asset {
     public static BufferedImage dead, deadBoss0, deadBoss1;
 
     //Item
-    public static BufferedImage health, energy;
+    public static BufferedImage health, energy, meleeDamage, gunDamage;
     public static BufferedImage health_effect, energy_effect;
 
     public static void init(){
@@ -264,6 +264,8 @@ public class Asset {
     private static void initItem(){
         health = Utility.loadImage("res/texture/item/health.png");
         energy = Utility.loadImage("res/texture/item/energy.png");
+        meleeDamage = Utility.loadImage("res/texture/item/melee.png");
+        gunDamage = Utility.loadImage("res/texture/item/gun.png");
 
         //effect
         health_effect = Utility.loadImage("res/texture/other/effect/health_effect.png");

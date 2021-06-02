@@ -3,11 +3,8 @@ package entity.creature.enemy.world0;
 import java.awt.Graphics;
 
 import entity.creature.enemy.Enemy;
-import entity.creature.enemy.enemyweapon.EnemyGun;
-import entity.creature.enemy.enemyweapon.EnemyMelee;
-import entity.creature.enemy.enemyweapon.EnemyWeapon;
-import entity.item.EnergyItem;
-import entity.item.HealthItem;
+import entity.creature.enemy.enemyweapon.*;
+import entity.item.*;
 import graphic.Asset;
 import graphic.tile.Tile;
 import main.Handler;
@@ -179,5 +176,7 @@ public class Boss0 extends Enemy {
         currentFrame = Asset.deadBoss0;
         handler.getWorld().getRoom().getItemList().add(new HealthItem(handler, this.x + 40, y + 40));
         handler.getWorld().getRoom().getItemList().add(new EnergyItem(handler, this.x, y + 40));
+        handler.getWorld().getRoom().getItemList().add(new MeleeIncreaseDamage(handler, this.x, this.y));
+        handler.getWorld().getRoom().getItemList().add(new GunIncreaseDamage(handler, this.x + 40, this.y));
     }
 }

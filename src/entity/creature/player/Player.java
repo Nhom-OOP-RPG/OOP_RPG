@@ -186,6 +186,13 @@ public class Player extends Creature {
         return lives;
     }
 
+    public PlayerWeapon getWeapon(int index){
+        if (index < weapons.length){
+            return weapons[i];
+        }
+        return null;
+    }
+
     public void increaseHealth(int h){
         if (health + h > maxHealth){
             health = maxHealth;

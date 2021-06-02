@@ -13,9 +13,7 @@ import java.util.Random;
 import entity.creature.enemy.Enemy;
 import entity.creature.enemy.world0.*;
 import entity.creature.enemy.world1.*;
-import entity.item.EnergyItem;
-import entity.item.HealthItem;
-import entity.item.Item;
+import entity.item.*;
 import graphic.tile.Tile;
 import main.Handler;
 import utility.Utility;
@@ -23,7 +21,7 @@ import utility.Utility;
 public class Room {
     public static final int WIDTH = 20, HEIGHT = 15;
     public static final int GUMMY = 1, MUSHROOM = 2, SNAKE = 3, BAT = 4, SKULL = 5, GOBLIN = 6;
-    public static final int HEALTH_ITEM = 1, ENERGY_ITEM = 2;
+    public static final int HEALTH_ITEM = 1, ENERGY_ITEM = 2, MELEE_DAMAGE_ITEM = 3, GUN_DAMAGE_ITEM = 4;
 
     Handler handler;
     
@@ -200,6 +198,12 @@ public class Room {
                 break;
             case ENERGY_ITEM:
                 itemList.add(new EnergyItem(handler, x, y));
+                break;
+            case MELEE_DAMAGE_ITEM:
+                itemList.add(new MeleeIncreaseDamage(handler, x, y));
+                break;
+            case GUN_DAMAGE_ITEM:
+                itemList.add(new GunIncreaseDamage(handler, x, y));
                 break;
         }
     }

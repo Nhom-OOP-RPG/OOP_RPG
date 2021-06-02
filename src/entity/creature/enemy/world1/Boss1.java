@@ -4,8 +4,6 @@ import java.awt.Graphics;
 
 import entity.creature.enemy.Enemy;
 import entity.creature.enemy.enemyweapon.*;
-import entity.item.EnergyItem;
-import entity.item.HealthItem;
 import graphic.Asset;
 import graphic.tile.Tile;
 import main.Handler;
@@ -169,15 +167,6 @@ public class Boss1 extends Enemy {
                 y = head * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - bounds.y;
             }
         }
-    }
-
-    @Override
-    public void setDead(){
-        isDead = true;
-        bounds.setBounds((int) this.x, (int) this.y, 0, 0);
-        currentFrame = Asset.deadBoss0;
-        handler.getWorld().getRoom().getItemList().add(new HealthItem(handler, this.x + 40, y + 40));
-        handler.getWorld().getRoom().getItemList().add(new EnergyItem(handler, this.x, y + 40));
     }
 }
 

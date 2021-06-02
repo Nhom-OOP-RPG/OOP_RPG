@@ -8,14 +8,14 @@ import entity.Entity;
 import main.Handler;
 
 public abstract class Item extends Entity {
-    public static final int HEALTH_ITEM = 1, ENERGY_ITEM = 2;
+    public static final int HEALTH_ITEM = 1, ENERGY_ITEM = 2, MELEE_DAMAGE_ITEM = 3, GUN_DAMAGE_ITEM = 4;
     
     protected BufferedImage frame;
     protected boolean isPickup;
 
     protected static Random rand = new Random();
 
-    private static int healthRate, energyRate;
+    private static int healthRate, energyRate, meleeRate, gunRate;
 
 
     public Item(Handler handler, float x, float y) {
@@ -25,6 +25,8 @@ public abstract class Item extends Entity {
 
         healthRate = 25;
         energyRate = healthRate + 25;
+        meleeRate = energyRate + 10;
+        gunRate = gunRate + 10;
     }
 
     public static int randItemID(){
@@ -35,6 +37,10 @@ public abstract class Item extends Entity {
             return HEALTH_ITEM;
         } else if (i < energyRate){
             return ENERGY_ITEM;
+        } else if (i < meleeRate){
+            return MELEE_DAMAGE_ITEM;
+        } else if (i < gunRate){
+            return GUN_DAMAGE_ITEM;
         }
         return 0;
     }
