@@ -60,6 +60,7 @@ public class ChooseLevelState extends State {
                     handler.setNewGame(2);
                     State.setState(handler.getGame().getGameState());
                 }
+                this.selected = 0;
                 keyPressedDelayCount = 0;
             }
         }

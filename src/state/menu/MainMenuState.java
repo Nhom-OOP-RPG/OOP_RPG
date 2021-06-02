@@ -76,6 +76,7 @@ public class MainMenuState extends State {
                     default:
                         System.exit(0);
                 }
+                this.selected = 0;
                 keyPressedDelayCount = 0;
                 removeContinueOption();
             }

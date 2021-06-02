@@ -59,6 +59,7 @@ public class PlayAgainState extends State {
                     case 1:
                         System.exit(0);
                 }
+                this.selected = 0;
                 keyPressedDelayCount = 0;
             }
         }

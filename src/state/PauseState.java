@@ -57,6 +57,7 @@ public class PauseState extends State {
                         isPlaying = true;
                         State.setState(handler.getGame().getMainMenuState());
                 }
+                this.selected = 0;
                 keyPressedDelayCount = 0;
                 return;
             }

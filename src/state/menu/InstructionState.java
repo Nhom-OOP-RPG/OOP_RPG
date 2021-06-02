@@ -40,7 +40,6 @@ public class InstructionState extends State{
 
     @Override
     public void render(Graphics graphics) {
-
         graphics.setColor(new Color(30, 30, 70));
 		graphics.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		
