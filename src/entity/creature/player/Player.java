@@ -217,6 +217,7 @@ public class Player extends Creature {
 
     public void revive(){
         health = maxHealth;
+        energy = 100;
         overlayFrame = null;
         currentFrame = Asset.player[0][0];
         currentFrameID = 0;

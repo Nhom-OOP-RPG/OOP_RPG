@@ -11,10 +11,10 @@ public class EnergyItem extends Item {
         
         frame = Asset.energy;
 
-        bounds.x = 10;
-        bounds.y = 10;
-        bounds.width = 20;
-        bounds.height = 30;
+        bounds.x = 15;
+        bounds.y = 20;
+        bounds.width = 10;
+        bounds.height = 20;
         
         energy = rand.nextInt() % 20 + 10;
     }
