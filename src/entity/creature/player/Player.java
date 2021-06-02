@@ -223,7 +223,10 @@ public class Player extends Creature {
         overlayFrame = null;
         currentFrame = Asset.player[0][0];
         currentFrameID = 0;
+        changeToDamagedFrame = 0;
         isDead = false;
+        weapons[0].resetWeapon();
+        weapons[1].resetWeapon();
     }
 
     //dùng trong chuyển các phòng

@@ -115,5 +115,14 @@ public class PlayerMelee extends PlayerWeapon {
 
         attackBox = new Rectangle(0, 0, 0, 0);
     }
+
+    @Override
+    public void resetWeapon() {
+        this.isUltimate = false;
+        this.isUltimateToInt = 0;
+        this.ultimateDelayCount = 0;
+        this.attackFrame = Asset.cutGrey;
+        this.frameID = 0;
+    }
     
 }

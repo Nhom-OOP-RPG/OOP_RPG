@@ -58,4 +58,6 @@ public abstract class PlayerWeapon {
             ultimateDelayCount = 0;
         }
     }
+
+    public abstract void resetWeapon();
 }

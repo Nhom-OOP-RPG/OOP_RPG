@@ -30,7 +30,7 @@ public abstract class Item extends Entity {
     }
 
     public static int randItemID(){
-        int i = rand.nextInt() % 100;
+        int i = rand.nextInt(100);
 
         //return HEALTH_ITEM;
         if (i < healthRate){

@@ -98,4 +98,12 @@ public class PlayerGun extends PlayerWeapon{
             graphics.fillRect(x, y - 10, (int) (40 * ratio), 5);
         }
     }
+
+    @Override
+    public void resetWeapon() {
+        this.isUltimate = false;
+        this.isUltimateToInt = 0;
+        this.ultimateDelayCount = 0;
+        this.shootedBullet.clear();
+    }
 }
