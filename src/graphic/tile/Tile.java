@@ -7,7 +7,7 @@ import java.awt.Graphics;
 
 public class Tile {
     //các loại Tile
-    public static Tile[] tiles = new Tile[7];
+    public static Tile[] tiles = new Tile[8];
     public static Tile blankTile = new BlankTile(0);
     public static Tile grassTile = new GrassTile(1);
     public static Tile earthTile = new EarthTile(2);
@@ -15,7 +15,7 @@ public class Tile {
     public static Tile desertfloor = new DesertFloorTile(4);
     public static Tile rock = new RockTile(5);
     public static Tile desertwall = new DesertWallTile(6);
-
+    public static Tile blank = new BlankTile(7);
     //Chiều dài rộng trên màn hình
     public static final int TILE_WIDTH = 40;
     public static final int TILE_HEIGHT = 40; 
