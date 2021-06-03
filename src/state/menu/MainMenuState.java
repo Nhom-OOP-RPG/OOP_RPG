@@ -2,6 +2,10 @@ package state.menu;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+
+import graphic.Asset;
+import graphic.tile.Tile;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -85,12 +89,19 @@ public class MainMenuState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.setColor(new Color(30, 30, 70));
+
 		graphics.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		
 		graphics.setFont(new Font("Araial", Font.BOLD, 25));
+        /*for (int y = 0; y < 15; y++){
+            for (int x = 0; x < 20; x++){
+                Tile tile = new Tile(Asset.main0, 7);
+                tile.render(graphics, x, y);
+            }
+        }*/
+        graphics.drawImage(Asset.mainMenu,0,0, 20*40, 15*40, null);
 		for(int i=0; i<this.optionsMenu.size(); i++) {
-			if(i==this.selected) graphics.setColor(Color.GREEN);
+			if(i==this.selected) graphics.setColor(Color.BLUE);
 			else graphics.setColor(Color.WHITE);
 			graphics.drawString(this.optionsMenu.get(i), Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT /2 + 30*i);
 		}
