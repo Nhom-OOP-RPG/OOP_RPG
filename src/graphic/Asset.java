@@ -31,7 +31,7 @@ public class Asset {
     //Item
     public static BufferedImage health, energy, meleeDamage, gunDamage;
     public static BufferedImage health_effect, energy_effect;
-    public static BufferedImage main0, main1, main2, main3, main4, winGame, mainMenu, mainMenu1, loseGame;
+    public static BufferedImage main0, main1, main2, main3, main4, winGame, mainMenu, mainMenu1, loseGame, youDied;
     public static void init(){
         initTile();
         initPlayer();
@@ -215,6 +215,7 @@ public class Asset {
         mainMenu = Utility.loadImage("res/texture/tile/world2/mainMenu.jpg");
         mainMenu1 = Utility.loadImage("res/texture/tile/world2/mainMenu1.jpg");
         loseGame = Utility.loadImage("res/texture/tile/world2/loseGame.jpg");
+        youDied = Utility.loadImage("res/texture/tile/world2/youDied.jpg");
     }
 
     private static void initOther(){
