@@ -89,14 +89,19 @@ public class MainMenuState extends State {
     @Override
     public void render(Graphics graphics) {
 
-		graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 50));
+		graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 30));
         graphics.drawImage(Asset.mainMenu1,0,0, 20*40, 15*40, null);
 
 		for(int i=0; i<this.optionsMenu.size(); i++) {
-			if(i==this.selected) graphics.setColor(Color.BLUE.darker().darker());
-			else graphics.setColor(Color.GREEN.darker().darker().darker());
-			graphics.drawString(this.optionsMenu.get(i), (Game.WINDOW_WIDTH - this.optionsMenu.get(i).length() * 25)  / 2 - 20, Game.WINDOW_HEIGHT /2 + 60*i - 60);
+			if(i==this.selected) graphics.setColor(Color.BLUE);
+			else graphics.setColor(Color.WHITE);
+			graphics.drawString(this.optionsMenu.get(i), Game.WINDOW_WIDTH  / 2 - 30, Game.WINDOW_HEIGHT /2 + 40*i - 40);
 		}
+
+        graphics.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        graphics.setColor(Color.WHITE);
+        graphics.drawString("@2021", Game.WINDOW_WIDTH  / 2 - 30, Game.WINDOW_HEIGHT - 30);
+        graphics.drawString("Program by 21 Group", Game.WINDOW_WIDTH  / 2 - 80, Game.WINDOW_HEIGHT - 10);
     }
     
     public void addContinueOption(){
