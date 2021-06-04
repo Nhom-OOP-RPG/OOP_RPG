@@ -36,7 +36,7 @@ public class InstructionState extends State{
         graphics.drawImage(Asset.instruction, 0, 0, 20*40, 15*40, null);
 
         graphics.setFont(new Font("Ink Free", Font.BOLD, 20));
-        graphics.setColor(Color.BLUE.darker().darker());
+        graphics.setColor(Color.WHITE);
         graphics.drawString(S8, 0, Game.WINDOW_HEIGHT);  
     }
 }
