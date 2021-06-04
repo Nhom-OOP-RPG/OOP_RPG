@@ -1,6 +1,9 @@
 package state.menu;
 
 import java.awt.Graphics;
+
+import graphic.Asset;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -40,10 +43,15 @@ public class InstructionState extends State{
 
     @Override
     public void render(Graphics graphics) {
-        graphics.setColor(new Color(30, 30, 70));
+
 		graphics.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		
 		graphics.setFont(new Font("Araial", Font.BOLD, 25));
+        for (int i = 0; i < 20; i++) {
+            for(int j = 0; j < 15; j ++){
+                graphics.drawImage(Asset.main1, i * 40, j* 40, 40, 40, null);
+            }
+        }
         graphics.setColor(Color.WHITE);
         graphics.drawString(S8, 0, Game.WINDOW_HEIGHT);
 		
