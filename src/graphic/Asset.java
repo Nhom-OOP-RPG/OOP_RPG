@@ -31,7 +31,7 @@ public class Asset {
     //Item
     public static BufferedImage health, energy, meleeDamage, gunDamage;
     public static BufferedImage health_effect, energy_effect;
-    public static BufferedImage main0, main1, main2, main3, main4, winGame, mainMenu, mainMenu1, loseGame, youDied;
+    public static BufferedImage main0, winGame, mainMenu1, loseGame, instruction;
     public static void init(){
         initTile();
         initPlayer();
@@ -207,15 +207,10 @@ public class Asset {
         desertfloor = Utility.loadImage("res/texture/tile/world1/desertfloor.png");
         desertwall = Utility.loadImage("res/texture/tile/world1/desertwall.png");
         main0 = Utility.loadImage("res/texture/tile/world2/wall.png");
-        main1 = Utility.loadImage("res/texture/tile/world2/grass.png");
-        main2 = Utility.loadImage("res/texture/tile/world2/Wall1.png");
-        main3 = Utility.loadImage("res/texture/tile/world2/Wall2.png");
-        main4 = Utility.loadImage("res/texture/tile/world2/main.jpg");
         winGame = Utility.loadImage("res/texture/tile/world2/youwin.png");
-        mainMenu = Utility.loadImage("res/texture/tile/world2/mainMenu.jpg");
         mainMenu1 = Utility.loadImage("res/texture/tile/world2/mainMenu1.jpg");
         loseGame = Utility.loadImage("res/texture/tile/world2/loseGame.jpg");
-        youDied = Utility.loadImage("res/texture/tile/world2/youDied.jpg");
+        instruction = Utility.loadImage("res/texture/tile/world2/instruction.png");
     }
 
     private static void initOther(){
