@@ -13,7 +13,7 @@ import state.State;
 
 public class InstructionState extends State{
 
-    private static final String S8 = "Press ENTER to back to Main Menu";
+    private static final String S8 = "Press ENTER to back";
     
     public InstructionState(Handler handler) {
         super(handler);
