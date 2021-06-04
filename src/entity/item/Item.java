@@ -43,7 +43,6 @@ public abstract class Item extends Entity {
             return SPEED_ITEM;
         }
 
-        System.out.println(i);
         return 0;
     }
 

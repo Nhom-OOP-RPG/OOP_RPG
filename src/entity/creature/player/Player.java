@@ -148,6 +148,8 @@ public class Player extends Creature {
 
             if (handler.getKeyManager().ultimate){
                 weapons[currentWeapon].ultimate();
+                System.out.println("ultimate");
+                keyPressedDelayCount = 0;
             }
         }
     }
