@@ -19,7 +19,6 @@ public abstract class Entity {
 
     protected Handler handler;
 
-    //
     protected float x, y;
     protected int width, height;
 

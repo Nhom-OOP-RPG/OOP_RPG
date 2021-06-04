@@ -22,9 +22,6 @@ public class Player extends Creature {
     public static final float DEFAULT_SPAWN_X = 9 * 40, DEFAULT_SPAWN_Y = 7 * 40; 
 
     private int lives;
-    //thế giới và phòng hiện tại
-    //các này t tạo ra cho có mà chưa dùng làm gì
-    int atWorld, atRoom = 0;
 
     private int energy, energyDelay, energyDelayCount;
 
