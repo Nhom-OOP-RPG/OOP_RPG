@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import graphic.Asset;
-import graphic.tile.Tile;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -92,6 +91,7 @@ public class MainMenuState extends State {
 
 		graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 50));
         graphics.drawImage(Asset.mainMenu1,0,0, 20*40, 15*40, null);
+
 		for(int i=0; i<this.optionsMenu.size(); i++) {
 			if(i==this.selected) graphics.setColor(Color.BLUE.darker().darker());
 			else graphics.setColor(Color.GREEN.darker().darker().darker());

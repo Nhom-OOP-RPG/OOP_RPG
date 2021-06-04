@@ -2,6 +2,7 @@ package entity.creature.player.playerweapon;
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import entity.bullet.Bullet;
@@ -41,7 +42,7 @@ public class PlayerGun extends PlayerWeapon{
         }
 
         if (isUltimate){
-            int d = this.damage + isUltimateToInt * ultimateDamage;
+            int d = this.damage * (1 + isUltimateToInt * 2);
             shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 40, Asset.bulletPlayer_ultimate));
             shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 20, Asset.bulletPlayer_ultimate));
             shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle, Asset.bulletPlayer_ultimate));
@@ -65,6 +66,11 @@ public class PlayerGun extends PlayerWeapon{
 
         if (isUltimate){
             ultimateDelayCount++;
+
+            if (ultimateDelayCount % 4 == 0){
+                ultimateFrameID = 1 - ultimateFrameID;
+            }
+
             if (ultimateDelayCount > ultimateDelay){
                 isUltimate = false;
                 isUltimateToInt = 0;
@@ -84,6 +90,10 @@ public class PlayerGun extends PlayerWeapon{
 
     @Override
     public void render(Graphics graphics) {
+        graphics.setColor(Color.WHITE);
+        graphics.setFont(new Font("arial", Font.PLAIN, 15));
+        graphics.drawString("Using Gun", 360, 590);
+
         for (Bullet b : shootedBullet){
             b.render(graphics);
         }
@@ -91,7 +101,10 @@ public class PlayerGun extends PlayerWeapon{
         if (isUltimate){
             int x = (int) handler.getPlayer().getX();
             int y = (int) handler.getPlayer().getY();
-            float ratio = (float) (this. ultimateDelay - this.ultimateDelayCount) / this.ultimateDelay;
+
+            graphics.drawImage(Asset.ultimate_effect[ultimateFrameID], x - 10, y, 60, 40, null);
+
+            float ratio = (float) (ultimateDelay - ultimateDelayCount) / ultimateDelay;
             graphics.setColor(Color.BLACK);
             graphics.fillRect(x, y - 10, (int) 40, 5);
             graphics.setColor(Color.YELLOW);
@@ -101,9 +114,9 @@ public class PlayerGun extends PlayerWeapon{
 
     @Override
     public void resetWeapon() {
-        this.isUltimate = false;
-        this.isUltimateToInt = 0;
-        this.ultimateDelayCount = 0;
+        isUltimate = false;
+        isUltimateToInt = 0;
+        ultimateDelayCount = 0;
         this.shootedBullet.clear();
     }
 }

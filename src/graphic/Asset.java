@@ -20,23 +20,33 @@ public class Asset {
     public static BufferedImage[] gummy, bat;
     public static BufferedImage[][] mushroom, snake, boss0, skull, goblin, boss1;
 
+    //Item
+    public static BufferedImage health, energy, speed, meleeDamage, gunDamage;
+
+    //Effect
+    public static BufferedImage health_effect, energy_effect;
+    public static BufferedImage[] ultimate_effect;
+
+    //State
+    public static BufferedImage main0, winGame, mainMenu1, loseGame, instruction, chooseLevel, pauseGame, youDied;
+
     //Other
     public static BufferedImage[] bulletPlayer, bulletPlayer_ultimate;
     public static BufferedImage[] bulletRed, bulletGreen, bulletRock, bulletFlame, bulletBomb;
+
     public static BufferedImage scratchGrey, scratchGummy, scratchRock, scratchRed, scratchVenom;
-    public static BufferedImage[] cutGrey;
-    public static BufferedImage heart, cutUltimateVertical, cutUltimateHorizontal;
+    public static BufferedImage[] cutGrey, cutUltimate;
+
+    public static BufferedImage heart;
+
     public static BufferedImage dead, deadBoss0, deadBoss1;
 
-    //Item
-    public static BufferedImage health, energy, speed, meleeDamage, gunDamage;
-    public static BufferedImage health_effect, energy_effect;
-    public static BufferedImage main0, winGame, mainMenu1, loseGame, instruction, chooseLevel, pauseGame, youDied;
     public static void init(){
         initTile();
         initPlayer();
         initEnemy();
         initItem();
+        initState();
         initOther();
     }
     
@@ -206,17 +216,14 @@ public class Asset {
         rock = Utility.loadImage("res/texture/tile/world1/rock.png");
         desertfloor = Utility.loadImage("res/texture/tile/world1/desertfloor.png");
         desertwall = Utility.loadImage("res/texture/tile/world1/desertwall.png");
-        main0 = Utility.loadImage("res/texture/tile/world2/wall.png");
-        winGame = Utility.loadImage("res/texture/tile/world2/youwin.png");
-        mainMenu1 = Utility.loadImage("res/texture/tile/world2/mainMenu1.jpg");
-        loseGame = Utility.loadImage("res/texture/tile/world2/loseGame.jpg");
-        instruction = Utility.loadImage("res/texture/tile/world2/instruction.png");
-        chooseLevel = Utility.loadImage("res/texture/tile/world2/chooseLevel.jpg");
-        pauseGame = Utility.loadImage("res/texture/tile/world2/pauseGame.jpg");
-        youDied = Utility.loadImage("res/texture/tile/world2/youDied.jpg");
     }
 
     private static void initOther(){
+        //Effect
+        ultimate_effect = new BufferedImage[2];
+        ultimate_effect[0] = Utility.loadImage("res/texture/other/effect/ultimate.png");
+        ultimate_effect[1] = Utility.loadImage("res/texture/other/effect/ultimate_2.png");
+        
         //Bullet
         bulletPlayer = new BufferedImage[2];
         bulletPlayer[0] = Utility.loadImage("res/texture/other/bullet/bulletPlayer.png");
@@ -259,8 +266,11 @@ public class Asset {
         cutGrey[2] = Utility.loadImage("res/texture/other/cut/cutGrey_down.png");
         cutGrey[3] = Utility.loadImage("res/texture/other/cut/cutGrey_up.png");
 
-        cutUltimateVertical = Utility.loadImage("res/texture/other/cut/cutUltimate_vertical.png");
-        cutUltimateHorizontal = Utility.loadImage("res/texture/other/cut/cutUltimate_horizontal.png");
+        cutUltimate = new BufferedImage[4];
+        cutUltimate[0] = Utility.loadImage("res/texture/other/cut/cutUltimate_horizontal.png");
+        cutUltimate[1] = Utility.loadImage("res/texture/other/cut/cutUltimate_horizontal.png");
+        cutUltimate[2] = Utility.loadImage("res/texture/other/cut/cutUltimate_vertical.png");
+        cutUltimate[3] = Utility.loadImage("res/texture/other/cut/cutUltimate_vertical.png");
 
         dead = Utility.loadImage("res/texture/other/dead/dead.png");
         deadBoss0 = Utility.loadImage("res/texture/other/dead/dead_boss0.png");
@@ -279,5 +289,16 @@ public class Asset {
         //effect
         health_effect = Utility.loadImage("res/texture/other/effect/health_effect.png");
         energy_effect = Utility.loadImage("res/texture/other/effect/energy_effect.png");
+    }
+
+    private static void initState(){
+        main0 = Utility.loadImage("res/texture/state/wall.png");
+        winGame = Utility.loadImage("res/texture/state/youwin.png");
+        mainMenu1 = Utility.loadImage("res/texture/state/mainMenu1.jpg");
+        loseGame = Utility.loadImage("res/texture/state/loseGame.jpg");
+        instruction = Utility.loadImage("res/texture/state/instruction.png");
+        chooseLevel = Utility.loadImage("res/texture/state/chooseLevel.jpg");
+        pauseGame = Utility.loadImage("res/texture/state/pauseGame.jpg");
+        youDied = Utility.loadImage("res/texture/state/youDied.jpg");
     }
 }

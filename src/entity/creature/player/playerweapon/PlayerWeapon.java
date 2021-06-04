@@ -8,18 +8,17 @@ public abstract class PlayerWeapon {
     public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
     Handler handler;
 
-    protected int damage, ultimateDamage;
+    protected int damage;
     protected int direct;
     protected int energy;
 
-    protected boolean isUltimate;
-    protected int ultimateEnergy, isUltimateToInt;
-    protected int ultimateDelay, ultimateDelayCount;
+    protected static boolean isUltimate;
+    protected int ultimateEnergy;
+    protected static int isUltimateToInt, ultimateFrameID, ultimateDelay, ultimateDelayCount;
 
     public PlayerWeapon(Handler handler, int damage){
         this.handler = handler;
         this.damage = damage;
-        this.ultimateDamage = this.damage;
         this.energy = 1;
 
         isUltimate = false;
@@ -27,6 +26,7 @@ public abstract class PlayerWeapon {
         ultimateEnergy = 60;
         ultimateDelay = 500;
         ultimateDelayCount = 0;
+        ultimateFrameID = 0;
     }
 
     public abstract void tick();

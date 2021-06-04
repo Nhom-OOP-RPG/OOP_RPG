@@ -2,8 +2,8 @@ package entity.creature.player.playerweapon;
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
 import entity.creature.enemy.Enemy;
 import graphic.Asset;
@@ -14,7 +14,6 @@ public class PlayerMelee extends PlayerWeapon {
     private Rectangle attackBox;
 
     private int frameID;
-    private BufferedImage[] attackFrame;
 
     public PlayerMelee(Handler handler, int damage) {
         super(handler, damage);
@@ -26,7 +25,6 @@ public class PlayerMelee extends PlayerWeapon {
         attackBox = new Rectangle();
 
         frameID = 0;
-        attackFrame = Asset.cutGrey;
     }
 
     @Override
@@ -38,7 +36,7 @@ public class PlayerMelee extends PlayerWeapon {
         getAttackBox();
         for (Enemy e : handler.getWorld().getRoom().getEnemyList()){
             if (e.getMovingBounds().intersects(attackBox)){
-                e.decreaseHealth(this.damage + isUltimateToInt * ultimateDamage);
+                e.decreaseHealth(this.damage * (1 + isUltimateToInt * 2));
                 System.out.println("hit");
             }
         }
@@ -84,6 +82,11 @@ public class PlayerMelee extends PlayerWeapon {
     public void tick() {
         if (isUltimate){
             ultimateDelayCount++;
+
+            if (ultimateDelayCount % 4 == 0){
+                ultimateFrameID = 1 - ultimateFrameID;
+            }
+
             if (ultimateDelayCount > ultimateDelay){
                 isUltimate = false;
                 isUltimateToInt = 0;
@@ -93,24 +96,26 @@ public class PlayerMelee extends PlayerWeapon {
 
     @Override
     public void render(Graphics graphics) {
-        if (isUltimate){
-            if (direct == NORTH || direct == SOUTH){
-                graphics.drawImage(Asset.cutUltimateVertical, attackBox.x, attackBox.y, attackBox.width, attackBox.height, null);
-            } else {
-                graphics.drawImage(Asset.cutUltimateHorizontal, attackBox.x, attackBox.y, attackBox.width, attackBox.height, null);
-            }
-        } else {
-            graphics.drawImage(attackFrame[frameID], attackBox.x, attackBox.y, attackBox.width, attackBox.height, null);
-        }
+        graphics.setColor(Color.WHITE);
+        graphics.setFont(new Font("arial", Font.PLAIN, 15));
+        graphics.drawString("Using Melee", 360, 590);
 
         if (isUltimate){
+            graphics.drawImage(Asset.cutUltimate[frameID], attackBox.x, attackBox.y, attackBox.width, attackBox.height, null);
+
             int x = (int) handler.getPlayer().getX();
             int y = (int) handler.getPlayer().getY();
-            float ratio = (float) (this. ultimateDelay - this.ultimateDelayCount) / this.ultimateDelay;
+
+            graphics.drawImage(Asset.ultimate_effect[ultimateFrameID], x - 10, y, 60, 40, null);
+
+            float ratio = (float) (ultimateDelay - ultimateDelayCount) / ultimateDelay;
             graphics.setColor(Color.BLACK);
             graphics.fillRect(x, y - 10, (int) 40, 5);
             graphics.setColor(Color.YELLOW);
             graphics.fillRect(x, y - 10, (int) (40 * ratio), 5);
+
+        } else {
+            graphics.drawImage(Asset.cutGrey[frameID], attackBox.x, attackBox.y, attackBox.width, attackBox.height, null);
         }
 
         attackBox = new Rectangle(0, 0, 0, 0);
@@ -118,10 +123,9 @@ public class PlayerMelee extends PlayerWeapon {
 
     @Override
     public void resetWeapon() {
-        this.isUltimate = false;
-        this.isUltimateToInt = 0;
-        this.ultimateDelayCount = 0;
-        this.attackFrame = Asset.cutGrey;
+        isUltimate = false;
+        isUltimateToInt = 0;
+        ultimateDelayCount = 0;
         this.frameID = 0;
     }
     

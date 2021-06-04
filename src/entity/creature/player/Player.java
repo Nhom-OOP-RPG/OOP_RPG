@@ -28,7 +28,7 @@ public class Player extends Creature {
 
     private int energy, energyDelay, energyDelayCount;
 
-    private int currentWeapon;
+    private int currentWeaponID;
     private PlayerWeapon[] weapons;
     private boolean isAttacking;
     private int keyPressedDelayCount;
@@ -58,7 +58,7 @@ public class Player extends Creature {
         weapons[0] = new PlayerMelee(handler, 15);
         weapons[1] = new PlayerGun(handler, 10);
 
-        currentWeapon = 0;
+        currentWeaponID = 0;
         isAttacking = false;
         keyPressedDelayCount = 20;
         keyPressedDelay = 20;
@@ -84,26 +84,27 @@ public class Player extends Creature {
 
         getInput();
         move();
+        currentFrameUpdate();
 
         if (isAttacking){
-            weapons[currentWeapon].damaging();
+            weapons[currentWeaponID].damaging();
             isAttacking = false;
             System.out.println("attack");
         }
-        weapons[currentWeapon].tick();
+        weapons[currentWeaponID].tick();
     }
 
     @Override
     public void render(Graphics graphics) {
-        currentFrameUpdate();
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
         graphics.drawImage(overlayFrame, (int) x, (int) y, width, height, null);
 
-        weapons[currentWeapon].render(graphics);
+        weapons[currentWeaponID].render(graphics);
 
         for (int i = 0; i < lives; i++){
             graphics.drawImage(Asset.heart, Tile.TILE_WIDTH * 2/3 * i, 0, Tile.TILE_WIDTH * 2/3, Tile.TILE_HEIGHT * 2/3, null);
         }
+
         graphics.setColor(Color.RED);
 		graphics.setFont(new Font("arial", Font.PLAIN, 15));
 		graphics.drawString(getHealth()+ " / 100", Tile.TILE_WIDTH * 2/3 + 60, 20);
@@ -141,13 +142,13 @@ public class Player extends Creature {
             }
 
             if (handler.getKeyManager().changeWeapon){
-                currentWeapon = 1 - currentWeapon;
+                currentWeaponID = 1 - currentWeaponID;
                 System.out.println("change weapon");
                 keyPressedDelayCount = 0;
             }
 
             if (handler.getKeyManager().ultimate){
-                weapons[currentWeapon].ultimate();
+                weapons[currentWeaponID].ultimate();
                 System.out.println("ultimate");
                 keyPressedDelayCount = 0;
             }
