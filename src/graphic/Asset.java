@@ -208,7 +208,7 @@ public class Asset {
         desertwall = Utility.loadImage("res/texture/tile/world1/desertwall.png");
         main0 = Utility.loadImage("res/texture/tile/world2/wall.png");
         winGame = Utility.loadImage("res/texture/tile/world2/youwin.png");
-        mainMenu1 = Utility.loadImage("res/texture/tile/world2/mainMenu1.jpg");
+        mainMenu1 = Utility.loadImage("res/texture/tile/world2/mainMenu1.png");
         loseGame = Utility.loadImage("res/texture/tile/world2/loseGame.jpg");
         instruction = Utility.loadImage("res/texture/tile/world2/instruction.png");
         chooseLevel = Utility.loadImage("res/texture/tile/world2/chooseLevel.jpg");
