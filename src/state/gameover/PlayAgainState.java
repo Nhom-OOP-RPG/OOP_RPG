@@ -72,7 +72,7 @@ public class PlayAgainState extends State {
 		for (int i=0; i<this.options.length; i++) {
 			if (i == this.selected) graphics.setColor(Color.BLUE);
 			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.options[i], (Game.WINDOW_WIDTH - options[i].length()*20) / 2 , Game.WINDOW_HEIGHT / 2 + 30*(i));
+			graphics.drawString(this.options[i], (Game.WINDOW_WIDTH - options[i].length()*20) / 2 , Game.WINDOW_HEIGHT / 2 + 40*(i));
 		}        
     }
 }
