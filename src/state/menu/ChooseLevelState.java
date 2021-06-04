@@ -1,6 +1,9 @@
 package state.menu;
 
 import java.awt.Graphics;
+
+import graphic.Asset;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -69,14 +72,12 @@ public class ChooseLevelState extends State {
     @Override
     public void render(Graphics graphics) {
 
-        graphics.setColor(new Color(30, 30, 70));
-		graphics.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
-		
-		graphics.setFont(new Font("Araial", Font.BOLD, 25));
+		graphics.drawImage(Asset.chooseLevel, 0, 0, 20*40, 15*40, null);
+		graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 50));
 		for(int i=0;i<this.optionsLevel.length;i++) {
-			if(i==this.selected) graphics.setColor(Color.GREEN);
-			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.optionsLevel[i], Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT /2 + 30*i);
+			if(i==this.selected) graphics.setColor(Color.BLUE);
+			else graphics.setColor(Color.BLACK);
+			graphics.drawString(this.optionsLevel[i], (Game.WINDOW_WIDTH - optionsLevel[i].length() * 25)  / 2 - 20, Game.WINDOW_HEIGHT /2 + 60*i);
 		}
         
     }

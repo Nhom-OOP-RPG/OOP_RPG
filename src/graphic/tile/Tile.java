@@ -15,7 +15,6 @@ public class Tile {
     public static Tile desertfloor = new DesertFloorTile(4);
     public static Tile rock = new RockTile(5);
     public static Tile desertwall = new DesertWallTile(6);
-
     //Chiều dài rộng trên màn hình
     public static final int TILE_WIDTH = 40;
     public static final int TILE_HEIGHT = 40; 

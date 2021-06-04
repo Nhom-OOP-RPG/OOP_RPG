@@ -2,6 +2,10 @@ package state.menu;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+
+import graphic.Asset;
+import graphic.tile.Tile;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -12,10 +16,10 @@ import state.State;
 public class MainMenuState extends State {
     private ArrayList<String> optionsMenu;
 
-    private static final String START_GAME = "Start New Game";
-	private static final String QUIT_GAME = "Quit Game";
-    private static final String INSTRUCTION = "Instructions";
-    private static final String CONTINUEGAME = "Continue Game";
+    private static final String START_GAME = "START";
+	private static final String QUIT_GAME = "QUIT";
+    private static final String INSTRUCTION = "HELP";
+    private static final String CONTINUEGAME = "CONTINUE";
 
     private int selected;
 
@@ -85,14 +89,13 @@ public class MainMenuState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.setColor(new Color(30, 30, 70));
-		graphics.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
-		
-		graphics.setFont(new Font("Araial", Font.BOLD, 25));
+
+		graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 50));
+        graphics.drawImage(Asset.mainMenu1,0,0, 20*40, 15*40, null);
 		for(int i=0; i<this.optionsMenu.size(); i++) {
-			if(i==this.selected) graphics.setColor(Color.GREEN);
-			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.optionsMenu.get(i), Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT /2 + 30*i);
+			if(i==this.selected) graphics.setColor(Color.BLUE.darker().darker());
+			else graphics.setColor(Color.GREEN.darker().darker().darker());
+			graphics.drawString(this.optionsMenu.get(i), (Game.WINDOW_WIDTH - this.optionsMenu.get(i).length() * 25)  / 2 - 20, Game.WINDOW_HEIGHT /2 + 60*i - 60);
 		}
     }
     

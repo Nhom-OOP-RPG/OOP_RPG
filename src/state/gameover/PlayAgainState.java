@@ -2,6 +2,7 @@ package state.gameover;
 
 import java.awt.Graphics;
 
+import graphic.Asset;
 import main.Game;
 import main.Handler;
 import state.State;
@@ -14,7 +15,6 @@ public class PlayAgainState extends State {
     private String[] options;
     private final int numOfOptions;
 
-    private final String QUESTION = "Do you want to play again?";
 	private static final String YES = "YES";
     private static final String NO = "NO";
 
@@ -67,20 +67,12 @@ public class PlayAgainState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.setColor(new Color(30, 30, 70));
-		graphics.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
-		
-		graphics.setFont(new Font("Araial", Font.BOLD, 25));
-
-        graphics.setColor(Color.ORANGE);
-        graphics.drawString(this.QUESTION, Game.WINDOW_WIDTH / 2 - 180, Game.WINDOW_HEIGHT / 2 - 30);
-
+        graphics.drawImage(Asset.loseGame,0,0, 20*40, 15*40, null);
+		graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 30));
 		for (int i=0; i<this.options.length; i++) {
-			if (i == this.selected) graphics.setColor(Color.GREEN);
+			if (i == this.selected) graphics.setColor(Color.BLUE);
 			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.options[i], Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT / 2 + 30*(i));
-		}
-        
+			graphics.drawString(this.options[i], (Game.WINDOW_WIDTH - options[i].length()*20) / 2 , Game.WINDOW_HEIGHT / 2 + 40*(i));
+		}        
     }
-    
 }
