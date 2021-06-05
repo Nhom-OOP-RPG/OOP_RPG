@@ -209,7 +209,7 @@ public class Asset {
         main0 = Utility.loadImage("res/texture/tile/world2/wall.png");
         winGame = Utility.loadImage("res/texture/tile/world2/youwin.png");
         mainMenu1 = Utility.loadImage("res/texture/tile/world2/mainMenu1.png");
-        loseGame = Utility.loadImage("res/texture/tile/world2/loseGame.jpg");
+        loseGame = Utility.loadImage("res/texture/tile/world2/loseGame.png");
         instruction = Utility.loadImage("res/texture/tile/world2/instruction.png");
         chooseLevel = Utility.loadImage("res/texture/tile/world2/chooseLevel.jpg");
         pauseGame = Utility.loadImage("res/texture/tile/world2/pauseGame.jpg");
