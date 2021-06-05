@@ -39,7 +39,7 @@ public class LoseGameState extends State {
             graphics.drawImage(Asset.youDied,0,0, 20*40, 15*40, null);
             graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 30));
             graphics.setColor(Color.YELLOW);
-            graphics.drawString("You have " + handler.getPlayer().getLives() + " lives left!", Game.WINDOW_WIDTH / 2 - 200, Game.WINDOW_HEIGHT /2 + 30);
+            graphics.drawString("You have " + handler.getPlayer().getLives() + " lives left!", Game.WINDOW_WIDTH / 2 - 200, Game.WINDOW_HEIGHT /2 - 30);
         }
         else{
             handler.getGame().getPlayAgainState().render(graphics);
