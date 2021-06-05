@@ -16,8 +16,8 @@ public class ChooseLevelState extends State {
     private String[] optionsLevel;
 
     private static final String DEMO = "Demo";
-    private static final String EASY = "Easy";
-	private static final String HARD = "Hard";
+    private static final String EASY = "EASY";
+	private static final String HARD = "HARD";
 
 	private int selected;
 
@@ -76,7 +76,7 @@ public class ChooseLevelState extends State {
 		graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 50));
 		for(int i=0;i<this.optionsLevel.length;i++) {
 			if(i==this.selected) graphics.setColor(Color.BLUE);
-			else graphics.setColor(Color.BLACK);
+			else graphics.setColor(Color.WHITE);
 			graphics.drawString(this.optionsLevel[i], (Game.WINDOW_WIDTH - optionsLevel[i].length() * 25)  / 2 - 20, Game.WINDOW_HEIGHT /2 + 60*i);
 		}
         
