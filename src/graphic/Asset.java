@@ -27,9 +27,10 @@ public class Asset {
     public static BufferedImage health_effect, energy_effect;
     public static BufferedImage[] ultimate_effect;
 
-    //State
-    public static BufferedImage main0, winGame, mainMenu1, logo, loseGame, instruction, chooseLevel, pauseGame, youDied;
+    //theme
+    public static BufferedImage winGame, logo, loseGame, instruction, youDied;
     public static BufferedImage[] backGround;
+    public static BufferedImage[] selected;
 
     //Other
     public static BufferedImage[] bulletPlayer, bulletPlayer_ultimate;
@@ -47,7 +48,7 @@ public class Asset {
         initPlayer();
         initEnemy();
         initItem();
-        initState();
+        initTheme();
         initOther();
     }
     
@@ -292,19 +293,20 @@ public class Asset {
         energy_effect = Utility.loadImage("res/texture/other/effect/energy_effect.png");
     }
 
-    private static void initState(){
-        main0 = Utility.loadImage("res/texture/state/wall.png");
-        winGame = Utility.loadImage("res/texture/state/youwin.png");
-        mainMenu1 = Utility.loadImage("res/texture/state/mainmenu/mainmenu.png");
-        logo = Utility.loadImage("res/texture/state/mainmenu/logo.png");
-        loseGame = Utility.loadImage("res/texture/state/loseGame.jpg");
-        instruction = Utility.loadImage("res/texture/state/instruction.png");
-        chooseLevel = Utility.loadImage("res/texture/state/chooseLevel.png");
-        pauseGame = Utility.loadImage("res/texture/state/pauseGame.jpg");
-        youDied = Utility.loadImage("res/texture/state/youDied.jpg");
+    private static void initTheme(){
+        winGame = Utility.loadImage("res/texture/theme/youwin.png");        
+        loseGame = Utility.loadImage("res/texture/theme/loseGame.jpg");
+        instruction = Utility.loadImage("res/texture/theme/instruction.png");
+        youDied = Utility.loadImage("res/texture/theme/youDied.jpg");
+
+        logo = Utility.loadImage("res/texture/theme/logo.png");
 
         backGround = new BufferedImage[2];
-        backGround[0] = Utility.loadImage("res/texture/state/theme0/background.png");
-        backGround[1] = Utility.loadImage("res/texture/state/theme1/background.png");
+        backGround[0] = Utility.loadImage("res/texture/theme/theme0/background.png");
+        backGround[1] = Utility.loadImage("res/texture/theme/theme1/background.png");
+        
+        selected = new BufferedImage[2];
+        selected[0] = Utility.loadImage("res/texture/theme/selected/selected_left.png");
+        selected[1] = Utility.loadImage("res/texture/theme/selected/selected_right.png");
     }
 }

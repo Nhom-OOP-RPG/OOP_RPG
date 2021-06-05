@@ -95,7 +95,7 @@ public class MainMenuState extends State {
         graphics.setFont(primaryFont);
 		for(int i = 0; i < this.options.size(); i++) {
 			if(i == this.selected){
-                drawCenterString(graphics, 290 + 60*i, this.options.get(i), primaryFont, fontColor);
+                drawSelectedString(graphics, 290 + 60*i, this.options.get(i));
             } else {
                 drawCenterString(graphics, 290 + 60*i, this.options.get(i), primaryFont, Color.WHITE);
             }

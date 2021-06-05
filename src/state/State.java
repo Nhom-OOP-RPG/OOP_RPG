@@ -61,14 +61,6 @@ public abstract class State {
         currentState = state;
     }
 
-    protected void drawCenterString(Graphics graphics, int y, String str, Font font, Color color){
-        graphics.setFont(font);
-        graphics.setColor(color);
-        FontMetrics fm = graphics.getFontMetrics();
-        int x = (800 - fm.stringWidth(str)) / 2;
-        graphics.drawString(str, x, y);
-    }
-
     protected void drawMenuBox(Graphics graphics){
         graphics.setColor(Color.BLACK);
         graphics.fill3DRect(130, 150, 540, 350, true);
@@ -83,5 +75,26 @@ public abstract class State {
         graphics.fill3DRect(170, 115, 460, 60, true);
 
         drawCenterString(graphics, 160, tilte, primaryFont, Color.WHITE);
+    }
+
+    protected void drawCenterString(Graphics graphics, int y, String str, Font font, Color color){
+        graphics.setFont(font);
+        graphics.setColor(color);
+        FontMetrics fm = graphics.getFontMetrics();
+        int x = (800 - fm.stringWidth(str)) / 2;
+        graphics.drawString(str, x, y);
+    }
+
+    protected void drawSelectedString(Graphics graphics, int y, String str){
+        graphics.setFont(primaryFont);
+        graphics.setColor(fontColor);
+
+        FontMetrics fm = graphics.getFontMetrics();
+        int width = fm.stringWidth(str);
+        int x = (800 - width) / 2;
+
+        graphics.drawString(str, x, y);
+        graphics.drawImage(Asset.selected[0], x - 50, y - 35, 30, 30, null);
+        graphics.drawImage(Asset.selected[1], x + width + 20, y - 35, 30, 30, null);
     }
 }
