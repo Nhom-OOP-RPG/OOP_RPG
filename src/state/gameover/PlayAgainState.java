@@ -71,7 +71,7 @@ public class PlayAgainState extends State {
 		graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 30));
 		for (int i=0; i<this.options.length; i++) {
 			if (i == this.selected) graphics.setColor(Color.GREEN.darker());
-			else graphics.setColor(Color.YELLOW.darker());
+			else graphics.setColor(Color.YELLOW);
 			graphics.drawString(this.options[i], (Game.WINDOW_WIDTH - options[i].length()*20) / 2 , Game.WINDOW_HEIGHT / 2 + 40*(i));
 		}        
     }
