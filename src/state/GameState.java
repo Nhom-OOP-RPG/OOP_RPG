@@ -15,7 +15,17 @@ public class GameState extends State{
 
     @Override
     public void tick() {
+        keyPressedDelayCount++;
+        if (keyPressedDelayCount >= keyPressedDelay && handler.getKeyManager().escape){
+            State.setState(handler.getGame().getPauseState());
+        }
+
         handler.getPlayer().tick();
+        if (handler.getPlayer().getIsDead()){
+            handler.getPlayer().decreaseLives();
+            State.setState(handler.getGame().getLoseGameState());
+        }
+        
         handler.getWorld().changeRoom(handler.getPlayer());
         handler.getWorld().getRoom().tick();
     }
@@ -25,5 +35,4 @@ public class GameState extends State{
         handler.getWorld().getRoom().render(graphics);
         handler.getPlayer().render(graphics);
     }
-
 }

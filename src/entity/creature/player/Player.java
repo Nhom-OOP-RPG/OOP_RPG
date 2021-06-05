@@ -3,44 +3,65 @@
 package entity.creature.player;
 
 import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.image.BufferedImage;
 
 import entity.creature.Creature;
+import entity.creature.player.playerweapon.PlayerGun;
 import entity.creature.player.playerweapon.PlayerMelee;
 import entity.creature.player.playerweapon.PlayerWeapon;
 import graphic.Asset;
+import graphic.tile.Tile;
 import main.Handler;
 
+import java.awt.Rectangle;
 
 public class Player extends Creature {
     //vị trí spawn đầu màn chơi (tính theo pixel)
-    public static final float DEFAULT_SPAWN_X = 40, DEFAULT_SPAWN_Y = 40; 
+    public static final float DEFAULT_SPAWN_X = 9 * 40, DEFAULT_SPAWN_Y = 7 * 40; 
 
+    private int lives;
     //thế giới và phòng hiện tại
     //các này t tạo ra cho có mà chưa dùng làm gì
     int atWorld, atRoom = 0;
 
-    private PlayerWeapon melee;
+    private int currentWeapon;
+    private PlayerWeapon[] weapons;
     public int attackDirect;
     private boolean isAttacking;
-    private int attackDelayCount;
-    private int attackDelay;
+    private int keyPressedDelayCount;
+    private int keyPressedDelay;
+
+    private BufferedImage scratchedFrame;
 
     public Player(Handler handler){
-        super(handler, DEFAULT_SPAWN_X, DEFAULT_SPAWN_Y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+        super(handler, DEFAULT_SPAWN_X, DEFAULT_SPAWN_Y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
+
+        maxHealth = 100;
+        health = 100;
+        speed = 2.5f;
+
+        lives = 3;
 
         bounds.x = 10;
         bounds.y = 10;
         bounds.width = 20;
-        bounds.height = 30;
+        bounds.height = 29;
 
-        melee = new PlayerMelee(handler, 20);
+        weapons = new PlayerWeapon[2];
+        weapons[0] = new PlayerMelee(handler, 15);
+        weapons[1] = new PlayerGun(handler, 10);
+
+        currentWeapon = 0;
         isAttacking = false;
-        attackDelayCount = 0;
-        attackDelay = 20;
+        keyPressedDelayCount = 20;
+        keyPressedDelay = 20;
 
-        animationDelay = 0;
         currentFrame = Asset.player[0][0];
         currentFrameID = 0;
+
+        scratchedFrame = null;
     }
 
     @Override
@@ -49,21 +70,32 @@ public class Player extends Creature {
             isDead = true;
             System.out.println("player dead");
         }
+
         getInput();
         move();
-        attackDelayCount++;
-        if (isAttacking && attackDelayCount >= attackDelay){
-            melee.damaging();
+
+        if (isAttacking){
+            weapons[currentWeapon].damaging();
             isAttacking = false;
             System.out.println("attack");
-            attackDelayCount = 0;
         }
+        weapons[currentWeapon].tick();
     }
 
     @Override
     public void render(Graphics graphics) {
         currentFrameUpdate();
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
+        graphics.drawImage(scratchedFrame, (int) x, (int) y, width, height, null);
+
+        weapons[currentWeapon].render(graphics);
+
+        for (int i = 0; i < lives; i++){
+            graphics.drawImage(Asset.heart, Tile.TILE_WIDTH * 2/3 * i, 0, Tile.TILE_WIDTH * 2/3, Tile.TILE_HEIGHT * 2/3, null);
+        }
+        graphics.setColor(Color.WHITE);
+		graphics.setFont(new Font("arial", Font.PLAIN, 15));
+		graphics.drawString(getHealth()+" / 100", Tile.TILE_WIDTH * 2/3 + 60, 20);
     }
     
     //Kiểm tra input để cập nhật xMove, yMove
@@ -71,68 +103,97 @@ public class Player extends Creature {
         xMove = 0;
         yMove = 0;
 
-        if (handler.getKeyManager().up){
-            yMove = -speed;
-            attackDirect = 3;
-        }
-        if (handler.getKeyManager().down){
-            yMove = speed;
-            attackDirect = 2;
-        }
         if (handler.getKeyManager().left){
             xMove = -speed;
-            attackDirect = 1;
+            currentDirect = WEST;
+            attackDirect = WEST;
         }
         if (handler.getKeyManager().right){
             xMove = speed;
-            attackDirect = 0;
+            currentDirect = EAST;
+            attackDirect = EAST;
         }
-        if (handler.getKeyManager().attack){
-            isAttacking = true;
+        if (handler.getKeyManager().up){
+            yMove = -speed;
+            currentDirect = NORTH;
+            attackDirect = NORTH;
+        }
+        if (handler.getKeyManager().down){
+            yMove = speed;
+            currentDirect = SOUTH;
+            attackDirect = SOUTH;
+        }
+
+        keyPressedDelayCount++;
+        if (keyPressedDelayCount >= keyPressedDelay){
+            if (handler.getKeyManager().attack){
+                isAttacking = true;
+                keyPressedDelayCount = 0;
+            }
+
+            if (handler.getKeyManager().changeWeapon){
+                currentWeapon = 1 - currentWeapon;
+                System.out.println("change weapon");
+                keyPressedDelayCount = 0;
+            }
         }
     }
 
+    int i = 0;
     //Chuyển đổi animation của người chơi
     @Override
     protected void currentFrameUpdate() {
-        if (xMove == 0 && yMove == 0){
-            return;
+        animationDelayCount++;
+        
+        if (isDamaged){
+            changeToDamagedFrame = 1;
+            isDamaged = false;
+            animationDelayCount = 0;
         }
-        animationDelay++;
-        if (animationDelay >= 10){
-            animationDelay = 0;
-            currentFrameID = 1 - currentFrameID;
+
+        if (animationDelayCount >= animationDelay){
+            if (xMove != 0 || yMove != 0){
+                currentFrameID = 1 - currentFrameID;
+            }
+            changeToDamagedFrame = 0;
+            animationDelayCount = 0;
+            scratchedFrame = null;
         }
-        if (yMove > 0){
-            currentFrame = Asset.player[0][currentFrameID];
-        } else if (yMove < 0){
-            currentFrame = Asset.player[1][currentFrameID];
-        } else if (xMove < 0){
-            currentFrame = Asset.player[2][currentFrameID];
-        } else if (xMove > 0){
-            currentFrame = Asset.player[3][currentFrameID];
-        }
+
+        currentFrame = Asset.player[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
     }
     
     //Get Set
-
-    //get set Center để lấy tọa độ trung tâm của người chơi
-    //dùng trong chuyển các phòng
-    public float getCenterX(){
-        return x + width / 2;
+    public int getLives(){
+        return lives;
     }
 
-    public void setCenterX(float x){
+    public void decreaseLives(){
+        lives--;
+    }
+
+    public void revive(){
+        health = maxHealth;
+        scratchedFrame = null;
+        currentFrame = Asset.player[0][0];
+        currentFrameID = 0;
+        isDead = false;
+    }
+
+    //dùng trong chuyển các phòng
+    public void setChangeRoomX(float x){
         this.x = x - this.width / 2;
     }
 
-    public float getCenterY(){
-        return y + height / 2;
-    }
-
-    public void setCenterY(float y){
+    public void setChangeRoomY(float y){
         this.y = y - this.height / 2;
     }
 
-    
+    public void setScratchedFrame(BufferedImage frame){
+        this.scratchedFrame = frame;
+    }
+
+    public Rectangle getBounds(){
+        return new Rectangle((int)getCenterX(), (int) getCenterY(),  20, 20);
+    }
 }

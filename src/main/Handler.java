@@ -16,9 +16,11 @@ public class Handler{
 
     public Handler(Game game){
         this.game = game;
+    }
 
+    public void setNewGame(int level){
         player = new Player(this);
-        world = new World(this);
+        world = new World(this, level);
     }
 
     //Get Set

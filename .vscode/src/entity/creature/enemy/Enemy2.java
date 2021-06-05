@@ -3,29 +3,30 @@
 package entity.creature.enemy;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
-import entity.creature.enemy.enemyweapon.EnemyMelee;
+import entity.creature.enemy.enemyweapon.EnemyGun;
 import entity.creature.enemy.enemyweapon.EnemyWeapon;
 import entity.creature.player.Player;
 import graphic.Asset;
 import main.Handler;
 
-public class Enemy1 extends Enemy {
+public class Enemy2 extends Enemy {
     //Mã tên quái
     //private static final int ID = 0;
 
     //như ở Player, chưa dùng đến
     int atRoom = 0;
 
-    private EnemyWeapon eMelee;
+    private EnemyWeapon eGun;
 
-    public Enemy1(Handler handler, float x, float y, Player target) {
+    public Enemy2(Handler handler, float x, float y, Player target) {
         super(handler, x, y, target);
         health = 50;
 
-        eMelee = new EnemyMelee(handler, 5, 50, this);
+        eGun = new EnemyGun(handler, 10, 4000f, this);
         attackDelayCount = 0;
-        attackDelay = 70;
+        attackDelay = 100;
 
         currentFrame = Asset.enemy1[0];
     }
@@ -33,24 +34,26 @@ public class Enemy1 extends Enemy {
     @Override
     public void tick(){
         if (health <= 0) {
-            isDead = true;
-            System.out.println("enemy dead");
+            setDead();
+            return;
         }
+        currentFrameUpdate();
 
-        updateTarget(40f, 400f);
+        updateTarget(200f, 1000f);
         move();
 
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){
-            eMelee.damaging();
+            eGun.damaging();
             attackDelayCount = 0;
         }
+        eGun.tick();
     }
 
     @Override
     public void render(Graphics graphics) {
-        currentFrameUpdate();
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
+        eGun.render(graphics);
     }
     
     //Chuyển đổi Animation
@@ -62,5 +65,10 @@ public class Enemy1 extends Enemy {
             currentFrameID = 1 - currentFrameID;
             currentFrame = Asset.enemy1[currentFrameID];
         }
+    }
+
+    @Override
+    protected BufferedImage setDeadFrame() {
+        return Asset.dead;
     }
 }
