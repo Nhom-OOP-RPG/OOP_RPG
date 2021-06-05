@@ -18,8 +18,7 @@ public class WinGameState extends State {
     @Override
     public void tick() {
         if (handler.getKeyManager().enter) {
-            isPlaying = false;
-            State.setState(handler.getGame().getMainMenuState());
+            State.setState(handler.getGame().getPlayAgainState());
             keyPressedDelayCount = 0;
         }
     }
@@ -27,9 +26,7 @@ public class WinGameState extends State {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(Asset.winGame,0,0, 20*40, 15*40, null);
-        graphics.setFont(new Font("Ink Free", Font.BOLD, 30));
-        graphics.setColor(Color.WHITE);
-        graphics.drawString("Press Enter to continue...", Game.WINDOW_WIDTH / 2 - 150, Game.WINDOW_HEIGHT);
+        drawCenterString(graphics, Game.WINDOW_HEIGHT, "Press Enter to continue...", new Font("Ink Free", Font.BOLD, 30), Color.WHITE);
     }
     
 }
