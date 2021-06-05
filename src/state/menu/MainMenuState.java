@@ -89,19 +89,25 @@ public class MainMenuState extends State {
     @Override
     public void render(Graphics graphics) {
 
-		graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 30));
-        graphics.drawImage(Asset.mainMenu1,0,0, 20*40, 15*40, null);
+		
+        graphics.drawImage(Asset.mainMenu1, 0, 0, 800, 600, null);
+        graphics.setColor(Color.BLACK);
+        graphics.fill3DRect(130, 150, 540, 350, true);
+        graphics.setColor(new Color(12, 54, 15));
+        graphics.fill3DRect(140, 160, 520, 330, true);
+        graphics.drawImage(Asset.logo, 152, 60, 124*4, 46*4, null);
 
+        graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 50));
 		for(int i=0; i<this.optionsMenu.size(); i++) {
-			if(i==this.selected) graphics.setColor(Color.BLUE);
+			if(i==this.selected) graphics.setColor(new Color(255, 213, 0));
 			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.optionsMenu.get(i), Game.WINDOW_WIDTH  / 2 - 30, Game.WINDOW_HEIGHT /2 + 40*i - 40);
+			graphics.drawString(this.optionsMenu.get(i), Game.WINDOW_WIDTH  / 2 - 80, Game.WINDOW_HEIGHT / 2 + 60*i);
 		}
 
-        graphics.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        graphics.setColor(Color.WHITE);
-        graphics.drawString("@2021", Game.WINDOW_WIDTH  / 2 - 30, Game.WINDOW_HEIGHT - 30);
-        graphics.drawString("Program by 21 Group", Game.WINDOW_WIDTH  / 2 - 80, Game.WINDOW_HEIGHT - 10);
+        graphics.setFont(new Font("Arial", Font.BOLD, 20));
+        graphics.setColor(new Color(12, 54, 15));
+        graphics.drawString("©2021", Game.WINDOW_WIDTH  / 2 - 30, Game.WINDOW_HEIGHT - 30);
+        graphics.drawString("Made by Group 21", Game.WINDOW_WIDTH  / 2 - 80, Game.WINDOW_HEIGHT - 10);
     }
     
     public void addContinueOption(){

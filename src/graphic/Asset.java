@@ -28,7 +28,7 @@ public class Asset {
     public static BufferedImage[] ultimate_effect;
 
     //State
-    public static BufferedImage main0, winGame, mainMenu1, loseGame, instruction, chooseLevel, pauseGame, youDied;
+    public static BufferedImage main0, winGame, mainMenu1, logo, loseGame, instruction, chooseLevel, pauseGame, youDied;
 
     //Other
     public static BufferedImage[] bulletPlayer, bulletPlayer_ultimate;
@@ -294,7 +294,8 @@ public class Asset {
     private static void initState(){
         main0 = Utility.loadImage("res/texture/state/wall.png");
         winGame = Utility.loadImage("res/texture/state/youwin.png");
-        mainMenu1 = Utility.loadImage("res/texture/state/mainMenu1.jpg");
+        mainMenu1 = Utility.loadImage("res/texture/state/mainmenu/mainmenu.png");
+        logo = Utility.loadImage("res/texture/state/mainmenu/logo.png");
         loseGame = Utility.loadImage("res/texture/state/loseGame.jpg");
         instruction = Utility.loadImage("res/texture/state/instruction.png");
         chooseLevel = Utility.loadImage("res/texture/state/chooseLevel.jpg");
