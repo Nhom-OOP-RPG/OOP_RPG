@@ -14,7 +14,7 @@ public abstract class PlayerWeapon {
 
     protected static boolean isUltimate;
     protected int ultimateEnergy;
-    protected static int isUltimateToInt, ultimateFrameID, ultimateDelay, ultimateDelayCount;
+    protected static int isUltimateToInt, ultimateEffectFrameID, ultimateDelay, ultimateDelayCount;
 
     public PlayerWeapon(Handler handler, int damage){
         this.handler = handler;
@@ -26,7 +26,7 @@ public abstract class PlayerWeapon {
         ultimateEnergy = 60;
         ultimateDelay = 500;
         ultimateDelayCount = 0;
-        ultimateFrameID = 0;
+        ultimateEffectFrameID = 0;
     }
 
     public abstract void tick();

@@ -84,7 +84,7 @@ public class PlayerMelee extends PlayerWeapon {
             ultimateDelayCount++;
 
             if (ultimateDelayCount % 4 == 0){
-                ultimateFrameID = 1 - ultimateFrameID;
+                ultimateEffectFrameID = 1 - ultimateEffectFrameID;
             }
 
             if (ultimateDelayCount > ultimateDelay){
@@ -106,7 +106,7 @@ public class PlayerMelee extends PlayerWeapon {
             int x = (int) handler.getPlayer().getX();
             int y = (int) handler.getPlayer().getY();
 
-            graphics.drawImage(Asset.ultimate_effect[ultimateFrameID], x - 10, y, 60, 40, null);
+            graphics.drawImage(Asset.ultimate_effect[ultimateEffectFrameID], x - 10, y, 60, 40, null);
 
             float ratio = (float) (ultimateDelay - ultimateDelayCount) / ultimateDelay;
             graphics.setColor(Color.BLACK);
