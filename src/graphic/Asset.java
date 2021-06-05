@@ -29,6 +29,7 @@ public class Asset {
 
     //State
     public static BufferedImage main0, winGame, mainMenu1, logo, loseGame, instruction, chooseLevel, pauseGame, youDied;
+    public static BufferedImage[] backGround;
 
     //Other
     public static BufferedImage[] bulletPlayer, bulletPlayer_ultimate;
@@ -298,8 +299,12 @@ public class Asset {
         logo = Utility.loadImage("res/texture/state/mainmenu/logo.png");
         loseGame = Utility.loadImage("res/texture/state/loseGame.jpg");
         instruction = Utility.loadImage("res/texture/state/instruction.png");
-        chooseLevel = Utility.loadImage("res/texture/state/chooseLevel.jpg");
+        chooseLevel = Utility.loadImage("res/texture/state/chooseLevel.png");
         pauseGame = Utility.loadImage("res/texture/state/pauseGame.jpg");
         youDied = Utility.loadImage("res/texture/state/youDied.jpg");
+
+        backGround = new BufferedImage[2];
+        backGround[0] = Utility.loadImage("res/texture/state/theme0/background.png");
+        backGround[1] = Utility.loadImage("res/texture/state/theme1/background.png");
     }
 }

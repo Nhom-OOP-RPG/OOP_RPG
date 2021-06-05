@@ -13,7 +13,7 @@ import main.Handler;
 import state.State;
 
 public class MainMenuState extends State {
-    private ArrayList<String> optionsMenu;
+    private ArrayList<String> options;
 
     private static final String START_GAME = "START";
 	private static final String QUIT_GAME = "QUIT";
@@ -25,10 +25,10 @@ public class MainMenuState extends State {
     public MainMenuState(Handler handler) {
         super(handler);
         
-        this.optionsMenu = new ArrayList<String>();
-        this.optionsMenu.add(START_GAME);
-        this.optionsMenu.add(INSTRUCTION);
-        this.optionsMenu.add(QUIT_GAME);
+        this.options = new ArrayList<String>();
+        this.options.add(START_GAME);
+        this.options.add(INSTRUCTION);
+        this.options.add(QUIT_GAME);
 
         this.selected = 0;
     }
@@ -48,7 +48,7 @@ public class MainMenuState extends State {
             }
     
             if (handler.getKeyManager().down) {
-                if (selected < optionsMenu.size() - 1){
+                if (selected < options.size() - 1){
                     selected++;
                 }
                 keyPressedDelayCount = 0;
@@ -88,35 +88,32 @@ public class MainMenuState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Asset.mainMenu1, 0, 0, 800, 600, null);
-        graphics.setColor(Color.BLACK);
-        graphics.fill3DRect(130, 150, 540, 350, true);
-        graphics.setColor(new Color(12, 54, 15));
-        graphics.fill3DRect(140, 160, 520, 330, true);
+        graphics.drawImage(backGround[themeID], 0, 0, 800, 600, null);
+        drawMenuBox(graphics);
         graphics.drawImage(Asset.logo, 152, 60, 496, 184, null);
 
-        graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 50));
-		for(int i=0; i<this.optionsMenu.size(); i++) {
-			if(i==this.selected) graphics.setColor(new Color(255, 213, 0));
-			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.optionsMenu.get(i), Game.WINDOW_WIDTH  / 2 - 85, Game.WINDOW_HEIGHT / 2 + 60*i);
+        graphics.setFont(primaryFont);
+		for(int i = 0; i < this.options.size(); i++) {
+			if(i == this.selected){
+                drawCenterString(graphics, 290 + 60*i, this.options.get(i), primaryFont, fontColor);
+            } else {
+                drawCenterString(graphics, 290 + 60*i, this.options.get(i), primaryFont, Color.WHITE);
+            }
 		}
 
-        graphics.setFont(new Font("Arial", Font.BOLD, 20));
-        graphics.setColor(new Color(12, 54, 15));
-        graphics.drawString("©2021", Game.WINDOW_WIDTH  / 2 - 30, Game.WINDOW_HEIGHT - 30);
-        graphics.drawString("Made by Group 21", Game.WINDOW_WIDTH  / 2 - 80, Game.WINDOW_HEIGHT - 10);
+        drawCenterString(graphics, Game.WINDOW_HEIGHT - 30, "©2021", new Font("Arial", Font.BOLD, 20), primaryColor[themeID]);
+        drawCenterString(graphics, Game.WINDOW_HEIGHT - 10, "Made by Group 21", new Font("Arial", Font.BOLD, 20), primaryColor[themeID]);
     }
     
     public void addContinueOption(){
-        if (optionsMenu.size() == 3 && isPlaying){
-            optionsMenu.add(0, CONTINUEGAME);
+        if (options.size() == 3 && isPlaying){
+            options.add(0, CONTINUEGAME);
         }
     }
 
     public void removeContinueOption(){
-        if (optionsMenu.size() == 4){
-            optionsMenu.remove(0);
+        if (options.size() == 4){
+            options.remove(0);
         }
     }
 }

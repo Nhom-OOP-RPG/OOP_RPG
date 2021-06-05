@@ -1,21 +1,16 @@
 package state.menu;
 
 import java.awt.Graphics;
-
-import graphic.Asset;
-
 import java.awt.Color;
-import java.awt.Font;
 
-import main.Game;
 import main.Handler;
 import state.State;
 
 public class ChooseLevelState extends State {
 
-    private String[] optionsLevel;
+    private String[] options;
 
-    private static final String DEMO = "Demo";
+    private static final String DEMO = "DEMO";
     private static final String EASY = "EASY";
 	private static final String HARD = "HARD";
 
@@ -24,7 +19,7 @@ public class ChooseLevelState extends State {
     public ChooseLevelState(Handler handler) {
         super(handler);
         this.selected = 0;
-        this.optionsLevel = new String[] {DEMO, EASY, HARD};
+        this.options = new String[] {DEMO, EASY, HARD};
     }
 
     @Override
@@ -63,6 +58,7 @@ public class ChooseLevelState extends State {
                     handler.setNewGame(2);
                     State.setState(handler.getGame().getGameState());
                 }
+                themeID = 0;
                 this.selected = 0;
                 keyPressedDelayCount = 0;
             }
@@ -71,13 +67,17 @@ public class ChooseLevelState extends State {
 
     @Override
     public void render(Graphics graphics) {
-
-		graphics.drawImage(Asset.chooseLevel, 0, 0, 20*40, 15*40, null);
-		graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 50));
-		for(int i=0;i<this.optionsLevel.length;i++) {
-			if(i==this.selected) graphics.setColor(Color.BLUE);
-			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.optionsLevel[i], (Game.WINDOW_WIDTH - optionsLevel[i].length() * 25)  / 2 - 20, Game.WINDOW_HEIGHT /2 + 60*i);
+        graphics.drawImage(backGround[themeID], 0, 0, 20*40, 15*40, null);
+        drawMenuBox(graphics);
+        drawTitleBox(graphics, "Choose Level");
+		
+		graphics.setFont(primaryFont);
+		for(int i=0;i<this.options.length;i++) {
+			if(i==this.selected){
+                drawCenterString(graphics, 290 + 60*i, this.options[i], primaryFont, fontColor);
+            } else {
+                drawCenterString(graphics, 290 + 60*i, this.options[i], primaryFont, Color.WHITE);
+            }
 		}
         
     }

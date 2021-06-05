@@ -1,15 +1,11 @@
 package state.gameover;
 
 import java.awt.Graphics;
+import java.awt.Color;
 
-import graphic.Asset;
-import main.Game;
 import main.Handler;
 import state.State;
 import state.menu.MainMenuState;
-
-import java.awt.Color;
-import java.awt.Font;
 
 public class PlayAgainState extends State {
     private String[] options;
@@ -67,12 +63,17 @@ public class PlayAgainState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Asset.loseGame,0,0, 20*40, 15*40, null);
-		graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 30));
-		for (int i=0; i<this.options.length; i++) {
-			if (i == this.selected) graphics.setColor(Color.GREEN.darker());
-			else graphics.setColor(Color.YELLOW.darker());
-			graphics.drawString(this.options[i], (Game.WINDOW_WIDTH - options[i].length()*20) / 2 , Game.WINDOW_HEIGHT / 2 + 40*(i));
-		}        
+        graphics.drawImage(backGround[themeID], 0, 0, 20*40, 15*40, null);
+        drawMenuBox(graphics);
+        drawTitleBox(graphics, "Play Again?");
+		
+		graphics.setFont(primaryFont);
+		for (int i = 0; i < this.options.length; i++){
+			if (i == this.selected){
+                drawCenterString(graphics, 290 + 60*i, this.options[i], primaryFont, fontColor);
+            } else {
+                drawCenterString(graphics, 290 + 60*i, this.options[i], primaryFont, Color.WHITE);
+            }
+		}       
     }
 }
