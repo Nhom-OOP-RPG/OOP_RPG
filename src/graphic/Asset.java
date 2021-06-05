@@ -31,7 +31,9 @@ public class Asset {
     //Item
     public static BufferedImage health, energy, speed, meleeDamage, gunDamage;
     public static BufferedImage health_effect, energy_effect;
-    public static BufferedImage main0, winGame, mainMenu1, loseGame, instruction, chooseLevel, pauseGame, youDied;
+    // State
+    public static BufferedImage winGame, mainMenu1, loseGame, instruction, chooseLevel, pauseGame, youDied;
+    
     public static void init(){
         initTile();
         initPlayer();
@@ -275,7 +277,6 @@ public class Asset {
         energy_effect = Utility.loadImage("res/texture/other/effect/energy_effect.png");
     }
     private static void initState(){
-        main0 = Utility.loadImage("res/texture/state/world2/wall.png");
         winGame = Utility.loadImage("res/texture/state/world2/youwin.png");
         mainMenu1 = Utility.loadImage("res/texture/state/world2/mainMenu1.png");
         loseGame = Utility.loadImage("res/texture/state/world2/loseGame.png");
