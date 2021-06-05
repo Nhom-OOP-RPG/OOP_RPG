@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import graphic.Asset;
-import graphic.tile.Tile;
 
 import java.awt.Color;
 import java.awt.Font;
