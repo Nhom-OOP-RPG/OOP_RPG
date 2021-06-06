@@ -39,7 +39,14 @@ public class LoseGameState extends State {
             graphics.drawImage(Asset.youDied,0,0, 20*40, 15*40, null);
             graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 30));
             graphics.setColor(Color.YELLOW);
-            graphics.drawString("You have " + handler.getPlayer().getLives() + " lives left!", Game.WINDOW_WIDTH / 2 - 200, Game.WINDOW_HEIGHT /2 + 30);
+            graphics.drawString("You have ", Game.WINDOW_WIDTH / 2 - 200, Game.WINDOW_HEIGHT /2 + 20);
+            graphics.setColor(Color.YELLOW);
+            if(handler.getPlayer().getLives() > 1)
+            graphics.drawString(" lives left!", Game.WINDOW_WIDTH / 2 + 10, Game.WINDOW_HEIGHT /2 + 20);
+            else graphics.drawString(" live left!", Game.WINDOW_WIDTH / 2  + 10, Game.WINDOW_HEIGHT /2 + 20);
+            graphics.setColor(Color.RED);
+            graphics.drawString(""+ handler.getPlayer().getLives(), Game.WINDOW_WIDTH / 2 - 20, Game.WINDOW_HEIGHT /2 + 20);
+            drawCenterString(graphics, Game.WINDOW_HEIGHT - 200, "Press Enter to continue", new Font("Copperplate Gothic Bold", Font.BOLD, 30), Color.GREEN);
         }
         else{
             handler.getGame().getPlayAgainState().render(graphics);
