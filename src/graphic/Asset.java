@@ -295,7 +295,7 @@ public class Asset {
 
     private static void initTheme(){
         winGame = Utility.loadImage("res/texture/theme/youwin.png");        
-        loseGame = Utility.loadImage("res/texture/theme/loseGame.jpg");
+        loseGame = Utility.loadImage("res/texture/theme/loseGame.png");
         instruction = Utility.loadImage("res/texture/theme/instruction.png");
         youDied = Utility.loadImage("res/texture/theme/youDied.jpg");
 
