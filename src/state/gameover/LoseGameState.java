@@ -3,10 +3,6 @@ package state.gameover;
 import java.awt.Graphics;
 
 import graphic.Asset;
-
-import java.awt.Color;
-import java.awt.Font;
-
 import main.Game;
 import main.Handler;
 import state.State;
@@ -19,22 +15,24 @@ public class LoseGameState extends State {
 
     @Override
     public void tick() {
-        if (handler.getPlayer().getLives() > 0) {
-            if (handler.getKeyManager().enter) {
+        if (handler.getKeyManager().enter){
+            if (handler.getPlayer().getLives() > 0){
                 handler.getPlayer().revive();
                 handler.getPlayer().setX(360f);
                 handler.getPlayer().setY(280f);
                 handler.getWorld().setCurrentRoom(0);
                 State.setState(handler.getGame().getGameState());
-                return;
+            } else {
+                State.setState(handler.getGame().getPlayAgainState());
             }
-                keyPressedDelayCount = 0;
+
+            keyPressedDelayCount = 0;
         }
-        else handler.getGame().getPlayAgainState().tick();
     }
 
     @Override
     public void render(Graphics graphics) {
+<<<<<<< HEAD
         if(handler.getPlayer().getLives() > 0){
             graphics.drawImage(Asset.youDied,0,0, 20*40, 15*40, null);
             graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 30));
@@ -51,6 +49,10 @@ public class LoseGameState extends State {
         else{
             handler.getGame().getPlayAgainState().render(graphics);
         }
+=======
+        graphics.drawImage(Asset.youDied,0,0, 20*40, 15*40, null);
+        drawCenterString(graphics, Game.WINDOW_HEIGHT /2 + 30, "You have " + handler.getPlayer().getLives() + " lives left!", primaryFont, fontColor);
+>>>>>>> 9c1b05af631e4b0e174ff841a37df591a791b14e
     }
 }
 
