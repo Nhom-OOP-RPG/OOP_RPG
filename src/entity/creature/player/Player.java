@@ -20,7 +20,7 @@ import java.awt.Rectangle;
 public class Player extends Creature {
     //vị trí spawn đầu màn chơi (tính theo pixel)
     public static final float DEFAULT_SPAWN_X = 9 * 40, DEFAULT_SPAWN_Y = 7 * 40; 
-
+    
     private int lives;
 
     private int energy, energyDelay, energyDelayCount;
@@ -215,6 +215,10 @@ public class Player extends Creature {
 
     public void increaseSpeed(float s){
         speed += s;
+    }
+
+    public void setSpeed(float s){
+        speed = s;
     }
 
     public void decreaseLives(){
