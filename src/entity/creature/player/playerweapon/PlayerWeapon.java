@@ -14,7 +14,7 @@ public abstract class PlayerWeapon {
 
     protected static boolean isUltimate;
     protected int ultimateEnergy;
-    protected static int isUltimateToInt, ultimateEffectFrameID, ultimateDelay, ultimateDelayCount;
+    protected static int ultimateEffectFrameID, ultimateDelay, ultimateDelayCount;
 
     public PlayerWeapon(Handler handler, int damage){
         this.handler = handler;
@@ -22,7 +22,6 @@ public abstract class PlayerWeapon {
         this.energy = 1;
 
         isUltimate = false;
-        isUltimateToInt = 0;
         ultimateEnergy = 60;
         ultimateDelay = 500;
         ultimateDelayCount = 0;
@@ -54,7 +53,6 @@ public abstract class PlayerWeapon {
     public void ultimate(){
         if (!isUltimate && handler.getPlayer().decreaseEnergy(ultimateEnergy)){
             isUltimate = true;
-            isUltimateToInt = 1;
             ultimateDelayCount = 0;
         }
     }

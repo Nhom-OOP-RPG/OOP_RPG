@@ -15,7 +15,7 @@ public abstract class Item extends Entity {
 
     protected static Random rand = new Random();
 
-    private static final int HEALTH_RATE  = 25, ENERGY_RATE = 50, MELEE_RATE = 60, GUN_RATE = 70, SPEED_RATE = 75;
+    private static final int HEALTH_RATE  = 25, ENERGY_RATE = 50, MELEE_RATE = 60, GUN_RATE = 70, SPEED_RATE = 73;
 
     public Item(Handler handler, float x, float y) {
         super(handler, x, y, DEFAULT_HEIGHT, DEFAULT_WIDTH);

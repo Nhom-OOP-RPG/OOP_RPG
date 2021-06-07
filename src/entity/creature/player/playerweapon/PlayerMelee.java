@@ -10,7 +10,7 @@ import graphic.Asset;
 import main.Handler;
 
 public class PlayerMelee extends PlayerWeapon {
-    private int range, ultimateRange;
+    private int range, isUltimateToInt, ultimateRange;
     private Rectangle attackBox;
 
     private int frameID;
@@ -21,6 +21,7 @@ public class PlayerMelee extends PlayerWeapon {
         energy = 2;
 
         this.range = 60;
+        this.isUltimateToInt = 0;
         this.ultimateRange = 300;
         attackBox = new Rectangle();
 
@@ -127,6 +128,15 @@ public class PlayerMelee extends PlayerWeapon {
         isUltimateToInt = 0;
         ultimateDelayCount = 0;
         this.frameID = 0;
+    }
+
+    @Override
+    public void ultimate() {
+        if (!isUltimate && handler.getPlayer().decreaseEnergy(ultimateEnergy)){
+            isUltimate = true;
+            isUltimateToInt = 1;
+            ultimateDelayCount = 0;
+        }
     }
     
 }

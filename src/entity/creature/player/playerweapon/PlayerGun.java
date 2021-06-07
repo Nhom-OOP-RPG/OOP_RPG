@@ -42,14 +42,14 @@ public class PlayerGun extends PlayerWeapon{
         }
 
         if (isUltimate){
-            int d = this.damage * (1 + isUltimateToInt * 2);
+            int d = this.damage * 2;
             shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 40, Asset.bulletPlayer_ultimate));
             shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 20, Asset.bulletPlayer_ultimate));
             shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle, Asset.bulletPlayer_ultimate));
             shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle - 20, Asset.bulletPlayer_ultimate));
             shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle - 40, Asset.bulletPlayer_ultimate));
         } else {
-            shootedBullet.add(new Bullet(handler, startX, startY, true, this.damage, 7f, angle, Asset.bulletPlayer));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, this.damage, 5f, angle, Asset.bulletPlayer));
         }
     }
 
@@ -73,7 +73,6 @@ public class PlayerGun extends PlayerWeapon{
 
             if (ultimateDelayCount > ultimateDelay){
                 isUltimate = false;
-                isUltimateToInt = 0;
             }
         }
     }
@@ -115,7 +114,6 @@ public class PlayerGun extends PlayerWeapon{
     @Override
     public void resetWeapon() {
         isUltimate = false;
-        isUltimateToInt = 0;
         ultimateDelayCount = 0;
         this.shootedBullet.clear();
     }
