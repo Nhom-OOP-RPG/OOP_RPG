@@ -1,5 +1,7 @@
 package state.gameover;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import graphic.Asset;
@@ -15,25 +17,38 @@ public class LoseGameState extends State {
 
     @Override
     public void tick() {
-        if (handler.getKeyManager().enter){
-            if (handler.getPlayer().getLives() > 0){
+        if (handler.getPlayer().getLives() > 0){
+            if (handler.getKeyManager().enter){
                 handler.getPlayer().revive();
                 handler.getPlayer().setX(360f);
                 handler.getPlayer().setY(280f);
                 handler.getWorld().setCurrentRoom(0);
                 State.setState(handler.getGame().getGameState());
-            } else {
-                State.setState(handler.getGame().getPlayAgainState());
-            }
-
-            keyPressedDelayCount = 0;
+            } 
+        }else {
+            State.setState(handler.getGame().getPlayAgainState());
         }
+        keyPressedDelayCount = 0;
     }
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Asset.youDied,0,0, 20*40, 15*40, null);
-        drawCenterString(graphics, Game.WINDOW_HEIGHT /2 + 30, "You have " + handler.getPlayer().getLives() + " lives left!", primaryFont, fontColor);
+        if(handler.getPlayer().getLives() > 0){
+            graphics.drawImage(Asset.youDied,0,0, 20*40, 15*40, null);
+            graphics.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 40));
+            graphics.setColor(Color.YELLOW);
+            graphics.drawString("You have ", Game.WINDOW_WIDTH / 2 - 240, Game.WINDOW_HEIGHT /2 - 20);
+            graphics.setColor(Color.YELLOW);
+            if(handler.getPlayer().getLives() > 1)
+            graphics.drawString(" lives left!", Game.WINDOW_WIDTH / 2 + 40, Game.WINDOW_HEIGHT /2 - 20);
+            else graphics.drawString(" live left!", Game.WINDOW_WIDTH / 2  + 40, Game.WINDOW_HEIGHT /2 - 20);
+            graphics.setColor(Color.RED);
+            graphics.drawString(""+ handler.getPlayer().getLives(), Game.WINDOW_WIDTH / 2 , Game.WINDOW_HEIGHT /2 - 20);
+            drawCenterString(graphics, Game.WINDOW_HEIGHT - 250, "Press Enter to continue", new Font("Copperplate Gothic Bold", Font.BOLD, 40), Color.GREEN);
+        }
+        else{
+            handler.getGame().getPlayAgainState().render(graphics);
+        }
     }
 }
 
