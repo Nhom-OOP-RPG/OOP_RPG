@@ -18,9 +18,7 @@ public class WinGameState extends State {
     @Override
     public void tick() {
         if (handler.getKeyManager().enter) {
-            themeID = 0;
-            isPlaying = false;
-            State.setState(handler.getGame().getMainMenuState());
+            State.setState(handler.getGame().getPlayAgainState());
             keyPressedDelayCount = 0;
         }
     }
