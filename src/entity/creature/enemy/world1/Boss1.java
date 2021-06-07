@@ -44,9 +44,9 @@ public class Boss1 extends Enemy {
 
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){
-            if (this.health < 150){
+            if (this.health < (maxHealth * 4) / 10){
                 ((EnemyGun) eGun).damaging8Dir();
-            } else if (this.health < 300){
+            } else if (this.health < (maxHealth * 7) / 10){
                 eGun.damaging();
             }
 
