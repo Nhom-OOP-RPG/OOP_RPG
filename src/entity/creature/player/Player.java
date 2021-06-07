@@ -52,8 +52,8 @@ public class Player extends Creature {
         energyDelayCount = 0;
 
         weapons = new PlayerWeapon[2];
-        weapons[0] = new PlayerMelee(handler, 15);
-        weapons[1] = new PlayerGun(handler, 10);
+        weapons[0] = new PlayerMelee(handler, 8);
+        weapons[1] = new PlayerGun(handler, 5);
 
         currentWeaponID = 0;
         isAttacking = false;
@@ -101,7 +101,7 @@ public class Player extends Creature {
         for (int i = 0; i < lives; i++){
             graphics.drawImage(Asset.heart, Tile.TILE_WIDTH * 2/3 * i, 0, Tile.TILE_WIDTH * 2/3, Tile.TILE_HEIGHT * 2/3, null);
         }
-
+        
         graphics.setColor(Color.RED);
 		graphics.setFont(new Font("arial", Font.PLAIN, 15));
 		graphics.drawString(getHealth()+ " / 100", Tile.TILE_WIDTH * 2/3 + 60, 20);

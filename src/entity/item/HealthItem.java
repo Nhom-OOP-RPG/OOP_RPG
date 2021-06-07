@@ -16,7 +16,7 @@ public class HealthItem extends Item {
         bounds.width = 10;
         bounds.height = 20;
         
-        health = rand.nextInt(20) + 10;
+        health = rand.nextInt(10) + 10;
     }
 
     @Override

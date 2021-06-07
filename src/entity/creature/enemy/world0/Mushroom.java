@@ -95,10 +95,10 @@ public class Mushroom extends Enemy{
 
     @Override
     protected void initHard() {
-        maxHealth = 40;
+        maxHealth = 60;
         speed = 1f;
-        eGun = new EnemyGun(handler, 3, 200f, this, Asset.bulletGreen);
-        attackDelay = 100;        
+        eGun = new EnemyGun(handler, 5, 200f, this, Asset.bulletGreen);
+        attackDelay = 70;        
     }
     
 }

@@ -16,7 +16,7 @@ public class MeleeIncreaseDamage extends Item {
         bounds.width = 20;
         bounds.height = 20;
         
-        damage = rand.nextInt(5) + 5;
+        damage = rand.nextInt(3) + 2;
     }
 
     @Override

@@ -16,7 +16,7 @@ public class EnergyItem extends Item {
         bounds.width = 10;
         bounds.height = 20;
         
-        energy = rand.nextInt(20) + 10;
+        energy = rand.nextInt(10) + 5;
     }
 
     @Override

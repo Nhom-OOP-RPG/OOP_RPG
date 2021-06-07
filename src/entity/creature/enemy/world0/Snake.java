@@ -93,9 +93,9 @@ public class Snake extends Enemy {
 
     @Override
     protected void initHard() {
-        maxHealth = 50;
+        maxHealth = 80;
         speed = 1.5f;
-        eMelee = new EnemyMelee(handler, 5, 50f, this, Asset.scratchVenom);
-        attackDelay = 70;
+        eMelee = new EnemyMelee(handler, 7, 50f, this, Asset.scratchVenom);
+        attackDelay = 50;
     }
 }
