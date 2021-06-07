@@ -19,6 +19,7 @@ public class LoseGameState extends State {
     public void tick() {
         if (handler.getPlayer().getLives() > 0){
             if (handler.getKeyManager().enter){
+                handler.getPlayer().setSpeed(2.5f);
                 handler.getPlayer().revive();
                 handler.getPlayer().setX(360f);
                 handler.getPlayer().setY(280f);
