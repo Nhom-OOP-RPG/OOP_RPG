@@ -2,25 +2,23 @@ package state;
 
 import java.awt.Graphics;
 import java.awt.Color;
-import java.awt.Font;
 
-import main.Game;
 import main.Handler;
 
 public class PauseState extends State {
 
-    private String[] optionsMenu;
+    private String[] options;
 
-    private static final String RESUME = "Resume";
-	private static final String MAIN_MENU = "Main Menu";
-    private static final String INSTRUCTION = "Instructions";
+    private static final String RESUME = "RESUME";
+	private static final String MAIN_MENU = "MAIN MENU";
+    private static final String INSTRUCTION = "HELP";
 
     private int selected;
 
     public PauseState(Handler handler) {
         super(handler);
         
-        this.optionsMenu = new String[]{RESUME, INSTRUCTION, MAIN_MENU};
+        this.options = new String[]{RESUME, INSTRUCTION, MAIN_MENU};
 
         this.selected = 0;
     }
@@ -38,7 +36,7 @@ public class PauseState extends State {
             }
     
             if (handler.getKeyManager().down) {
-                if (selected < optionsMenu.length - 1){
+                if (selected < options.length - 1){
                     selected++;
                 }
                 keyPressedDelayCount = 0;
@@ -57,6 +55,7 @@ public class PauseState extends State {
                         isPlaying = true;
                         State.setState(handler.getGame().getMainMenuState());
                 }
+                this.selected = 0;
                 keyPressedDelayCount = 0;
                 return;
             }
@@ -65,14 +64,17 @@ public class PauseState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.setColor(new Color(30, 30, 70));
-		graphics.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
+        graphics.drawImage(backGround[themeID], 0, 0, 20*40, 15*40, null);
+        drawMenuBox(graphics);
+        drawTitleBox(graphics, "Pause");
 		
-		graphics.setFont(new Font("Araial", Font.BOLD, 25));
-		for(int i=0;i<this.optionsMenu.length;i++) {
-			if(i==this.selected) graphics.setColor(Color.GREEN);
-			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.optionsMenu[i], Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT /2 + 30*i);
+		graphics.setFont(primaryFont);
+		for (int i = 0; i < this.options.length; i++){
+			if (i == this.selected){
+                drawSelectedString(graphics, 290 + 60*i, this.options[i]);
+            } else {
+                drawCenterString(graphics, 290 + 60*i, this.options[i], primaryFont, Color.WHITE);
+            }
 		}
     }
     

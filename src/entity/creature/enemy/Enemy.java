@@ -8,6 +8,7 @@ import java.awt.Font;
 
 import entity.creature.Creature;
 import entity.creature.player.Player;
+import graphic.Asset;
 import main.Handler;
 
 public abstract class Enemy extends Creature {
@@ -118,5 +119,12 @@ public abstract class Enemy extends Creature {
 
     public double getAngleToTarget() {
         return angleToTarget;
+    }
+
+    public void setDead(){
+        isDead = true;
+        bounds.setBounds((int) this.x, (int) this.y, 0, 0);
+        currentFrame = Asset.dead;
+        handler.getWorld().getRoom().addNewItem((int) this.x, (int) this.y);
     }
 }

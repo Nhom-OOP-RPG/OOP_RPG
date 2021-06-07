@@ -20,16 +20,35 @@ public class Asset {
     public static BufferedImage[] gummy, bat;
     public static BufferedImage[][] mushroom, snake, boss0, skull, goblin, boss1;
 
+    //Item
+    public static BufferedImage health, energy, speed, meleeDamage, gunDamage;
+
+    //Effect
+    public static BufferedImage health_effect, energy_effect;
+    public static BufferedImage[] ultimate_effect;
+
+    //theme
+    public static BufferedImage winGame, logo, loseGame, instruction, youDied;
+    public static BufferedImage[] backGround;
+    public static BufferedImage[] selected;
+
     //Other
-    public static BufferedImage[] bulletPlayer, bulletRed, bulletGreen, bulletRock, bulletFlame, bulletBomb;
+    public static BufferedImage[] bulletPlayer, bulletPlayer_ultimate;
+    public static BufferedImage[] bulletRed, bulletGreen, bulletRock, bulletFlame, bulletBomb;
+
     public static BufferedImage scratchGrey, scratchGummy, scratchRock, scratchRed, scratchVenom;
-    public static BufferedImage[] cutGrey;
-    public static BufferedImage dead, heart;
+    public static BufferedImage[] cutGrey, cutUltimate;
+
+    public static BufferedImage heart;
+
+    public static BufferedImage dead, deadBoss0, deadBoss1;
 
     public static void init(){
         initTile();
         initPlayer();
         initEnemy();
+        initItem();
+        initTheme();
         initOther();
     }
     
@@ -202,10 +221,19 @@ public class Asset {
     }
 
     private static void initOther(){
+        //Effect
+        ultimate_effect = new BufferedImage[2];
+        ultimate_effect[0] = Utility.loadImage("res/texture/other/effect/ultimate.png");
+        ultimate_effect[1] = Utility.loadImage("res/texture/other/effect/ultimate_2.png");
+        
         //Bullet
         bulletPlayer = new BufferedImage[2];
         bulletPlayer[0] = Utility.loadImage("res/texture/other/bullet/bulletPlayer.png");
         bulletPlayer[1] = Utility.loadImage("res/texture/other/bullet/bulletPlayer_explode.png");
+
+        bulletPlayer_ultimate = new BufferedImage[2];
+        bulletPlayer_ultimate[0] = Utility.loadImage("res/texture/other/bullet/bulletPlayer_ultimate.png");
+        bulletPlayer_ultimate[1] = Utility.loadImage("res/texture/other/bullet/bulletPlayer_ultimate_explode.png");
 
         bulletRed = new BufferedImage[2];
         bulletRed[0] = Utility.loadImage("res/texture/other/bullet/bulletRed.png");
@@ -240,7 +268,45 @@ public class Asset {
         cutGrey[2] = Utility.loadImage("res/texture/other/cut/cutGrey_down.png");
         cutGrey[3] = Utility.loadImage("res/texture/other/cut/cutGrey_up.png");
 
-        dead = Utility.loadImage("res/texture/other/dead.png");
+        cutUltimate = new BufferedImage[4];
+        cutUltimate[0] = Utility.loadImage("res/texture/other/cut/cutUltimate_horizontal.png");
+        cutUltimate[1] = Utility.loadImage("res/texture/other/cut/cutUltimate_horizontal.png");
+        cutUltimate[2] = Utility.loadImage("res/texture/other/cut/cutUltimate_vertical.png");
+        cutUltimate[3] = Utility.loadImage("res/texture/other/cut/cutUltimate_vertical.png");
+
+        dead = Utility.loadImage("res/texture/other/dead/dead.png");
+        deadBoss0 = Utility.loadImage("res/texture/other/dead/dead_boss0.png");
+        deadBoss1 = Utility.loadImage("res/texture/other/dead/dead_boss1.png");
+
         heart = Utility.loadImage("res/texture/other/heart.png");
+    }
+
+    private static void initItem(){
+        health = Utility.loadImage("res/texture/item/health.png");
+        energy = Utility.loadImage("res/texture/item/energy.png");
+        speed = Utility.loadImage("res/texture/item/speed.png");
+        meleeDamage = Utility.loadImage("res/texture/item/melee.png");
+        gunDamage = Utility.loadImage("res/texture/item/gun.png");
+
+        //effect
+        health_effect = Utility.loadImage("res/texture/other/effect/health_effect.png");
+        energy_effect = Utility.loadImage("res/texture/other/effect/energy_effect.png");
+    }
+
+    private static void initTheme(){
+        winGame = Utility.loadImage("res/texture/theme/youwin.png");        
+        loseGame = Utility.loadImage("res/texture/theme/loseGame.png");
+        instruction = Utility.loadImage("res/texture/theme/instruction.png");
+        youDied = Utility.loadImage("res/texture/theme/youDied.jpg");
+
+        logo = Utility.loadImage("res/texture/theme/logo.png");
+
+        backGround = new BufferedImage[2];
+        backGround[0] = Utility.loadImage("res/texture/theme/theme0/background.png");
+        backGround[1] = Utility.loadImage("res/texture/theme/theme1/background.png");
+        
+        selected = new BufferedImage[2];
+        selected[0] = Utility.loadImage("res/texture/theme/selected/selected_left.png");
+        selected[1] = Utility.loadImage("res/texture/theme/selected/selected_right.png");
     }
 }

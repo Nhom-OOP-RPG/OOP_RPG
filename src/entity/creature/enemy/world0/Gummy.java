@@ -8,7 +8,6 @@ import graphic.Asset;
 import main.Handler;
 
 public class Gummy extends Enemy {
-    int atRoom = 0;
 
     private EnemyMelee eMelee;
 
@@ -34,13 +33,12 @@ public class Gummy extends Enemy {
         
         currentFrameUpdate();
 
-        updateTarget(40f, 160f);
         move();
+        updateTarget(40f, 160f);
 
         attackDelayCount++;
         if (attackDelayCount >= attackDelay){
             eMelee.damaging();
-            eMelee.tick();
             attackDelayCount = 0;
         }
     }

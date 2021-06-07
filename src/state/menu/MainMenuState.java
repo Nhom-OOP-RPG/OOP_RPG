@@ -2,6 +2,9 @@ package state.menu;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+
+import graphic.Asset;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -10,22 +13,22 @@ import main.Handler;
 import state.State;
 
 public class MainMenuState extends State {
-    private ArrayList<String> optionsMenu;
+    private ArrayList<String> options;
 
-    private static final String START_GAME = "Start New Game";
-	private static final String QUIT_GAME = "Quit Game";
-    private static final String INSTRUCTION = "Instructions";
-    private static final String CONTINUEGAME = "Continue Game";
+    private static final String START_GAME = "START";
+	private static final String QUIT_GAME = "QUIT";
+    private static final String INSTRUCTION = "HELP";
+    private static final String CONTINUEGAME = "CONTINUE";
 
     private int selected;
 
     public MainMenuState(Handler handler) {
         super(handler);
         
-        this.optionsMenu = new ArrayList<String>();
-        this.optionsMenu.add(START_GAME);
-        this.optionsMenu.add(INSTRUCTION);
-        this.optionsMenu.add(QUIT_GAME);
+        this.options = new ArrayList<String>();
+        this.options.add(START_GAME);
+        this.options.add(INSTRUCTION);
+        this.options.add(QUIT_GAME);
 
         this.selected = 0;
     }
@@ -45,7 +48,7 @@ public class MainMenuState extends State {
             }
     
             if (handler.getKeyManager().down) {
-                if (selected < optionsMenu.size() - 1){
+                if (selected < options.size() - 1){
                     selected++;
                 }
                 keyPressedDelayCount = 0;
@@ -76,6 +79,7 @@ public class MainMenuState extends State {
                     default:
                         System.exit(0);
                 }
+                this.selected = 0;
                 keyPressedDelayCount = 0;
                 removeContinueOption();
             }
@@ -84,26 +88,32 @@ public class MainMenuState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.setColor(new Color(30, 30, 70));
-		graphics.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
-		
-		graphics.setFont(new Font("Araial", Font.BOLD, 25));
-		for(int i=0; i<this.optionsMenu.size(); i++) {
-			if(i==this.selected) graphics.setColor(Color.GREEN);
-			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.optionsMenu.get(i), Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT /2 + 30*i);
+        graphics.drawImage(backGround[themeID], 0, 0, 800, 600, null);
+        drawMenuBox(graphics);
+        graphics.drawImage(Asset.logo, 152, 60, 496, 184, null);
+
+        graphics.setFont(primaryFont);
+		for(int i = 0; i < this.options.size(); i++) {
+			if(i == this.selected){
+                drawSelectedString(graphics, 290 + 60*i, this.options.get(i));
+            } else {
+                drawCenterString(graphics, 290 + 60*i, this.options.get(i), primaryFont, Color.WHITE);
+            }
 		}
+
+        drawCenterString(graphics, Game.WINDOW_HEIGHT - 30, "©2021", new Font("Arial", Font.BOLD, 20), primaryColor[themeID]);
+        drawCenterString(graphics, Game.WINDOW_HEIGHT - 10, "Made by Group 21", new Font("Arial", Font.BOLD, 20), primaryColor[themeID]);
     }
     
     public void addContinueOption(){
-        if (optionsMenu.size() == 3 && isPlaying){
-            optionsMenu.add(0, CONTINUEGAME);
+        if (options.size() == 3 && isPlaying){
+            options.add(0, CONTINUEGAME);
         }
     }
 
     public void removeContinueOption(){
-        if (optionsMenu.size() == 4){
-            optionsMenu.remove(0);
+        if (options.size() == 4){
+            options.remove(0);
         }
     }
 }

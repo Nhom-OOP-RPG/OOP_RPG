@@ -33,6 +33,7 @@ public class Boss1 extends Enemy {
         if (isDead) return;
         if (health <= 0) {
             setDead();
+            currentFrame = Asset.deadBoss1;
             return;
         }
 
@@ -98,20 +99,20 @@ public class Boss1 extends Enemy {
 
     @Override
     protected void initEasy() {
-        this.maxHealth = 400;
-        speed = 2f;
-        eGun = new EnemyGun(handler, 10, 300f, this, Asset.bulletFlame);
-        eMelee = new EnemyMelee(handler, 15, 100, this, Asset.scratchRed);
+        this.maxHealth = 700;
+        speed = 1.5f;
+        eGun = new EnemyGun(handler, 7, 300f, this, Asset.bulletFlame);
+        eMelee = new EnemyMelee(handler, 10, 100, this, Asset.scratchRed);
         attackDelay = 80;
     }
 
     @Override
     protected void initHard() {
-        this.maxHealth = 400;
+        this.maxHealth = 1200;
         speed = 2f;
         eGun = new EnemyGun(handler, 10, 300f, this, Asset.bulletFlame);
         eMelee = new EnemyMelee(handler, 15, 100, this, Asset.scratchRed);
-        attackDelay = 80;
+        attackDelay = 50;
     }
     
     @Override

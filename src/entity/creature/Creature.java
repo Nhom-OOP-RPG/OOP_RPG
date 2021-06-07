@@ -7,7 +7,6 @@ package entity.creature;
 import java.awt.image.BufferedImage;
 
 import entity.Entity;
-import graphic.Asset;
 import graphic.tile.Tile;
 import main.Handler;
 
@@ -22,7 +21,7 @@ public abstract class Creature extends Entity {
     protected float xMove, yMove;
     protected int currentDirect;
 
-    protected final int animationDelay, damagedAnimationDelay;
+    protected final int animationDelay;
     protected int animationDelayCount, changeToDamagedFrame;
     protected int currentFrameID;
     protected BufferedImage currentFrame;
@@ -39,7 +38,6 @@ public abstract class Creature extends Entity {
         currentDirect = 0;
 
         animationDelay = 10;
-        damagedAnimationDelay = 10;
 
         animationDelayCount = 0;
         changeToDamagedFrame = 0;
@@ -60,8 +58,11 @@ public abstract class Creature extends Entity {
     //nếu không va chạm thì sẽ đi bình thường
     //nếu đi bình thường mà có va chạm thì đi đến kịch chỗ va chạm và không đi tiếp nữa
     public void moveX(){
+        if (xMove == 0) return;
+
         int head = (int) (y + bounds.y) / Tile.TILE_HEIGHT;
         int tail = (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
+
         if (xMove > 0){ //Sang phai
             int right = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILE_WIDTH;
             if (!isCollision(right, head)
@@ -84,8 +85,11 @@ public abstract class Creature extends Entity {
     //thực hiện di chuyển phương dọc
     //xử lý va chạm tương tự phương ngang
     public void moveY(){
+        if (yMove == 0) return;
+
         int left = (int) (x + bounds.x) / Tile.TILE_WIDTH;
         int right = (int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH;
+        
         if (yMove > 0){ //Xuong duoi
             int tail = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
             if (!isCollision(left, tail) && !isCollision(right, tail)){
@@ -117,12 +121,6 @@ public abstract class Creature extends Entity {
     public void decreaseHealth(int n){
         health -= n;
         isDamaged = true;
-    }
-
-    public void setDead(){
-        isDead = true;
-        bounds.setBounds((int) x, (int) y, 0, 0);
-        currentFrame = Asset.dead;
     }
 
     public int getHealth(){

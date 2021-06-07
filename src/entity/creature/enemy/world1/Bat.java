@@ -25,6 +25,8 @@ public class Bat extends Enemy {
     @Override
     public void tick(){
         eGun.tick();
+
+        if (isDead) return;
         if (health <= 0) {
             setDead();
             return;
@@ -84,15 +86,15 @@ public class Bat extends Enemy {
     protected void initEasy() {
         maxHealth = 35;
         speed = 0.75f;
-        eGun = new EnemyGun(handler, 5, 200f, this);
+        eGun = new EnemyGun(handler, 3, 200f, this);
         attackDelay = 100;
     }
 
     @Override
     protected void initHard() {
-        maxHealth = 35;
+        maxHealth = 50;
         speed = 1f;
         eGun = new EnemyGun(handler, 5, 200f, this);
-        attackDelay = 100;
+        attackDelay = 70;
     }
 }

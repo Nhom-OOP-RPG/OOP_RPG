@@ -3,9 +3,8 @@ package entity.creature.enemy.world0;
 import java.awt.Graphics;
 
 import entity.creature.enemy.Enemy;
-import entity.creature.enemy.enemyweapon.EnemyGun;
-import entity.creature.enemy.enemyweapon.EnemyMelee;
-import entity.creature.enemy.enemyweapon.EnemyWeapon;
+import entity.creature.enemy.enemyweapon.*;
+import entity.item.*;
 import graphic.Asset;
 import graphic.tile.Tile;
 import main.Handler;
@@ -100,20 +99,20 @@ public class Boss0 extends Enemy {
 
     @Override
     protected void initEasy() {
-        this.maxHealth = 300;
+        this.maxHealth = 400;
         speed = 1f;
-        eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletRock);
-        eMelee = new EnemyMelee(handler, 10, 100f, this, Asset.scratchRock);
+        eGun = new EnemyGun(handler, 4, 4000f, this, Asset.bulletRock);
+        eMelee = new EnemyMelee(handler, 7, 100f, this, Asset.scratchRock);
         attackDelay = 100;
     }
 
     @Override
     protected void initHard() {
-        this.maxHealth = 300;
+        this.maxHealth = 800;
         speed = 1.5f;
-        eGun = new EnemyGun(handler, 10, 4000f, this, Asset.bulletRock);
+        eGun = new EnemyGun(handler, 7, 4000f, this, Asset.bulletRock);
         eMelee = new EnemyMelee(handler, 10, 100f, this, Asset.scratchRock);
-        attackDelay = 100;        
+        attackDelay = 70;        
     }
     
     @Override
@@ -168,5 +167,16 @@ public class Boss0 extends Enemy {
                 y = head * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - bounds.y;
             }
         }
+    }
+
+    @Override
+    public void setDead(){
+        isDead = true;
+        bounds.setBounds((int) this.x, (int) this.y, 0, 0);
+        currentFrame = Asset.deadBoss0;
+        handler.getWorld().getRoom().getItemList().add(new HealthItem(handler, this.x + 40, y + 40));
+        handler.getWorld().getRoom().getItemList().add(new EnergyItem(handler, this.x, y + 40));
+        handler.getWorld().getRoom().getItemList().add(new MeleeIncreaseDamage(handler, this.x, this.y));
+        handler.getWorld().getRoom().getItemList().add(new GunIncreaseDamage(handler, this.x + 40, this.y));
     }
 }

@@ -13,14 +13,15 @@ import java.util.Random;
 import entity.creature.enemy.Enemy;
 import entity.creature.enemy.world0.*;
 import entity.creature.enemy.world1.*;
+import entity.item.*;
 import graphic.tile.Tile;
 import main.Handler;
 import utility.Utility;
 
 public class Room {
     public static final int WIDTH = 20, HEIGHT = 15;
-    public static final int GUMMY = 1, MUSHROOM = 2, SNAKE = 3,
-        BAT = 4, SKULL = 5, GOBLIN = 6;
+    public static final int GUMMY = 1, MUSHROOM = 2, SNAKE = 3, BAT = 4, SKULL = 5, GOBLIN = 6;
+    public static final int HEALTH_ITEM = 1, ENERGY_ITEM = 2, MELEE_DAMAGE_ITEM = 3, GUN_DAMAGE_ITEM = 4, SPEED_ITEM = 5;
 
     Handler handler;
     
@@ -38,6 +39,7 @@ public class Room {
 
     //Danh sách quái trong phòng
     protected ArrayList<Enemy> enemyList;
+    protected ArrayList<Item> itemList;
 
     public Room(Handler handler, String path, int level){
         this.handler = handler;
@@ -46,12 +48,20 @@ public class Room {
 
         this.level = level;
         enemyList = new ArrayList<Enemy>();
+        itemList = new ArrayList<Item>();
     }
     
     //Cập nhật quái
     public void tick(){
         for (Enemy e : enemyList){
             e.tick();
+        }
+
+        for (int i = itemList.size() - 1; i >= 0; i--){
+            itemList.get(i).tick();
+            if (itemList.get(i).isPickup()){
+                itemList.remove(i);
+            }
         }
     }
 
@@ -69,6 +79,10 @@ public class Room {
 
         for (Enemy e : enemyList){
                 e.render(graphics);
+        }
+
+        for (Item i : itemList){
+            i.render(graphics);
         }
     }
 
@@ -112,6 +126,10 @@ public class Room {
 
     public ArrayList<Enemy> getEnemyList(){
         return enemyList;
+    }
+
+    public ArrayList<Item> getItemList(){
+        return itemList;
     }
 
     //từ tọa độ (x, y), xét mã tên Tile để trả về Tile
@@ -172,4 +190,24 @@ public class Room {
         }
     }
 
+    public void addNewItem(int x, int y){
+        int itemID = Item.randItemID();
+        switch (itemID){
+            case HEALTH_ITEM:
+                itemList.add(new HealthItem(handler, x, y));
+                break;
+            case ENERGY_ITEM:
+                itemList.add(new EnergyItem(handler, x, y));
+                break;
+            case MELEE_DAMAGE_ITEM:
+                itemList.add(new MeleeIncreaseDamage(handler, x, y));
+                break;
+            case GUN_DAMAGE_ITEM:
+                itemList.add(new GunIncreaseDamage(handler, x, y));
+                break;
+            case SPEED_ITEM:
+                itemList.add(new SpeedItem(handler, x, y));
+                break;
+        }
+    }
 }

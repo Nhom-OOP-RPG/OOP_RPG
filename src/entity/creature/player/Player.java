@@ -22,18 +22,16 @@ public class Player extends Creature {
     public static final float DEFAULT_SPAWN_X = 9 * 40, DEFAULT_SPAWN_Y = 7 * 40; 
 
     private int lives;
-    //thế giới và phòng hiện tại
-    //các này t tạo ra cho có mà chưa dùng làm gì
-    int atWorld, atRoom = 0;
 
-    private int currentWeapon;
+    private int energy, energyDelay, energyDelayCount;
+
+    private int currentWeaponID;
     private PlayerWeapon[] weapons;
-    public int attackDirect;
     private boolean isAttacking;
     private int keyPressedDelayCount;
     private int keyPressedDelay;
 
-    private BufferedImage scratchedFrame;
+    private BufferedImage overlayFrame;
 
     public Player(Handler handler){
         super(handler, DEFAULT_SPAWN_X, DEFAULT_SPAWN_Y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
@@ -49,11 +47,15 @@ public class Player extends Creature {
         bounds.width = 20;
         bounds.height = 29;
 
-        weapons = new PlayerWeapon[2];
-        weapons[0] = new PlayerMelee(handler, 15);
-        weapons[1] = new PlayerGun(handler, 10);
+        energy = 100;
+        energyDelay = 70;
+        energyDelayCount = 0;
 
-        currentWeapon = 0;
+        weapons = new PlayerWeapon[2];
+        weapons[0] = new PlayerMelee(handler, 8);
+        weapons[1] = new PlayerGun(handler, 5);
+
+        currentWeaponID = 0;
         isAttacking = false;
         keyPressedDelayCount = 20;
         keyPressedDelay = 20;
@@ -61,7 +63,7 @@ public class Player extends Creature {
         currentFrame = Asset.player[0][0];
         currentFrameID = 0;
 
-        scratchedFrame = null;
+        overlayFrame = null;
     }
 
     @Override
@@ -71,31 +73,40 @@ public class Player extends Creature {
             System.out.println("player dead");
         }
 
+        energyDelayCount++;
+        if (energy < 100 && energyDelayCount > energyDelay){
+            energy++;
+            energyDelayCount = 0;
+        }
+
         getInput();
         move();
+        currentFrameUpdate();
 
         if (isAttacking){
-            weapons[currentWeapon].damaging();
+            weapons[currentWeaponID].damaging();
             isAttacking = false;
             System.out.println("attack");
         }
-        weapons[currentWeapon].tick();
+        weapons[currentWeaponID].tick();
     }
 
     @Override
     public void render(Graphics graphics) {
-        currentFrameUpdate();
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
-        graphics.drawImage(scratchedFrame, (int) x, (int) y, width, height, null);
+        graphics.drawImage(overlayFrame, (int) x, (int) y, width, height, null);
 
-        weapons[currentWeapon].render(graphics);
+        weapons[currentWeaponID].render(graphics);
 
         for (int i = 0; i < lives; i++){
             graphics.drawImage(Asset.heart, Tile.TILE_WIDTH * 2/3 * i, 0, Tile.TILE_WIDTH * 2/3, Tile.TILE_HEIGHT * 2/3, null);
         }
-        graphics.setColor(Color.WHITE);
+        
+        graphics.setColor(Color.RED);
 		graphics.setFont(new Font("arial", Font.PLAIN, 15));
-		graphics.drawString(getHealth()+" / 100", Tile.TILE_WIDTH * 2/3 + 60, 20);
+		graphics.drawString(getHealth()+ " / 100", Tile.TILE_WIDTH * 2/3 + 60, 20);
+        graphics.setColor(Color.BLUE);
+        graphics.drawString(energy + " / 100", Tile.TILE_WIDTH * 2/3 + 140, 20);
     }
     
     //Kiểm tra input để cập nhật xMove, yMove
@@ -106,22 +117,18 @@ public class Player extends Creature {
         if (handler.getKeyManager().left){
             xMove = -speed;
             currentDirect = WEST;
-            attackDirect = WEST;
         }
         if (handler.getKeyManager().right){
             xMove = speed;
             currentDirect = EAST;
-            attackDirect = EAST;
         }
         if (handler.getKeyManager().up){
             yMove = -speed;
             currentDirect = NORTH;
-            attackDirect = NORTH;
         }
         if (handler.getKeyManager().down){
             yMove = speed;
             currentDirect = SOUTH;
-            attackDirect = SOUTH;
         }
 
         keyPressedDelayCount++;
@@ -132,8 +139,14 @@ public class Player extends Creature {
             }
 
             if (handler.getKeyManager().changeWeapon){
-                currentWeapon = 1 - currentWeapon;
+                currentWeaponID = 1 - currentWeaponID;
                 System.out.println("change weapon");
+                keyPressedDelayCount = 0;
+            }
+
+            if (handler.getKeyManager().ultimate){
+                weapons[currentWeaponID].ultimate();
+                System.out.println("ultimate");
                 keyPressedDelayCount = 0;
             }
         }
@@ -157,7 +170,7 @@ public class Player extends Creature {
             }
             changeToDamagedFrame = 0;
             animationDelayCount = 0;
-            scratchedFrame = null;
+            overlayFrame = null;
         }
 
         currentFrame = Asset.player[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
@@ -168,16 +181,56 @@ public class Player extends Creature {
         return lives;
     }
 
+    public PlayerWeapon getWeapon(int index){
+        if (index < weapons.length){
+            return weapons[i];
+        }
+        return null;
+    }
+
+    public void increaseHealth(int h){
+        if (health + h > maxHealth){
+            health = maxHealth;
+        } else {
+            health += h;
+        }
+    }
+
+    public void increaseEnergy(int e){
+        if (energy + e > 100){
+            energy = 100;
+        } else {
+            energy += e;
+        }
+    }
+
+    public boolean decreaseEnergy(int e){
+        if (energy >= e){
+            energy -= e;
+            return true;
+        }
+        System.out.println("out of energy");
+        return false;
+    }
+
+    public void increaseSpeed(float s){
+        speed += s;
+    }
+
     public void decreaseLives(){
         lives--;
     }
 
     public void revive(){
         health = maxHealth;
-        scratchedFrame = null;
+        energy = 100;
+        overlayFrame = null;
         currentFrame = Asset.player[0][0];
         currentFrameID = 0;
+        changeToDamagedFrame = 0;
         isDead = false;
+        weapons[0].resetWeapon();
+        weapons[1].resetWeapon();
     }
 
     //dùng trong chuyển các phòng
@@ -189,11 +242,16 @@ public class Player extends Creature {
         this.y = y - this.height / 2;
     }
 
-    public void setScratchedFrame(BufferedImage frame){
-        this.scratchedFrame = frame;
+    public void setOverlayFrame(BufferedImage frame){
+        this.overlayFrame = frame;
+        this.animationDelayCount = 0;
     }
 
     public Rectangle getBounds(){
         return new Rectangle((int)getCenterX(), (int) getCenterY(),  20, 20);
+    }
+
+    public int getCurrentDirect(){
+        return currentDirect;
     }
 }

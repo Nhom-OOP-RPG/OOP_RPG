@@ -1,7 +1,8 @@
 package entity.creature.player.playerweapon;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import entity.bullet.Bullet;
@@ -9,18 +10,13 @@ import graphic.Asset;
 import main.Handler;
 
 public class PlayerGun extends PlayerWeapon{
-    public static final int DEFAULT_NUM_BULLET = 1000;
-    
-    private int numOfBullet;
     private ArrayList<Bullet> shootedBullet;
-    BufferedImage[] bulletFrame;
 
     public PlayerGun(Handler handler, int damage) {
         super(handler, damage);
 
-        numOfBullet = DEFAULT_NUM_BULLET;
+        energy = 4;
         shootedBullet = new ArrayList<Bullet>();
-        bulletFrame = Asset.bulletPlayer;
     }
 
     public void shoot() {
@@ -45,7 +41,16 @@ public class PlayerGun extends PlayerWeapon{
                 return;
         }
 
-        shootedBullet.add(new Bullet(handler, startX, startY, true, this.damage, 7f, angle, bulletFrame));
+        if (isUltimate){
+            int d = this.damage * (1 + isUltimateToInt * 2);
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 40, Asset.bulletPlayer_ultimate));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle + 20, Asset.bulletPlayer_ultimate));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle, Asset.bulletPlayer_ultimate));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle - 20, Asset.bulletPlayer_ultimate));
+            shootedBullet.add(new Bullet(handler, startX, startY, true, d, 7f, angle - 40, Asset.bulletPlayer_ultimate));
+        } else {
+            shootedBullet.add(new Bullet(handler, startX, startY, true, this.damage, 7f, angle, Asset.bulletPlayer));
+        }
     }
 
     @Override
@@ -58,27 +63,60 @@ public class PlayerGun extends PlayerWeapon{
                 b.tick();
             }
         }
+
+        if (isUltimate){
+            ultimateDelayCount++;
+
+            if (ultimateDelayCount % 4 == 0){
+                ultimateEffectFrameID = 1 - ultimateEffectFrameID;
+            }
+
+            if (ultimateDelayCount > ultimateDelay){
+                isUltimate = false;
+                isUltimateToInt = 0;
+            }
+        }
     }
 
     @Override
     public void damaging(){
-        setDirect();
-        if (numOfBullet > 0){
-            shoot();
-            numOfBullet--;
-        } else {
-            System.out.println("out of bullet");
+        if (!isUltimate && !handler.getPlayer().decreaseEnergy(energy)) {
+            return;
         }
-    }
-    
-    public void addBullet(int n){
-        numOfBullet += n;
+
+        setDirect();
+        shoot();
     }
 
     @Override
     public void render(Graphics graphics) {
+        graphics.setColor(Color.WHITE);
+        graphics.setFont(new Font("arial", Font.PLAIN, 15));
+        graphics.drawString("Using Gun", 360, 590);
+
         for (Bullet b : shootedBullet){
             b.render(graphics);
         }
+
+        if (isUltimate){
+            int x = (int) handler.getPlayer().getX();
+            int y = (int) handler.getPlayer().getY();
+
+            graphics.drawImage(Asset.ultimate_effect[ultimateEffectFrameID], x - 10, y, 60, 40, null);
+
+            float ratio = (float) (ultimateDelay - ultimateDelayCount) / ultimateDelay;
+            graphics.setColor(Color.BLACK);
+            graphics.fillRect(x, y - 10, (int) 40, 5);
+            graphics.setColor(Color.YELLOW);
+            graphics.fillRect(x, y - 10, (int) (40 * ratio), 5);
+        }
+    }
+
+    @Override
+    public void resetWeapon() {
+        isUltimate = false;
+        isUltimateToInt = 0;
+        ultimateDelayCount = 0;
+        this.shootedBullet.clear();
     }
 }

@@ -1,20 +1,16 @@
 package state.gameover;
 
 import java.awt.Graphics;
+import java.awt.Color;
 
-import main.Game;
 import main.Handler;
 import state.State;
 import state.menu.MainMenuState;
-
-import java.awt.Color;
-import java.awt.Font;
 
 public class PlayAgainState extends State {
     private String[] options;
     private final int numOfOptions;
 
-    private final String QUESTION = "Do you want to play again?";
 	private static final String YES = "YES";
     private static final String NO = "NO";
 
@@ -59,6 +55,7 @@ public class PlayAgainState extends State {
                     case 1:
                         System.exit(0);
                 }
+                this.selected = 0;
                 keyPressedDelayCount = 0;
             }
         }
@@ -66,20 +63,17 @@ public class PlayAgainState extends State {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.setColor(new Color(30, 30, 70));
-		graphics.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
+        graphics.drawImage(backGround[themeID], 0, 0, 20*40, 15*40, null);
+        drawMenuBox(graphics);
+        drawTitleBox(graphics, "Play Again?");
 		
-		graphics.setFont(new Font("Araial", Font.BOLD, 25));
-
-        graphics.setColor(Color.ORANGE);
-        graphics.drawString(this.QUESTION, Game.WINDOW_WIDTH / 2 - 180, Game.WINDOW_HEIGHT / 2 - 30);
-
-		for (int i=0; i<this.options.length; i++) {
-			if (i == this.selected) graphics.setColor(Color.GREEN);
-			else graphics.setColor(Color.WHITE);
-			graphics.drawString(this.options[i], Game.WINDOW_WIDTH / 2 - 40, Game.WINDOW_HEIGHT / 2 + 30*(i));
-		}
-        
+		graphics.setFont(primaryFont);
+		for (int i = 0; i < this.options.length; i++){
+			if (i == this.selected){
+                drawSelectedString(graphics, 290 + 60*i, this.options[i]);
+            } else {
+                drawCenterString(graphics, 290 + 60*i, this.options[i], primaryFont, Color.WHITE);
+            }
+		}       
     }
-    
 }

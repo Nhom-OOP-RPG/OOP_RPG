@@ -7,6 +7,7 @@ import java.awt.Font;
 import entity.creature.enemy.world0.Boss0;
 import entity.creature.enemy.world1.Boss1;
 import entity.creature.enemy.Enemy;
+import entity.item.Item;
 import graphic.Asset;
 import graphic.tile.Tile;
 import main.Handler;
@@ -35,6 +36,7 @@ public class BossRoom extends Room {
                     handler.getWorld().setCurrentRoom(1, 0);
                     handler.getPlayer().setX(9 * 40f);
                     handler.getPlayer().setY(7 * 40f);
+                    State.themeID = 1;
                 } else if (worldName == 1){
                     State.setState(handler.getGame().getWinGameState());
                 }
@@ -43,6 +45,13 @@ public class BossRoom extends Room {
 
         for (Enemy e : this.enemyList){
                 e.tick();
+        }
+
+        for (int i = itemList.size() - 1; i >= 0; i--){
+            itemList.get(i).tick();
+            if (itemList.get(i).isPickup()){
+                itemList.remove(i);
+            }
         }
     }
 
@@ -66,5 +75,8 @@ public class BossRoom extends Room {
             e.render(graphics);
         }
 
+        for (Item i : itemList){
+            i.render(graphics);
+        }
     }
 }
