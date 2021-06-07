@@ -43,6 +43,7 @@ public class PlayerMelee extends PlayerWeapon {
         }
     }
 
+    //tạo khu vực chịu sát thương
     private void getAttackBox(){
         switch (this.direct) {
             case EAST:

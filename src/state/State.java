@@ -17,14 +17,18 @@ import graphic.Asset;
 import main.Handler;
 
 public abstract class State {
-    private static State currentState = null, previousState = null;
-
     protected Handler handler;
 
+    //state hiện tại và state trước đó
+    private static State currentState = null, previousState = null;
+
+    //delay khi ấn phím -> không gặp tình trạng nhảy nút
     protected static int keyPressedDelay, keyPressedDelayCount;
 
+    //kiểm tra có đang trong giữa màn chơi hay ko? dùng để tạo Continue ở màn hình chính
     protected static boolean isPlaying;
 
+    //một số thuộc tính dùng ch giao diện static
     public static int themeID;
     protected final static BufferedImage[] backGround = Asset.backGround;
     protected final static Color[] primaryColor = {new Color(12, 54, 15), new Color(130, 20, 8)};
@@ -61,6 +65,7 @@ public abstract class State {
         currentState = state;
     }
 
+    //vẽ khung menu
     protected void drawMenuBox(Graphics graphics){
         graphics.setColor(Color.BLACK);
         graphics.fill3DRect(130, 150, 540, 350, true);
@@ -68,6 +73,7 @@ public abstract class State {
         graphics.fill3DRect(140, 160, 520, 330, true);
     }
 
+    //vẽ khung title cho menu
     protected void drawTitleBox(Graphics graphics, String tilte){
         graphics.setColor(Color.BLACK);
         graphics.fill3DRect(160, 105, 480, 80, true);
@@ -77,6 +83,7 @@ public abstract class State {
         drawCenterString(graphics, 160, tilte, primaryFont, Color.WHITE);
     }
 
+    //in chữ căn giữa màn hình
     protected void drawCenterString(Graphics graphics, int y, String str, Font font, Color color){
         graphics.setFont(font);
         graphics.setColor(color);
@@ -85,6 +92,7 @@ public abstract class State {
         graphics.drawString(str, x, y);
     }
 
+    //in chữ được chọn trong menu
     protected void drawSelectedString(Graphics graphics, int y, String str){
         graphics.setFont(primaryFont);
         graphics.setColor(fontColor);

@@ -1,3 +1,5 @@
+//trạng thái tạm dừng giữa trò chơi
+
 package state;
 
 import java.awt.Graphics;

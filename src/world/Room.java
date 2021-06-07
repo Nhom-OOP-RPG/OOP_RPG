@@ -39,6 +39,7 @@ public class Room {
 
     //Danh sách quái trong phòng
     protected ArrayList<Enemy> enemyList;
+    //Danh sách item trong phòng
     protected ArrayList<Item> itemList;
 
     public Room(Handler handler, String path, int level){
@@ -51,7 +52,7 @@ public class Room {
         itemList = new ArrayList<Item>();
     }
     
-    //Cập nhật quái
+    //Cập nhật thuộc tính
     public void tick(){
         for (Enemy e : enemyList){
             e.tick();
@@ -65,7 +66,7 @@ public class Room {
         }
     }
 
-    //In phòng chơi ra (Tile, Quái)
+    //In phòng chơi ra (bản đồ, quái, item)
     public void render(Graphics graphics){
         for (int y = 0; y < HEIGHT; y++){
             for (int x = 0; x < WIDTH; x++){
@@ -190,6 +191,7 @@ public class Room {
         }
     }
 
+    //add item mới vào phòng
     public void addNewItem(int x, int y){
         int itemID = Item.randItemID();
         switch (itemID){

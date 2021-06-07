@@ -14,11 +14,15 @@ import main.Handler;
 public abstract class Enemy extends Creature {
     public static final int DEMO = 0, EASY = 1, HARD = 2;
 
+    //mục tiêu tấn công là người chơi
     private Player target;
 
+    //khoảng cách đến người chơi
     protected float distanceToTarget;
+    //góc đến người chơi (với trục Ox)
     protected double angleToTarget;
 
+    //delay thơif gian tấn công
     protected int attackDelayCount;
     protected int attackDelay;
 
@@ -42,7 +46,7 @@ public abstract class Enemy extends Creature {
 
 
     //xét xem target đang ở đâu để chọn hướng di chuyển
-    //sẽ giải thích nếu cần :)
+    //nếu người chơi đứng quá gần hoặc quá xa sẽ ko di chuyển
     protected void updateTarget(float near, float far){
         xMove = 0;
         yMove = 0;
@@ -82,12 +86,14 @@ public abstract class Enemy extends Creature {
         }
     }
 
+    //in lượng máu bằng số
     protected void renderHealth(Graphics graphics){
         graphics.setColor(Color.WHITE);
 		graphics.setFont(new Font("arial", Font.PLAIN, 10));
 		graphics.drawString(getHealth()+" / " + this.maxHealth, (int) this.x, (int) this.y);
     }
 
+    //in thanh máu (cho boss)
     protected void renderBossHealth(Graphics graphics){
         graphics.setColor(Color.BLACK);
         graphics.fillRect((int) this.x - 20, (int) this.y - 25, 120, 20);
@@ -96,6 +102,7 @@ public abstract class Enemy extends Creature {
         graphics.fillRect((int) this.x - 20, (int) this.y - 25, (int) (120 * ratio), 20);
     }
 
+    //khởi tạo theo mức độ
     protected void init(int level){
         switch (level) {
             case DEMO:

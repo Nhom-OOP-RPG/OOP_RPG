@@ -21,16 +21,25 @@ public class Player extends Creature {
     //vị trí spawn đầu màn chơi (tính theo pixel)
     public static final float DEFAULT_SPAWN_X = 9 * 40, DEFAULT_SPAWN_Y = 7 * 40; 
 
+    //số mạng
     private int lives;
 
+    //mana và delay hồi mana
     private int energy, energyDelay, energyDelayCount;
 
+    //vũ khí
+    //index vũ khí hiện tại trong danh sách
     private int currentWeaponID;
+    //danh sách vũ khí
     private PlayerWeapon[] weapons;
+    //có đang thực hiện tấn công
     private boolean isAttacking;
+    
+    //delay nhấn nút
     private int keyPressedDelayCount;
     private int keyPressedDelay;
 
+    //hiệu ứng chồng lên (bị đánh, bật ulti, ăn item máu, mana)
     private BufferedImage overlayFrame;
 
     public Player(Handler handler){
@@ -68,48 +77,61 @@ public class Player extends Creature {
 
     @Override
     public void tick() {
+        //kiểm tra máu
         if (health <= 0) {
             isDead = true;
             System.out.println("player dead");
         }
 
+        //hồi mana
         energyDelayCount++;
         if (energy < 100 && energyDelayCount > energyDelay){
             energy++;
             energyDelayCount = 0;
         }
 
+        //nhận dữ liệu input
         getInput();
+        //thực hiện di chuyển
         move();
+        //thực hiện thay đổi ảnh
         currentFrameUpdate();
 
+        //thực hiện tấn công
         if (isAttacking){
             weapons[currentWeaponID].damaging();
             isAttacking = false;
             System.out.println("attack");
         }
+        //cập nhật vũ khí
         weapons[currentWeaponID].tick();
     }
 
     @Override
     public void render(Graphics graphics) {
+        //in hình chính
         graphics.drawImage(currentFrame, (int) x, (int) y, width, height, null);
+        //in hiệu ứng 
         graphics.drawImage(overlayFrame, (int) x, (int) y, width, height, null);
 
+        //in vũ khí (hiệu ứng)
         weapons[currentWeaponID].render(graphics);
 
+        //in số mạng
         for (int i = 0; i < lives; i++){
             graphics.drawImage(Asset.heart, Tile.TILE_WIDTH * 2/3 * i, 0, Tile.TILE_WIDTH * 2/3, Tile.TILE_HEIGHT * 2/3, null);
         }
         
+        //in máu
         graphics.setColor(Color.RED);
 		graphics.setFont(new Font("arial", Font.PLAIN, 15));
 		graphics.drawString(getHealth()+ " / 100", Tile.TILE_WIDTH * 2/3 + 60, 20);
+        //in mana
         graphics.setColor(Color.BLUE);
         graphics.drawString(energy + " / 100", Tile.TILE_WIDTH * 2/3 + 140, 20);
     }
     
-    //Kiểm tra input để cập nhật xMove, yMove
+    //Kiểm tra input để cập nhật xMove, yMove, tấn công
     private void getInput(){
         xMove = 0;
         yMove = 0;
@@ -152,7 +174,6 @@ public class Player extends Creature {
         }
     }
 
-    int i = 0;
     //Chuyển đổi animation của người chơi
     @Override
     protected void currentFrameUpdate() {
@@ -176,18 +197,19 @@ public class Player extends Creature {
         currentFrame = Asset.player[currentDirect + 4 * changeToDamagedFrame][currentFrameID];
     }
     
-    //Get Set
+    //Get Set và tăng giảm
     public int getLives(){
         return lives;
     }
 
     public PlayerWeapon getWeapon(int index){
         if (index < weapons.length){
-            return weapons[i];
+            return weapons[index];
         }
         return null;
     }
 
+    //tăng máu (giảm máu ở lớp cha Creature)
     public void increaseHealth(int h){
         if (health + h > maxHealth){
             health = maxHealth;
@@ -196,6 +218,7 @@ public class Player extends Creature {
         }
     }
 
+    //tăng mana
     public void increaseEnergy(int e){
         if (energy + e > 100){
             energy = 100;
@@ -204,6 +227,7 @@ public class Player extends Creature {
         }
     }
 
+    //giảm mana
     public boolean decreaseEnergy(int e){
         if (energy >= e){
             energy -= e;
@@ -213,14 +237,17 @@ public class Player extends Creature {
         return false;
     }
 
+    //tăng tốc độ
     public void increaseSpeed(float s){
         speed += s;
     }
 
+    //giảm mạng
     public void decreaseLives(){
         lives--;
     }
 
+    //hồi sinh
     public void revive(){
         health = maxHealth;
         energy = 100;
@@ -242,6 +269,7 @@ public class Player extends Creature {
         this.y = y - this.height / 2;
     }
 
+    //set ảnh hiệu ứng chồng lên
     public void setOverlayFrame(BufferedImage frame){
         this.overlayFrame = frame;
         this.animationDelayCount = 0;

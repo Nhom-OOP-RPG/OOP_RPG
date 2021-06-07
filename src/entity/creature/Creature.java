@@ -54,6 +54,12 @@ public abstract class Creature extends Entity {
         moveY();
     }
 
+    //Cơ chế kiểm tra va chạm
+    //nếu sinh vật đi theo hướng nào, xét bounds của sinh vật lấy ra 2 đỉnh nằm ở hướng đó
+    //ví dụ sang phải sẽ lấy đỉnh phải trên và đỉnh phải dưới
+    //kiểm tra sau khi di chuyển, các đỉnh này vẫn nằm ở vị trí hợp lệ (tọa độ không nằm trong tường) thì di chuyển bình thường
+    //nếu khoong thì sẽ đi đến kịch tường rồi dừng
+
     //thực hiện di chuyển phương ngang
     //nếu không va chạm thì sẽ đi bình thường
     //nếu đi bình thường mà có va chạm thì đi đến kịch chỗ va chạm và không đi tiếp nữa

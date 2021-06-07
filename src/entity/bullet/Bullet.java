@@ -11,15 +11,19 @@ import main.Handler;
 import world.Room;
 
 public class Bullet extends Entity {
-
+    //đạn có xuất phát từ người chơi ko (để xác định đối tượng nhận sát thương) và đạn đã nổ chưa
     private boolean isFromPlayer, exploded;
+    //sát thương
     private int damage;
+    //vector hướng di chuyển
     private float[] vector;
 
+    //toạ độ lần tick trước đó và hiện tại
     private float[] preCoord, newCoord;
+    //2 tọa độ sẽ tạo một đoạn thẳng -> tạm gọi là đường đạn
     private Line2D.Float bulletPath;
 
-
+    //hình ảnh
     private BufferedImage[] frame;
 
     public Bullet(Handler handler, float startX, float startY, boolean isFromPlayer, int damage, float speed, double angle, BufferedImage[] bulletFrame) {
@@ -48,6 +52,8 @@ public class Bullet extends Entity {
         this.x += vector[0];
         this.y += vector[1];
 
+
+        //cập nhật đường đạn
         newCoord[0] = this.getCenterX();
         newCoord[1] = this.getCenterY();
 
@@ -56,9 +62,12 @@ public class Bullet extends Entity {
         preCoord[0] = newCoord[0];
         preCoord[1] = newCoord[1];
         
+        //đạn sẽ nổ nếu gây sát thương hoặc chạm tường
         this.exploded = isDamaging() || isCollision();
     }
 
+    //kiểm tra xem đạn đã gây nên sát thương chưa
+    //nếu đường đạn giao với đối phương thì sẽ gây sát thương 
     private boolean isDamaging() {
         if (isFromPlayer) {
             for (Enemy e : handler.getWorld().getRoom().getEnemyList()){
@@ -79,6 +88,7 @@ public class Bullet extends Entity {
         return false;
     }
 
+    //kiểm tra đạn có va chạm với tường
     private boolean isCollision(){
         int x = (int) getCenterX() / Tile.TILE_WIDTH;
         int y = (int) getCenterY() / Tile.TILE_HEIGHT;

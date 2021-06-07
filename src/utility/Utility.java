@@ -43,7 +43,7 @@ public class Utility {
         }
     }
 
-
+    //load ảnh từ đường dẫn
     public static BufferedImage loadImage(String path){
         try {
             return ImageIO.read(new File(path));

@@ -1,3 +1,5 @@
+//lớp vũ khí
+
 package entity.creature.player.playerweapon;
 
 import java.awt.Graphics;
@@ -8,11 +10,17 @@ public abstract class PlayerWeapon {
     public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
     Handler handler;
 
+    //sát thương
     protected int damage;
+    //hướng đánh
     protected int direct;
+    //năng lượng tiêu hao mỗi lần đánh
     protected int energy;
 
+    //Ulti
+    //có đang sử dụng ulti
     protected static boolean isUltimate;
+    //năng lượng tiêu hao khi bật ulti
     protected int ultimateEnergy;
     protected static int ultimateEffectFrameID, ultimateDelay, ultimateDelayCount;
 
@@ -32,6 +40,7 @@ public abstract class PlayerWeapon {
 
     public abstract void render(Graphics graphics);
 
+    //thực hiện tấn công
     public abstract void damaging();
 
     public void increaseDamage(int n){
@@ -50,6 +59,7 @@ public abstract class PlayerWeapon {
         this.direct = handler.getPlayer().getCurrentDirect();
     }
 
+    //bật ulti khi gọi
     public void ultimate(){
         if (!isUltimate && handler.getPlayer().decreaseEnergy(ultimateEnergy)){
             isUltimate = true;

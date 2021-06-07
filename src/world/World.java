@@ -11,10 +11,12 @@ import main.Handler;
 public class World {
     public static final int EAST = 0, WEST = 1, SOUTH = 2, NORTH = 3;
     public static final int DEMO = 0, EASY = 1, HARD = 2;
-    //public static final int
 
     Handler handler;
+
+    //Mức độ khó dễ
     int level;
+
     //Danh sách các phòng
     //index đầu tiên: tên thế giới chứa phòng
     //index thứ hai: tên phòng chơi
@@ -58,6 +60,7 @@ public class World {
         worldMap[0] = new Room[5];
         worldMap[1] = new Room[5];
 
+        //load map
         setRoom(this.handler, 0, 0, "res/world/world0/room_0_0.txt");
         setRoom(this.handler, 0, 1, "res/world/world0/room_0_1.txt");
         setRoom(this.handler, 0, 2, "res/world/world0/room_0_2.txt");
@@ -69,6 +72,7 @@ public class World {
         setRoom(this.handler, 1, 3, "res/world/world1/room_1_3.txt");
         setBossRoom(this.handler, 1, 4, "res/world/world1/room_1_4.txt");
 
+        //init enemy theo mức độ
         switch (level) {
             case DEMO:
                 initEnemyDemo();
@@ -81,6 +85,7 @@ public class World {
         }
     }
 
+    //Khởi tại level demo
     private void initEnemyDemo(){
         //World0
         //Room1
@@ -99,6 +104,7 @@ public class World {
         worldMap[1][3].addNewEnemy(Room.GOBLIN, 1);
     }
 
+    //level dễ
     private void initEnemyEasy(){
         //World0
         //Room1
@@ -121,6 +127,7 @@ public class World {
         worldMap[1][3].addNewEnemy(Room.GOBLIN, 2);
     }
 
+    //level khó
     private void initEnemyHard(){
         //World0
         //Room1

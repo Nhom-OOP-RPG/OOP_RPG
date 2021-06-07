@@ -19,10 +19,13 @@ public class PlayerGun extends PlayerWeapon{
         shootedBullet = new ArrayList<Bullet>();
     }
 
+    //bắn đạn
     public void shoot() {
+        //điểm khởi đầu
         float startX = handler.getPlayer().getCenterX();
         float startY = handler.getPlayer().getCenterY();
 
+        //set góc bắn so với trục Ox
         double angle;
         switch (direct){
             case EAST:
@@ -82,8 +85,9 @@ public class PlayerGun extends PlayerWeapon{
         if (!isUltimate && !handler.getPlayer().decreaseEnergy(energy)) {
             return;
         }
-
+        //cập nhật hướng
         setDirect();
+        //bắn đạn
         shoot();
     }
 
