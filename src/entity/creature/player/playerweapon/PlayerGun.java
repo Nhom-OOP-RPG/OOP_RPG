@@ -2,11 +2,12 @@ package entity.creature.player.playerweapon;
 
 import java.awt.Graphics;
 import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 
 import entity.bullet.Bullet;
 import graphic.Asset;
+import graphic.tile.Tile;
+import main.Game;
 import main.Handler;
 
 public class PlayerGun extends PlayerWeapon{
@@ -85,17 +86,13 @@ public class PlayerGun extends PlayerWeapon{
         if (!isUltimate && !handler.getPlayer().decreaseEnergy(energy)) {
             return;
         }
-        //cập nhật hướng
         setDirect();
-        //bắn đạn
         shoot();
     }
 
     @Override
     public void render(Graphics graphics) {
-        graphics.setColor(Color.WHITE);
-        graphics.setFont(new Font("arial", Font.PLAIN, 15));
-        graphics.drawString("Using Gun", 360, 590);
+    	graphics.drawImage(Asset.gunImage, Game.WINDOW_WIDTH - Tile.TILE_WIDTH, 5, 40, 30, null);
 
         for (Bullet b : shootedBullet){
             b.render(graphics);

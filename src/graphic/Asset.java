@@ -42,6 +42,7 @@ public class Asset {
     public static BufferedImage heart;
 
     public static BufferedImage dead, deadBoss0, deadBoss1;
+    public static BufferedImage gunImage, meleeImage;
 
     public static void init(){
         initTile();
@@ -218,6 +219,8 @@ public class Asset {
         rock = Utility.loadImage("res/texture/tile/world1/rock.png");
         desertfloor = Utility.loadImage("res/texture/tile/world1/desertfloor.png");
         desertwall = Utility.loadImage("res/texture/tile/world1/desertwall.png");
+        gunImage = Utility.loadImage("res/texture/item/gunImage.png");
+        meleeImage = Utility.loadImage("res/texture/item/meleeImage.png");
     }
 
     private static void initOther(){

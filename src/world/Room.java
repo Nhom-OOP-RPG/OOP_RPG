@@ -1,5 +1,5 @@
 /*
-Lớp Room: chứa dữ liệu liên quan tới phòng của màn chơi gồm có 
+Lá»›p Room: chá»©a dá»¯ liá»‡u liÃªn quan tá»›i phÃ²ng cá»§a mÃ n chÆ¡i gá»“m cÃ³ 
 */
 
 package world;
@@ -27,19 +27,19 @@ public class Room {
     
     public int roomName, worldName;
     
-    //Mức độ (DEMO, EASY, HARD)
+    //Má»©c Ä‘á»™ (DEMO, EASY, HARD)
     int level;
 
-    //lưu tên phòng nằm cạnh phòng hiện tại
-    //thứ tự lần lượt là tên phòng phía Đông, Tây, Nam, Bắc
+    //lÆ°u tÃªn phÃ²ng náº±m cáº¡nh phÃ²ng hiá»‡n táº¡i
+    //thá»© tá»± láº§n lÆ°á»£t lÃ  tÃªn phÃ²ng phÃ­a Ä�Ã´ng, TÃ¢y, Nam, Báº¯c
     protected int[] exits = {0, 0, 0, 0};
 
-    //lưu bản đồ của phòng dưới dạng mã tên của các Tile
+    //lÆ°u báº£n Ä‘á»“ cá»§a phÃ²ng dÆ°á»›i dáº¡ng mÃ£ tÃªn cá»§a cÃ¡c Tile
     protected int[][] roomMap;
 
-    //Danh sách quái trong phòng
+    //Danh sÃ¡ch quÃ¡i trong phÃ²ng
     protected ArrayList<Enemy> enemyList;
-    //Danh sách item trong phòng
+    //Danh sÃ¡ch item trong phÃ²ng
     protected ArrayList<Item> itemList;
 
     public Room(Handler handler, String path, int level){
@@ -52,7 +52,7 @@ public class Room {
         itemList = new ArrayList<Item>();
     }
     
-    //Cập nhật thuộc tính
+    //Cáº­p nháº­t thuá»™c tÃ­nh
     public void tick(){
         for (Enemy e : enemyList){
             e.tick();
@@ -66,7 +66,7 @@ public class Room {
         }
     }
 
-    //In phòng chơi ra (bản đồ, quái, item)
+    //In phÃ²ng chÆ¡i ra (báº£n Ä‘á»“, quÃ¡i, item)
     public void render(Graphics graphics){
         for (int y = 0; y < HEIGHT; y++){
             for (int x = 0; x < WIDTH; x++){
@@ -75,8 +75,8 @@ public class Room {
         }
 
         graphics.setColor(Color.WHITE);
-		graphics.setFont(new Font("arial", Font.PLAIN, 15));
-		graphics.drawString("World: " + worldName + ", Room: " + roomName, Tile.TILE_HEIGHT * 2/3 + 600, 20);
+		graphics.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		graphics.drawString("World: " + worldName + ", Room: " + roomName, Tile.TILE_HEIGHT * 2/3 + 590, 12);
 
         for (Enemy e : enemyList){
                 e.render(graphics);
@@ -87,30 +87,21 @@ public class Room {
         }
     }
 
-    //LOAD PHÒNG CHƠI
-    //dòng đầu tiên ghi 2 số là tên thế giới chứa phòng và tên phòng
-    //dòng thứ hai ghi số lối ra của phòng (0 <= exitNum = n <= 4)
-
-    //n dòng tiếp theo, mỗi dòng ghi 2 số là hướng ra và tên phòng tiếp theo ở hướng ra đó
-    //      hướng ra: 0 = Đông, 1 = Tây, 2 = Nam, 3 = Bắc
-
-    //cuối cùng là ma trận 15x20 ghi mã tên các Tile của phòng (nhớ đoạn nào không ra được thì bao bằng tường để tránh lỗi)
     void loadRoom(String path){
         String file = Utility.loadFileAString(path);
         String[] tokens = file.split("\\s+");
 
-        //tên thế giới chứa phòng và tên phòng
         worldName = Utility.parseInt(tokens[0]);
         roomName = Utility.parseInt(tokens[1]);
 
-        //số lối ra của phòng
+
         int exitNum = Utility.parseInt(tokens[2]);
-        //các hướng ra và tên phòng tiếp theo ở hướng ra đó
+
         for (int i = 3; i < 2 + 2 * exitNum; i += 2){
             exits[Utility.parseInt(tokens[i])] = Utility.parseInt(tokens[i+1]);
         }
 
-        //ma trận 15x20 ghi mã tên các Tile
+        //ma tráº­n 15x20 ghi mÃ£ tÃªn cÃ¡c Tile
         roomMap = new int[WIDTH][HEIGHT];
         for (int x = 0; x < WIDTH; x++){
             for (int y = 0; y < HEIGHT; y++){
@@ -120,7 +111,7 @@ public class Room {
     }
 
     //GET
-    //lấy tên phòng ra theo hướng dir
+    //láº¥y tÃªn phÃ²ng ra theo hÆ°á»›ng dir
     public int getExit(int dir){
         return exits[dir];
     }
@@ -133,7 +124,7 @@ public class Room {
         return itemList;
     }
 
-    //từ tọa độ (x, y), xét mã tên Tile để trả về Tile
+    //tá»« tá»�a Ä‘á»™ (x, y), xÃ©t mÃ£ tÃªn Tile Ä‘á»ƒ tráº£ vá»� Tile
     public Tile getTile(int x, int y){
         if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT){
             return Tile.blankTile;
@@ -148,8 +139,8 @@ public class Room {
         }
     }
 
-    //Add quái mới vào phòng
-    //add theo mã tên quái -> Random vị trí
+    //Add quÃ¡i má»›i vÃ o phÃ²ng
+    //add theo mÃ£ tÃªn quÃ¡i -> Random vá»‹ trÃ­
     public void addNewEnemy(int enemyID){
         Random rand = new Random();
         int x, y;
@@ -161,14 +152,14 @@ public class Room {
         addNewEnemy(enemyID, x, y);
     }
 
-    //add theo mã tên quái với số lượng -> Random vị trí
+    //add theo mÃ£ tÃªn quÃ¡i vá»›i sá»‘ lÆ°á»£ng -> Random vá»‹ trÃ­
     public void addNewEnemy(int enemyID, int numOfEnemies){
         for (int i = 0; i < numOfEnemies; i++){
             addNewEnemy(enemyID);
         }
     }
 
-    //add theo mã tên quái và vị trí xác định (tính theo vị trí tile)
+    //add theo mÃ£ tÃªn quÃ¡i vÃ  vá»‹ trÃ­ xÃ¡c Ä‘á»‹nh (tÃ­nh theo vá»‹ trÃ­ tile)
     public void addNewEnemy(int enemyID, int x, int y){
         switch (enemyID){
             case GUMMY:
@@ -191,7 +182,7 @@ public class Room {
         }
     }
 
-    //add item mới vào phòng
+    //add item má»›i vÃ o phÃ²ng
     public void addNewItem(int x, int y){
         int itemID = Item.randItemID();
         switch (itemID){

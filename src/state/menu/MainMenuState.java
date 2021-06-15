@@ -101,7 +101,7 @@ public class MainMenuState extends State {
             }
 		}
 
-        drawCenterString(graphics, Game.WINDOW_HEIGHT - 30, "Â©2021", new Font("Arial", Font.BOLD, 20), primaryColor[themeID]);
+        drawCenterString(graphics, Game.WINDOW_HEIGHT - 30, "©2021", new Font("Arial", Font.BOLD, 20), primaryColor[themeID]);
         drawCenterString(graphics, Game.WINDOW_HEIGHT - 10, "Made by Group 21", new Font("Arial", Font.BOLD, 20), primaryColor[themeID]);
     }
     

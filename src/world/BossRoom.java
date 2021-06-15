@@ -64,8 +64,8 @@ public class BossRoom extends Room {
         }
 
         graphics.setColor(Color.WHITE);
-		graphics.setFont(new Font("arial", Font.PLAIN, 15));
-		graphics.drawString("Boss of World " + worldName, Tile.TILE_HEIGHT * 2/3 + 600, 20);
+		graphics.setFont(new Font("Amasis MT Pro Black", 3, 15));
+		graphics.drawString("Boss of World " + worldName, Tile.TILE_HEIGHT * 2/3 + 600, 12);
 
         if (enemyList.get(0).getIsDead()){
             graphics.drawImage(Asset.gate, 9 * 40, 6 * 40, 40, 40, null);

@@ -2,15 +2,16 @@ package entity.creature.player.playerweapon;
 
 import java.awt.Graphics;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Rectangle;
 
 import entity.creature.enemy.Enemy;
 import graphic.Asset;
+import graphic.tile.Tile;
+import main.Game;
 import main.Handler;
 
 public class PlayerMelee extends PlayerWeapon {
-    private int range, ultimateRange, isUltimateToInt;
+    private int range, isUltimateToInt, ultimateRange;
     private Rectangle attackBox;
 
     private int frameID;
@@ -32,9 +33,7 @@ public class PlayerMelee extends PlayerWeapon {
         if (!isUltimate && !handler.getPlayer().decreaseEnergy(energy)) {
             return;
         }
-
         isUltimateToInt = isUltimate ? 1 : 0;
-
         setDirect();
         getAttackBox();
         for (Enemy e : handler.getWorld().getRoom().getEnemyList()){
@@ -99,9 +98,7 @@ public class PlayerMelee extends PlayerWeapon {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.setColor(Color.WHITE);
-        graphics.setFont(new Font("arial", Font.PLAIN, 15));
-        graphics.drawString("Using Melee", 360, 590);
+        graphics.drawImage(Asset.meleeImage, Game.WINDOW_WIDTH- Tile.TILE_WIDTH, 5 , 35, 27, null);
 
         if (isUltimate){
             graphics.drawImage(Asset.cutUltimate[frameID], attackBox.x, attackBox.y, attackBox.width, attackBox.height, null);
